@@ -7,7 +7,14 @@
 import Marquee
 import SwiftUI
 import UIKit
+
+
+
+
 private var colors:[Color] = [.gray, .red, .green, .orange, .purple]
+
+
+
 struct HomePublisherView: View {
     @State var totalBookViews = "707k"
     @State var totalBooks = "23"
@@ -147,7 +154,7 @@ struct HomePublisher: View{
     //                   Text(item.fullAddress ?? "Hello")
     //                   Text("\(item.partnerMedia.endIndex)")
     //               }
-                }.marquee(duration: 12, autoreverse: false)
+                }.marquee(duration: 8, autoreverse: false)
             }
        
     }

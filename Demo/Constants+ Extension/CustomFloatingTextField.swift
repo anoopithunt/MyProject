@@ -35,7 +35,7 @@ struct CustomFloatingTextField: View {
             })
             .padding(.leading,40)
             .padding(.trailing,35)
-            .foregroundColor(Color.gray)
+            .foregroundColor(Color.white)
             .accentColor(Color.orange)
             .font(.system(size: 22))
             .animation(.linear, value:  true)
@@ -46,7 +46,7 @@ struct CustomFloatingTextField: View {
             ///Floating Placeholder
             Text(placeHolderText)
             
-                .foregroundColor(shouldPlaceHolderMove ? Color.black: Color.gray)
+                .foregroundColor(.white)
             .padding(shouldPlaceHolderMove ?
                      EdgeInsets(top: 2, leading:40, bottom: textFieldHeight, trailing: 0) :
                      EdgeInsets(top: 0, leading:55, bottom: 0, trailing: 0))
@@ -55,14 +55,14 @@ struct CustomFloatingTextField: View {
             .animation(.easeInOut, value: 91)
             .overlay(alignment: .leading){
                 Image(systemName: leadingImage)
-                    .foregroundColor(Color.gray)
+                    .foregroundColor(Color.white)
                     .font(.system(size: 24))
             }
                                 
         }
         .underlineTextField()
-        .foregroundColor(shouldPlaceHolderMove ? Color.black: Color.gray)
-        .frame( height: 50)
+        .foregroundColor(shouldPlaceHolderMove ? Color.teal: Color.gray)
+        .frame( height: 90)
 
     }
 }
@@ -129,8 +129,117 @@ struct FloatingTextField: View {
 
  
 struct Ex: View{
-    @State var text: String = ""
+    @State private var text = ""
+    @State private var originalPassword = ""
+       @State private var maskedPassword = ""
+       @State private var isMasked = false
     var body: some View{
-        CustomFloatingTextField(placeHolder: "Demo PlaceHolder", leadingImage: "lock", text: $text)
+        
+        
+        ZStack {
+            Color.green.opacity(0.4)
+            VStack{
+               CustomFloatingTextField(placeHolder: "Hello FloatingTF", leadingImage: "person.fill", text: $text)
+                PasswordField(placeHolder: "Password", text: $text)
+               
+            }
+        }
     }
 }
+
+
+
+struct PasswordField: View{
+    
+    @State var isTapped = true
+
+    let textFieldHeight: CGFloat = 50
+    private var placeHolderText: String = ""
+    @State var leadingImage: String = "lock.fill"
+   
+    @Binding var text: String
+    @State private var isEditing = false
+    public init(placeHolder: String, 
+                text: Binding<String>) {
+        self._text = text
+       
+        self.placeHolderText = placeHolder
+        self.leadingImage = leadingImage
+ 
+    }
+    var shouldPlaceHolderMove: Bool {
+        isEditing || (text.count != 0)
+    }
+    
+    
+    var body: some View {
+        ZStack(alignment: .leading) {
+            ZStack {
+                
+                if !isTapped{
+//                    SecureField("",text: $text)
+                    ZStack {
+                         SecureField("Password", text: $text)
+                            .font(.system(size: 22)).padding(.leading,6)
+                                    
+                         TextField("", text: $text, onEditingChanged: { (edit) in
+                             isEditing = edit
+                         })
+                           .foregroundColor(.clear)
+                           .disableAutocorrection(true)
+                           .font(.system(size: 22))
+                                
+                    }
+                    
+                        .padding(.leading,40)
+                        .padding(.trailing,50)
+                        .foregroundColor(Color.white)
+                        .accentColor(Color.teal)
+                        .font(.system(size: 22))
+                        .animation(.linear, value:  true)
+                    
+                } else{
+                    TextField("", text: $text, onEditingChanged: { (edit) in
+                        isEditing = edit
+                    })
+                    .padding(.leading,40)
+                    .padding(.trailing,50)
+                    .foregroundColor(Color.white)
+                    .accentColor(Color.teal)
+                    .font(.system(size: 22))
+                    .animation(.linear, value:  true)
+                    
+                }
+                
+            }.overlay(alignment: .trailing){
+                    Image(systemName: isTapped ? "eye.slash.fill": "eye.fill").font(.system(size: 28))
+                        .foregroundColor(.gray).padding(4).onTapGesture{
+                            isTapped.toggle()
+                           
+                        }
+                }
+           
+            ///Floating Placeholder
+            Text(placeHolderText)
+                .foregroundColor(.white)
+                .padding(shouldPlaceHolderMove ?
+                     EdgeInsets(top: 2, leading:40, bottom: textFieldHeight, trailing: 0) :
+                     EdgeInsets(top: 0, leading:50, bottom: 0, trailing: 0))
+                .scaleEffect(shouldPlaceHolderMove ? 1.2 : 1.3)
+            .animation(.easeInOut, value: 91)
+            .overlay(alignment: .leading){
+                Image(systemName: leadingImage)
+                    .foregroundColor(Color.gray)
+                    .font(.system(size: 28)).padding(4)
+            }
+                                
+        }
+        .underlineTextField()
+        .foregroundColor(shouldPlaceHolderMove ? Color.teal: Color.white)
+        .frame( height: 90)
+    }
+}
+
+
+
+

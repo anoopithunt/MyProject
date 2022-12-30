@@ -1,12 +1,21 @@
 {
   "pins" : [
     {
+      "identity" : "abseil-cpp-swiftpm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/firebase/abseil-cpp-SwiftPM.git",
+      "state" : {
+        "revision" : "583de9bd60f66b40e78d08599cc92036c2e7e4e1",
+        "version" : "0.20220203.2"
+      }
+    },
+    {
       "identity" : "alamofire",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Alamofire/Alamofire.git",
       "state" : {
-        "branch" : "master",
-        "revision" : "ce7f662709a152e840b130a158b9afef3402e146"
+        "revision" : "78424be314842833c04bc3bef5b72e85fff99204",
+        "version" : "5.6.4"
       }
     },
     {
@@ -19,12 +28,84 @@
       }
     },
     {
-      "identity" : "auth0.swift",
+      "identity" : "alerttoast",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/auth0/Auth0.swift.git",
+      "location" : "https://github.com/elai950/AlertToast.git",
       "state" : {
-        "revision" : "f60927196902e83934adc9407134994347f24db8",
-        "version" : "2.3.2"
+        "branch" : "master",
+        "revision" : "b39252eacd159904afd7d718bba0afabb87f2f2f"
+      }
+    },
+    {
+      "identity" : "beautyalert",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ChaminLee/BeautyAlert",
+      "state" : {
+        "revision" : "ee0f84d9e79b1086f443fb7bb39d7afb4f928581",
+        "version" : "0.1.3"
+      }
+    },
+    {
+      "identity" : "boringssl-swiftpm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/firebase/boringssl-SwiftPM.git",
+      "state" : {
+        "revision" : "dd3eda2b05a3f459fc3073695ad1b28659066eab",
+        "version" : "0.9.1"
+      }
+    },
+    {
+      "identity" : "firebase-ios-sdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/firebase/firebase-ios-sdk.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "323db3d9e43a2e8a9e642669f7b4ce666f54479d"
+      }
+    },
+    {
+      "identity" : "googleappmeasurement",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/google/GoogleAppMeasurement.git",
+      "state" : {
+        "revision" : "9a09ece724128e8d1e14c5133b87c0e236844ac0",
+        "version" : "10.4.0"
+      }
+    },
+    {
+      "identity" : "googledatatransport",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/google/GoogleDataTransport.git",
+      "state" : {
+        "revision" : "f6b558e3f801f2cac336b04f615ce111fa9ddaa0",
+        "version" : "9.2.1"
+      }
+    },
+    {
+      "identity" : "googleutilities",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/google/GoogleUtilities.git",
+      "state" : {
+        "revision" : "0543562f85620b5b7c510c6bcbef75b562a5127b",
+        "version" : "7.11.0"
+      }
+    },
+    {
+      "identity" : "grpc-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/grpc/grpc-ios.git",
+      "state" : {
+        "revision" : "8440b914756e0d26d4f4d054a1c1581daedfc5b6",
+        "version" : "1.44.3-grpc"
+      }
+    },
+    {
+      "identity" : "gtm-session-fetcher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/google/gtm-session-fetcher.git",
+      "state" : {
+        "revision" : "96d7cc73a71ce950723aa3c50ce4fb275ae180b8",
+        "version" : "3.1.0"
       }
     },
     {
@@ -37,15 +118,6 @@
       }
     },
     {
-      "identity" : "jwtdecode.swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/auth0/JWTDecode.swift.git",
-      "state" : {
-        "revision" : "d07041068fed2d4b8a38f2b321ea6d97c9152c4a",
-        "version" : "3.0.0"
-      }
-    },
-    {
       "identity" : "kingfisher",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/onevcat/Kingfisher.git",
@@ -55,12 +127,12 @@
       }
     },
     {
-      "identity" : "listpagination",
+      "identity" : "leveldb",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/crelies/ListPagination.git",
+      "location" : "https://github.com/firebase/leveldb.git",
       "state" : {
-        "revision" : "af667b368a10512da79605b61698d53c11d24cbf",
-        "version" : "0.1.1"
+        "revision" : "0706abcc6b0bd9cedfbb015ba840e4a780b5159b",
+        "version" : "1.22.2"
       }
     },
     {
@@ -68,8 +140,17 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SwiftUIKit/Marquee.git",
       "state" : {
-        "revision" : "69d7b7c6c34ed41d9299cfa8406f91f529c4fef3",
-        "version" : "0.3.0"
+        "branch" : "master",
+        "revision" : "69d7b7c6c34ed41d9299cfa8406f91f529c4fef3"
+      }
+    },
+    {
+      "identity" : "nanopb",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/firebase/nanopb.git",
+      "state" : {
+        "revision" : "819d0a2173aff699fb8c364b6fb906f7cdb1a692",
+        "version" : "2.30909.0"
       }
     },
     {
@@ -82,6 +163,15 @@
       }
     },
     {
+      "identity" : "promises",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/google/promises.git",
+      "state" : {
+        "revision" : "3e4e743631e86c8c70dbc6efdc7beaa6e90fd3bb",
+        "version" : "2.1.1"
+      }
+    },
+    {
       "identity" : "pspdfkit-sp",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/PSPDFKit/PSPDFKit-SP",
@@ -91,12 +181,21 @@
       }
     },
     {
+      "identity" : "richtext",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/NuPlay/RichText.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "48b840c46295111390f018ef5832f1e81567e32f"
+      }
+    },
+    {
       "identity" : "sdwebimage",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImage.git",
       "state" : {
-        "revision" : "3312bf5e67b52fbce7c3caf431b0cda721a9f7bb",
-        "version" : "5.14.2"
+        "revision" : "4178d12a44691182c2eb79c70281b14cb73f4cbf",
+        "version" : "5.14.3"
       }
     },
     {
@@ -105,34 +204,25 @@
       "location" : "https://github.com/SDWebImage/SDWebImageSwiftUI.git",
       "state" : {
         "branch" : "master",
-        "revision" : "ed288667c909c89127ab1b690113a3e397af3098"
+        "revision" : "61fefe9c284fd41ddef77d02749e88f00c305196"
       }
     },
     {
-      "identity" : "simplekeychain",
+      "identity" : "sidemenu",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/auth0/SimpleKeychain.git",
+      "location" : "https://github.com/Vidhyadharan-Mohanram/SideMenu",
       "state" : {
-        "revision" : "7f7be4a7dfc9164c2c66f95193cec9df9ac47d58",
-        "version" : "1.0.1"
+        "revision" : "d6d7834c6cab5ee85bca1e95933804af06ad9215",
+        "version" : "0.1.0"
       }
     },
     {
-      "identity" : "swiftkeychainwrapper",
+      "identity" : "swift-protobuf",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/jrendel/SwiftKeychainWrapper",
+      "location" : "https://github.com/apple/swift-protobuf.git",
       "state" : {
-        "revision" : "185a3165346a03767101c4f62e9a545a0fe0530f",
-        "version" : "4.0.1"
-      }
-    },
-    {
-      "identity" : "swiftui-drawer",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/maustinstar/swiftui-drawer.git",
-      "state" : {
-        "branch" : "master",
-        "revision" : "6d22f5c1362bfa71f2915c28aebba343b9243363"
+        "revision" : "ab3a58b7209a17d781c0d1dbb3e1ff3da306bae8",
+        "version" : "1.20.3"
       }
     },
     {
@@ -142,6 +232,15 @@
       "state" : {
         "branch" : "master",
         "revision" : "af1f7a2007d607fbe735c445f19080df4260fe8e"
+      }
+    },
+    {
+      "identity" : "waterfallgrid",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/paololeonardi/WaterfallGrid.git",
+      "state" : {
+        "revision" : "944aa82832ed5a9eaaf50862cdd53e3c10ab55eb",
+        "version" : "1.0.1"
       }
     }
   ],

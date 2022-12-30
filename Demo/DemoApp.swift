@@ -6,17 +6,30 @@
 //
 
 import SwiftUI
+import FirebaseCore
+
+
+//class AppDelegate: NSObject, UIApplicationDelegate {
+//  func application(_ application: UIApplication,
+//                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+//      
+//    FirebaseApp.configure()
+//
+//    return true
+//  }
+//}
 
 @main
 struct DemoApp: App {
-
+//    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @UIApplicationDelegateAdaptor private var appDelegate: AppDelegate
     var body: some Scene {
         WindowGroup {
-      
-//            LoginViewExample()
-//            SearchBooksCollectionView()
-            HomePublisher()
-
+          
+            LoginPageView()
+//            PurchagedBooksView()
+//            ContentView()
+            
         }
     }
 }

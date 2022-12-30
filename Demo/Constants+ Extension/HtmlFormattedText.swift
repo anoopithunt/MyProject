@@ -12,7 +12,7 @@ import SwiftUI
 extension Text {
     init(html htmlString: String,
          raw: Bool = false,
-         size: CGFloat? = nil,
+         size: CGFloat? = 18,
          fontFamily: String = "-apple-system") {
         let fullHTML: String
         if raw {
@@ -71,11 +71,11 @@ extension Text {
                 text = text.kerning(kern)
             }
             
-            if #available(iOS 14.0, *) {
+//            if #available(iOS 16.0, *) {
                 if let tracking = attrs[.tracking] as? CGFloat {
                     text = text.tracking(tracking)
                 }
-            }
+//            }
             
             if let strikethroughStyle = attrs[.strikethroughStyle] as? NSNumber, strikethroughStyle != 0 {
                 if let strikethroughColor = (attrs[.strikethroughColor] as? UIColor) {
@@ -100,5 +100,12 @@ extension Text {
             
             self = self + text
         }
+    }
+}
+
+
+struct LoginPlansView1_Previews: PreviewProvider {
+    static var previews: some View {
+        Text(html: "<b>Hello world</b>")
     }
 }

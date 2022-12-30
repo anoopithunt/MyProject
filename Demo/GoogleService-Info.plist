@@ -3,21 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>969092163631-l02ajaldeuvfra85os1ke2vgfrtl7vf3.apps.googleusercontent.com</string>
+	<string>129718369365-he1hajhj1mbi2sqv3rbh7gp4i31jdo6q.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.969092163631-l02ajaldeuvfra85os1ke2vgfrtl7vf3</string>
+	<string>com.googleusercontent.apps.129718369365-he1hajhj1mbi2sqv3rbh7gp4i31jdo6q</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>129718369365-jd08edv01het6phj2ke91mqha9jf6hs7.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyASk5sHSCbto381NAP6AC0Ygam7QdszW5s</string>
+	<string>AIzaSyCqQtuO0i8XtapSgOExiGHp9NhZRlO7H4Q</string>
 	<key>GCM_SENDER_ID</key>
-	<string>969092163631</string>
+	<string>129718369365</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.primeitzen.Demo</string>
 	<key>PROJECT_ID</key>
-	<string>alibrary-9de3d</string>
+	<string>alibrary-4948f</string>
 	<key>STORAGE_BUCKET</key>
-	<string>alibrary-9de3d.appspot.com</string>
+	<string>alibrary-4948f.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +31,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:969092163631:ios:d5646b182b420b3ca27eda</string>
+	<string>1:129718369365:ios:60376d2a911905b81c28dc</string>
+	<key>DATABASE_URL</key>
+	<string>https://alibrary-4948f.firebaseio.com</string>
 </dict>
 </plist>

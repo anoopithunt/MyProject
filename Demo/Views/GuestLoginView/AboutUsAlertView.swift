@@ -47,7 +47,7 @@ struct AboutUsView: View {
   @State var list = String()
     var body: some View {
         
-        ZStack {
+        ZStack(alignment: Alignment(horizontal: .center, vertical: .center)) {
             Color(.gray).opacity(0.4).ignoresSafeArea()
             VStack{
             HStack{
@@ -62,27 +62,30 @@ struct AboutUsView: View {
                 VStack {
                     if isLoading {
                        
-                        
-                        Spacer(minLength: 234)
-                        ProgressView().padding()
+                       VStack(alignment:.center){
+                            Spacer()
+                            CircleProgressView().padding()
+                           Spacer()
+                        }
                                                    
                                          
                     } else {
                         Text(html: list).padding()
+                        HStack{
+                            Spacer()
+                            Button(action: {
+                                                self.isShown = false
+                                
+                            }){
+                                Text("Okay").font(.headline)
+                                    .frame(width: 116, height: 45, alignment: .center)
+                                    .background(Color("default_"))
+                                    .foregroundColor(.white)
+                                    .cornerRadius(33)
+                            }.padding(23)
+                        }
                     }
-                    HStack{
-                        Spacer()
-                        Button(action: {
-                                            self.isShown = false
-                            
-                        }){
-                            Text("Okay").font(.headline)
-                                .frame(width: 116, height: 45, alignment: .center)
-                                .background(Color("default_"))
-                                .foregroundColor(.white)
-                                .cornerRadius(33)
-                        }.padding(23)
-                    }
+                   
                     
                 }
                 .onAppear{

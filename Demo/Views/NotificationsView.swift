@@ -41,29 +41,29 @@ struct NotificationTabView: View {
     var body: some View {
         VStack{
         PagerTabStripView() {
-            
+
             NotificationTestView()
                 .frame(width: UIScreen.main.bounds.width)
                 .pagerTabItem {
 
                     VStack {
-                       
+
                          Text("ACTIVITIES")
                             .font(.system(size: 24, weight: .bold))
                             .foregroundColor(.white)
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color("orange"))
-                       
+
                 }
-               
-           
-         
+
+
+
             ActivitiesView()
                 .frame(width: UIScreen.main.bounds.width)
                     .pagerTabItem {
                         VStack {
-                           
+
                              Text("TEST")
                                 .font(.system(size: 24, weight: .bold))
                                 .foregroundColor(.white)
@@ -71,15 +71,15 @@ struct NotificationTabView: View {
                         .frame(maxWidth: 234, maxHeight: .infinity)
                         .background(Color("orange"))
                     }
-           
-            
+
+
         }
         .pagerTabStripViewStyle(.barButton(placedInToolbar: false, tabItemSpacing: 0, tabItemHeight: 70,indicatorViewHeight: 2.5, indicatorView: {
             Color.black
         })).padding(-4)
   
         .foregroundColor(.white)
-            
+//            
         }
     }
 }

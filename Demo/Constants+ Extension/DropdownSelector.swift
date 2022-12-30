@@ -24,6 +24,7 @@ struct DropdownSelector: View{
                     }, label: {
                         
                         Text(client)
+                            .foregroundColor(.black)
                     })
 
             }

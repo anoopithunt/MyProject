@@ -5,10 +5,6 @@
 //  Created by Sandeep Kesarwani on 20/08/22.
 //
 
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
-//
-//   let temperatures = try? newJSONDecoder().decode(Temperatures.self, from: jsonData)
 import SwiftUI
 import Foundation
 import UIKit

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import ListPagination
+//import ListPagination
 
 struct JWTAuthExample: View {
     @StateObject private var loginVM = LoginViewModel()
@@ -72,17 +72,17 @@ struct JWTAuthExample: View {
 
 struct JWTAuthExample_Previews: PreviewProvider {
     static var previews: some View {
-//        JWTAuthExample()
+        JWTAuthExample()
        
         
 //        PaginationDataView()
-        Group {
-            PaginationDataView()
-                     .environment(\.colorScheme, .light)
-
-            PaginationDataView()
-                     .environment(\.colorScheme, .dark)
-               }
+//        Group {
+//            PaginationDataView()
+//                     .environment(\.colorScheme, .light)
+//
+//            PaginationDataView()
+//                     .environment(\.colorScheme, .dark)
+//               }
        
     }
 }
@@ -123,22 +123,6 @@ class LoginViewModel: ObservableObject {
     
 }
 
-
-enum AuthenticationError: Error {
-    case invalidCredentials
-    case custom(errorMessage: String)
-}
-
-enum NetworkError: Error {
-    case invalidURL
-    case noData
-    case decodingError
-}
-
-struct LoginRequestBody: Codable {
-    let username: String
-    let password: String
-}
 
 
 struct LoginResponse: Codable {

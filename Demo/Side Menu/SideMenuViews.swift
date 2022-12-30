@@ -9,294 +9,544 @@ import SwiftUI
 
 struct SideMenuViews: View {
     
-    
+    @State var showMenu: Bool
+    @Binding var selected: SelectedScreen
+    @State var shown = false
+    @State var selectedItem = 1
+    @Environment(\.dismiss) var dismiss
     var body: some View {
-        Home()
-      }
-      
+        
+//        NavigationView {
+   ZStack {
+       HStack(spacing:0) {
+           ScrollView{
+               VStack(alignment: .leading) {
+                   NavigationLink(destination: LoginPageView()
+                    .navigationTitle("")
+                    .navigationBarHidden(true)
+                    .navigationBarBackButtonHidden(true), label: {
+                        Text("LOGIN").foregroundColor(.white)
+                        .font(.title)
+                        .frame(width: UIScreen.main.bounds.width*0.67, height: 55, alignment: .center)
+                        .background(.black)
+                        .cornerRadius(32)
+                        .padding(.horizontal)
+                        .padding(.top,122)
+                        
+                    })
+                   Button(action: {
+                       selected = .home
+                       showMenu = false
+                       
+                   }, label: {
+                       HStack{
+                           Image(systemName: "house.fill")
+                               .font(.title2)
+                               .foregroundColor(.gray)
+                               .padding(.leading)
+                           Text("Home")
+                                    .font(.title2)
+                                    .foregroundColor(.black)
+                                    .padding(.leading,5)
+                                Spacer()
+                            }.padding(.vertical,5)
+                        })
+                   Button(action: {
+                       selected = .explorecategory
+                       showMenu = false
+                       
+                   }, label: {
+                       HStack{
+                           Image(systemName: "square.grid.3x3.fill")
+                               .font(.title2)
+                               .foregroundColor(.gray)
+                               .padding(.leading)
+                           Text("Explore Categories")
+                               .font(.title2)
+                               .foregroundColor(.black)
+                               .padding(.leading,5)
+              Spacer()
+                           
+                       }.padding(.vertical,5)
+                       
+                   })
+                   Button(action: {
+                       selected = .plans
+                       showMenu = false
+                       
+                   }, label: {
+                       HStack{
+                           Image(systemName: "lightbulb.fill")
+                               .font(.title2)
+                               .foregroundColor(.gray)
+                               .padding(.leading)
+                           Text("Plan")
+                               .font(.title2)
+                               .foregroundColor(.black)
+                               .padding(.leading,5)
+                           Spacer()
+                           
+                       }.padding(.vertical,5)
+                       
+                   })
+                   //                    Button(action: {
+    //                        selected = .alert
+    //                        showMenu = false
+    //
+    //
+    //                    }, label: {
+    //
+    //
+    //                        HStack{
+    //                            Image(systemName: "person.crop.square.fill")
+    //                                .font(.title2)
+    //                                .foregroundColor(.gray)
+    //                                .padding(.leading)
+    //                            Text("My Profile")
+    //                                .foregroundColor(.black)
+    //                                .font(.title2)
+    //                                .padding(.leading,5)
+    //                            Spacer()
+    //                        }.padding(.vertical)
+    //
+    //                    })
+                   Group{
+                       HStack {
+                           Image(systemName: "doc.fill")
+                               .font(.title2)
+                               .foregroundColor(.gray)
+                               .padding(.leading)
+                           Link("Donations", destination: URL(string: "https://www.alibrary.in/donate-funds")!)
+                               .font(.title2)
+                               .padding(.leading, 5)
+                               .foregroundColor(.black)
+                           
+                       }.padding(.vertical,5)
+                       
+                    NavigationLink(destination:// MagazinesView()
+                       EmptyView()
+                        .navigationTitle("")
+                        .navigationBarHidden(true)
+                        .navigationBarBackButtonHidden(true), label: {
+                            HStack{
+                                Image(systemName: "rectangle.trailinghalf.filled")
+                                        .font(.title2)
+                                        .foregroundColor(.gray)
+                                    //                    .background(Color.gray)
+                                        .padding(.leading)
+                                    Text("Magazines")
+                                        .font(.title2).foregroundColor(.black)
+                                        .padding(.leading,5)
+                                    Spacer()
+                                }.padding(.vertical,5)
+                            })
+    //
+    //                        HStack{
+    //                            Image(systemName: "book.fill")
+    //                                .font(.title2)
+    //                                .foregroundColor(.gray)
+    //                                .padding(.leading)
+    //                            Text("Reported Books")
+    //                                .font(.title2)
+    //                                .padding(.leading, 5)
+    //                            Spacer()
+    //                        }.padding(.vertical)
+    //                        HStack{
+    //                            Image(systemName: "rectangle.split.2x2.fill")
+    //                                .font(.title2)
+    //                                .foregroundColor(.gray)
+    //                                .padding(.leading)
+    //                            Text("Assign Books")
+    //                                .font(.title2)
+    //                                .padding(.leading,5)
+    //                            Spacer()
+    //                        }.padding(.vertical)
+//
+    //                        HStack{
+    //                            Image(systemName: "indianrupeesign.square.fill")
+    //                                .font(.title2)
+    //                                .foregroundColor(.gray)
+    //                                .padding(.leading)
+    //                            Text("Invite & Earn")
+    //                                .font(.title2)
+    //                                .padding(.leading, 5)
+    //                            Spacer()
+    //                        }.padding(.vertical)
+    //                        HStack{
+    //                            Image(systemName: "rectangle.split.1x2")
+    //                                .font(.title2)
+    //                                .foregroundColor(.gray)
+    //                                .padding(.leading)
+    //                            Text("Stories")
+    //                                .font(.title2)
+    //                                .padding(.leading,5)
+    //                            Spacer()
+    //                        }.padding(.vertical)
+                    Divider()
+                           .frame( height: 1)
+                           .background(Color.gray)
+                            //            Spacer()
+                   HStack {
+                       Text("Others")
+                           .foregroundColor(.gray)
+                           .bold()
+                           .font(.system(size: 18))
+                           .padding(.leading)
+                       Spacer()
+                       
+                   }
+                       
+                   }
+                   Group{
+                       Button(action: {
+                           shown.toggle()
+                           selectedItem = 1
+                            }, label: {
+                                HStack{
+                                    Image(systemName: "person.2.fill")
+                                      .font(.title2)
+                                      .foregroundColor(.gray)
+                                      .padding(.leading)
+                                    Text("About us")
+                                        .foregroundColor(.black)
+                                        .font(.title2)
+                                        .padding(.leading,5)
+                                    Spacer()
+                                }.padding(.vertical,5)
+                            })
+                       
+                        Button(action: {
+                            shown.toggle()
+                            selectedItem = 2
+                            
+                        }, label: {
+                            
+                            HStack{
+                                Image(systemName: "person.crop.rectangle.stack.fill")
+                                    .font(.title2)
+                                    .foregroundColor(.gray)
+                                    .padding(.leading)
+                                Text("Contact Us")
+                                    .font(.title2)
+                                    .foregroundColor(.black)
+                                    .padding(.leading,5)
+                                Spacer()
+                            }.padding(.vertical,5)
+                            
+                        })
+                       Button(action: {
+                           shown.toggle()
+                           selectedItem = 3
+                           
+                       }, label: {
+                                HStack{
+                                    Image(systemName: "magnifyingglass.circle.fill")
+                                        .font(.title2)
+                                        .foregroundColor(.gray)
+                                        .padding(.leading)
+                                    Text("Privacy and Policy")
+                                        .font(.title2).foregroundColor(.black)
+                                        .padding(.leading,5)
+                                    Spacer()
+                                }.padding(.vertical,5)
+                           
+                       })
+                       Button(action: {
+                           shown.toggle()
+                           selectedItem = 4
+                            }, label: {
+                                HStack{
+                                    Image(systemName: "checkmark.shield.fill")
+                                        .font(.title3)
+                                        .foregroundColor(.gray)
+                                        .padding(.leading)
+                                    Text("Terms and conditions")
+                                        .font(.title2).foregroundColor(.black)
+                                        .padding(.leading,5)
+                                    Spacer()
+                                }.padding(.vertical,5)
+                            })
+                            
+                            Button(action: {
+                                
+                                shown.toggle()
+                                selectedItem = 5
+                                
+                            }, label: {
+                                HStack{
+                                    Image(systemName: "person.circle.fill")
+                                        .font(.title2)
+                                        .foregroundColor(.gray)
+                                        .padding(.leading)
+                                    Text("Adolescence")
+                                        .font(.title2)
+                                        .foregroundColor(.black)
+                                        .padding(.leading,5)
+                                    Spacer()
+                                }.padding(.vertical,5)
+                            })
+                            
+                            Button(action: {
+                                
+                                shown.toggle()
+                                selectedItem = 6
+                                
+                            }, label: {
+                                
+                                HStack{
+                                    Image(systemName: "lock.fill")
+                                        .font(.title2)
+                                        .foregroundColor(.gray)
+                                        .padding(.leading)
+                                    Text("DMCA")
+                                        .font(.title2).foregroundColor(.black)
+                                        .padding(.leading,5)
+                                    Spacer()
+                                }.padding(.vertical,5)
+                                
+                            })
+                            NavigationLink(destination: CopyRightView().navigationTitle("")
+                                .navigationBarHidden(true)
+                                .navigationBarBackButtonHidden(true), label: {
+                                    
+                                    HStack{
+                                        Image(systemName: "c.circle")
+                                            .font(.title2)
+                                            .foregroundColor(.gray)
+                                            .padding(.leading)
+                                        Text("Copy Right")
+                                            .foregroundColor(.black)
+                                            .font(.title2)
+                                            .padding(.leading,5)
+                                        Spacer()
+                                    }.padding(.vertical,5)
+                                }
+                                           )
+                            Button(action: {
+                                
+                                shown.toggle()
+                                selectedItem = 7
+                               
+                            }, label: {
+                                
+                                
+                                HStack{
+                                    Image(systemName: "text.bubble.fill")
+                                        .font(.title2)
+                                        .foregroundColor(.gray)
+                                        .padding(.leading)
+                                    Text("Subscribe")
+                                        .font(.title2).foregroundColor(.black)
+                                        .padding(.leading,5)
+                                    Spacer()
+                                }.padding(.vertical,5)
+                                
+                            })
+                        }
+                      
+                    }
+                        }
+             
+                        .background(Color.white)
+
+                    }.frame(width: UIScreen.main.bounds.width*0.7)
+               
+                    if shown {
+                        
+                        if selectedItem == 1{
+//                            Spacer()
+                            AboutUsView(isShown: $shown)
+                        }
+                        else if selectedItem == 2{
+                            
+//                           ContactUsView(isShown: $shown)
+                            
+                            EmptyView()
+                        }
+                        else if selectedItem == 3{
+                            
+//                            PrivacyView(isShown: $shown)
+                            LoginPlansView()
+                            
+                        }
+                        else if selectedItem == 4{
+//                            TermsAndConditionView( isShown: $shown)
+                            EmptyView()
+                            
+                        }
+                        else if selectedItem == 5{
+//                            AdolescenceView(isShown: $shown)
+                            EmptyView()
+                        }
+                        else if selectedItem == 6{
+//                            DMCAView(isShown: $shown)
+                            EmptyView()
+                        }
+                        else if selectedItem == 7{
+//                            SubscribeView(isShown: $shown)
+                            EmptyView()
+                          
+                        }
+//                    }
+            }
+        }
+        
+    }
+  
     }
 
 struct SideMenuViews_Previews: PreviewProvider {
     static var previews: some View {
-        SideMenuViews()
+        HomePageSlide()
+
     }
 }
 
 
-struct HomePageView: View{
+struct HomePageSlide: View {
     
-    @Binding var x: CGFloat
     
-    var body: some View{
+    @State private var dragAmount = CGSize.zero
+
+    @State private var selected: SelectedScreen = .home
+  @State private var showMenu: Bool = false
+  
+  var body: some View {
+      
+       NavigationView {
+      
+      ZStack {
+        
+          Color.white.opacity(0.1).ignoresSafeArea(.all, edges: .all).gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
+            .onEnded({ value in
+                if value.translation.width < 0 {
+                    // left
+                    self.showMenu = false
+                }
+
+                if value.translation.width > 0 {
+                    // right
+                    self.showMenu = true
+                }
+                if value.translation.height < 0 {
+                    // up
+                }
+
+                if value.translation.height > 0 {
+                    // down
+                }
+            }))
+        
         VStack {
-            HStack {
+            HStack{
+                Button(action: {
+                    self.showMenu.toggle()
+                    
+                }, label: {
+                    Image(systemName: "line.3.horizontal")
+                        .font(.title).frame(width: 40,height: 65)
+                        .frame(alignment: .leading)
+                        .foregroundColor(.white)
+                        
+                })
                 Button(action: {
                     
-                    withAnimation{
-                        x = 0
-                    }
-                    
-                    
-                }){
-            Image(systemName: "line.3.horizontal")
-                        .font(.system(size: 24))
-                    .foregroundColor(.white)
-                }
-                Spacer(minLength: 0)
-                Text("Alibrary")
-                Spacer(minLength: 0)
-            }
-            .padding()
-            .background(Color.orange)
-            .shadow(color: Color.red.opacity(0.2), radius: 3, x: 0, y: 3)
-   
-//     GridLayoutView()
-      
-             
-                  Spacer()
-           
-        }
-        .padding(.top)
-        .contentShape(Rectangle())
-        .background(Color.white)
-     
-        
-        
-        
-    }
-}
-
-
-struct Home : View {
-    
-    @State var width = UIScreen.main.bounds.width-105
-    @State var x = -UIScreen.main.bounds.width+105
-    var body: some View{
-        ZStack(alignment: Alignment(horizontal: .leading, vertical: .center)){
-            HomePageView(x: $x)
-//            Spacer()
-            SlideMenu()
-                .shadow(color: Color.yellow.opacity(x != 0 ?0 : 0.1), radius: 5, x: 5, y: 0)
-                .offset(x: x)
-                .background(Color.gray.opacity(x == 0 ? 0.1: 0).ignoresSafeArea(.all, edges: .vertical).onTapGesture {
-                    withAnimation{
-                        x = -width
-                    }
-                })
-//
-        }
-        .gesture(DragGesture().onChanged({(value) in
-            withAnimation{
-              
+                }, label: {
                 
-                if value.translation.width > 0{
-                    if x < 0 {
-                    x = -width+value.translation.width
-                }
-                }
-                else{
-                    x = value.translation.width
-                }
-               
-            }
-        }).onEnded({(value) in
-            
-            withAnimation{
-                if -x < width/2{
-                    x = 0
-                }else{
-                    x = -width
-                }
                 
-            }
-            
-        }))
-    }
-}
+                ZStack {
 
-
-
-
-
-
-struct SlideMenu : View {
-    
-    var edges = UIApplication.shared.windows.first?.safeAreaInsets
-    
-    @State var show = true
-    var body: some View{
-        
-        
-        
-        
-        HStack{
-            VStack(alignment: .leading){
-                Image("Anoop")
-                    .resizable().frame(width: 60, height: 60).clipShape(Circle())
-                HStack(alignment: .top, spacing: 12){
-                    VStack(alignment: .leading, spacing: 12){
-                        Text("Anoop Mishra").font(.title3).fontWeight(.bold).foregroundColor(.orange)
-                        Text("@Anoop_Mishra").foregroundColor(.gray)
-                        HStack(spacing: 21){
-                            FollowView(count: 8, title: "following").onTapGesture {
-                               
-                            }
-                            
-                            FollowView(count: 18, title: "followers").onTapGesture {
-                               
-                            }
-                            
-                        }.padding(.top,10)
-                        Divider()
-                            .padding(.top,10)
-                    }
-                    Spacer(minLength: 0)
-                    Button(action: {
-                        withAnimation{
-                            show.toggle()
-                        }
-                        
-                        
-                    }, label: {
-                        Image(systemName: show ? "chevron.down" : "chevron.up").foregroundColor(.orange)
-                    })
-                }
-                VStack(alignment: .leading, spacing: 12){
-                    
-                    
-                    
-                    
-                }
-                
-                VStack(alignment: .leading){
-                    ForEach(menuButtons, id: \.self){ menu in
-                        
-                        
-                        Button(action: {
-                            
-                        })
-                  {
-                            MenuButton(title: menu)
-                        }
-                       
-                        
-                    }
-                    Divider()
-                        .padding(.top)
-                    
-                    Button(action: {
-                        
-                    })
-              {
-                        MenuButton(title: "Twitter ads")
-                    }
-                    Divider()
-                    
-                    
-                    Button(action: {
-                        
-                    })
-              {
-                       Text("Setting and Privacy")
-                    }
-                        .padding(.top)
-                   
-                    Button(action: {
-                        
-                    })
-              {
-                       Text("Help Center")
-                    }
-                    
-                   
-                        .padding(.top,20)
-                   Spacer(minLength: 0)
-                    Divider()
-                        .padding(.bottom)
-                    
                     HStack {
-                        Button(action: {
-                            
-                        })
-                  {
-                          Image("Anoop")
-                          .resizable()
-                          .frame(width: 24, height: 24)
+                     
+                        Image(systemName: "magnifyingglass").foregroundColor(.gray).font(.body).frame(width: 30,height: 35)
+                  
+                        Text("search books..").foregroundColor(.gray)
+                        Spacer()
+                               
+                    }.frame(width: UIScreen.main.bounds.width*0.5)
+                            .padding(.leading, 7)
                         }
+                            .frame(height: 40)
+                            .background()
+                            .cornerRadius(8)
+                })
+                Spacer()
+                Button(action: {
+                    
+                    
+                    
+                    
+                    
+                }, label: {
+                    Image("qr_c").resizable()
+                        .frame(width: 30, height: 30)
                         
-                        Spacer(minLength: 0)
-                        Button(action: {
-                            
-                        })
-                  {
-                          Image("Anoop")
-                          .resizable()
-                          .frame(width: 24, height: 24)
-                        }
-                    }
-                   
+                })
+                //for 3 dot vertical point
+                Spacer()
+                Button(action: {
                     
-                }
-                .opacity(show ? 1: 0)
-                .frame( height:  show ? nil : 0)
-                VStack(alignment: .leading){
-                    Button(action: {
+                }, label: {
+                    Image(systemName: "ellipsis")
+                        .foregroundColor(.white)
+                        .font(.system(size: 33))
+                        .rotationEffect(.degrees(-90))
+                        .frame(width: 11, height: 55, alignment: .center)
+                        .padding()
                         
-                    }){
-                        Text("Create New Account")
-                    }
-                    
-                    
-                    
-                    Button(action: {
-                        
-                    }){
-                        Text("Add a Existing Account")
-                    }
-                    Spacer(minLength: 0)
-                    
-                }
-                .opacity(show ? 0: 1)
-                .frame( height:  show ? 0 : nil)
+                })
+            }.padding(10)
+
+            .frame(maxHeight: UIScreen.main.bounds.height*0.06)
+            
+            .font(.headline)
+            .background(Color.orange)
+            switch selected {
+            case .home:
+                ProfileView()
                 
-       //Hiding this view of clicking button
+                Spacer()
+                    .disabled(self.showMenu ? true : false)
+            case .explorecategory:
+                Spacer()
+                StacksView()
+                
+            case .plans:
+                DashboardView()
+            case .screen2:
+                
+              EmptyView()
+                
+            case .alert:
+                EmptyView()
+                
+                
+            case .screen1:
+                EmptyView()
                 
             }
-            .padding(.horizontal,20)
-            .padding(.top, edges!.top == 0 ? 15: edges?.top)
-            .padding(.bottom, edges!.top == 0 ? 15: edges?.bottom)
-            .frame(width: UIScreen.main.bounds.width-105).background(Color.white).ignoresSafeArea(.all, edges: .vertical)
-            Spacer(minLength: 0)
+            Spacer()
+        }
+        
+        
+        GeometryReader { _ in
+          
+          HStack {
             
-        }.frame(width: UIScreen.main.bounds.width)
-        .background(Color.yellow.opacity(0)).ignoresSafeArea(.all, edges: .vertical)
+            
+              SideMenuViews(showMenu: false, selected: $selected )
+              .offset(x: showMenu ? 0 : -UIScreen.main.bounds.width)
+              .animation(.easeInOut(duration: 0.4), value: showMenu)
+              Spacer()
+          }
+          
+        }
+        .background(Color.black.opacity(showMenu ? 0.5 : 0).ignoresSafeArea().onTapGesture {
+            showMenu = false
+        })
+        
+      }
+           
     }
-}
-
-
-struct FollowView : View {
-    
-    var count: Int = 0
-    var title: String = ""
-    var body: some View{
-       
-        HStack{
-            Text("\(count)")
-            Text("\(title)")
-        }
-        }
-}
-
-var menuButtons = ["Profile","Lists","Topics", "Bookmarks","Moments"]
-struct MenuButton: View{
-    var title: String
-    var body: some View{
-        HStack(spacing: 15){
-        Image("Anoop").resizable().frame(width: 34, height: 34)
-        Text(title)
-                .fontWeight(.bold)
-            .foregroundColor(.black)
-        }
-        .padding(.vertical,12)
-    }
+  }
 }

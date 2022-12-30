@@ -52,7 +52,7 @@ struct UserAccountProfileView: View{
                     Image(qr).resizable().frame(width:125, height: 125).padding()
                     
                     Text("Your publisher profile QR code").foregroundColor(.black).bold()
-                    Text("This is your publication profile qr code which when scanned by the user will directly take the when scanned by the user will directly take the user to your publication gallery and read your latest uploads.").foregroundColor(.black.opacity(0.6)).multilineTextAlignment(.center).padding().font(.system(size: 12))
+                    Text("This is your publication profile qr code which when scanned by the user will directly take the when scanned by the user will directly take the user to your publication gallery and read your latest uploads.").foregroundColor(.black.opacity(0.6)).multilineTextAlignment(.center).padding().font(.system(size: 14))
                     
                 }.background(Color.white).cornerRadius(6).padding(12).shadow(radius: 2)
                 Spacer()

@@ -164,8 +164,8 @@ public struct SearchBookCollectionModel:Decodable {
 public struct SearchBookCollectionBookDetails:Decodable {
     public let data: [SearchBookCollectionData]
     public let last_page: Int
-    public let per_page: Int
-    public var last_page_url: String
+//    public let per_page: Int
+//    public var last_page_url: String
 }
 
 public struct SearchBookCollectionData:Decodable {
@@ -230,7 +230,6 @@ class SearchBookCollectionViewModel:ObservableObject{
                                       
                                     }
 
-                
                 
             }
         }

@@ -6,8 +6,8 @@
 //
 
 import SwiftUI
-import SwiftyJSON
-import SDWebImageSwiftUI
+//import SwiftyJSON
+//import SDWebImageSwiftUI
 import WebKit
 
 struct webView: UIViewRepresentable {
