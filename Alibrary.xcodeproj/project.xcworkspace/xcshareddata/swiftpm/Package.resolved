@@ -1,0 +1,59 @@
+{
+  "pins" : [
+    {
+      "identity" : "advancedlist",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/crelies/AdvancedList",
+      "state" : {
+        "branch" : "master",
+        "revision" : "56e0ee9634b7be8d7a5fffb35aefa702f7ad20a8"
+      }
+    },
+    {
+      "identity" : "floatinglabeltextfieldswiftui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kishanraja/FloatingLabelTextFieldSwiftUI.git",
+      "state" : {
+        "revision" : "b9aab8fa5f13474180274cfb7022357e8461b838",
+        "version" : "4.2.1"
+      }
+    },
+    {
+      "identity" : "listpagination",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/crelies/ListPagination",
+      "state" : {
+        "revision" : "af667b368a10512da79605b61698d53c11d24cbf",
+        "version" : "0.1.1"
+      }
+    },
+    {
+      "identity" : "marquee",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SwiftUIKit/Marquee",
+      "state" : {
+        "revision" : "69d7b7c6c34ed41d9299cfa8406f91f529c4fef3",
+        "version" : "0.3.0"
+      }
+    },
+    {
+      "identity" : "richtext",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/NuPlay/RichText.git",
+      "state" : {
+        "revision" : "b104bcf390c645dba74597d69f34205c57638ee8",
+        "version" : "2.2.0"
+      }
+    },
+    {
+      "identity" : "swiftyjson",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SwiftyJSON/SwiftyJSON",
+      "state" : {
+        "revision" : "b3dcd7dbd0d488e1a7077cb33b00f2083e382f07",
+        "version" : "5.0.1"
+      }
+    }
+  ],
+  "version" : 2
+}
