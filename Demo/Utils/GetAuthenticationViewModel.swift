@@ -10,7 +10,7 @@
 class GetAuthenticationViewModel: ObservableObject {
 
         @Published var isAuthenticated: Bool = false
-        var username: String = "9580402246"
+        var username: String = "sumitsglobal@gmail.com"
         var password: String = "password"
      
         func login() {

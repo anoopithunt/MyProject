@@ -44,7 +44,8 @@ struct ImageSliderViews: View {
 
 struct ImageSliderViews_Previews: PreviewProvider {
     static var previews: some View {
-        ImageSliderViews()
+//        ImageSliderViews()
+        SliderExView()
     }
 }
 
@@ -126,4 +127,82 @@ extension String {
 }
 
 
+import Foundation
 
+// MARK: - Welcome
+public struct SliderModel:Decodable {
+    public let bookDetails: [SliderBookDetail]
+
+}
+
+// MARK: - BookDetail
+public struct SliderBookDetail:Decodable {
+    public let id: Int
+    public let title: String
+    public let url: String
+
+}
+
+
+class SliderViewModel: ObservableObject {
+    @Published var datas = [SliderBookDetail]()
+    @Published var images = [String]()
+    let url = "https://www.alibrary.in/api/web-home"
+
+    init() {
+        getData()
+    }
+
+    func getData() {
+        guard let url = URL(string: "\(url)") else { return }
+        URLSession.shared.dataTask(with: url) { (data, _, _) in
+            if let data = data {
+                do {
+                    let results = try JSONDecoder().decode(SliderModel.self, from: data)
+                    DispatchQueue.main.async {
+                        self.datas = results.bookDetails
+                        self.images = self.datas.map { $0.url }
+                    }
+                } catch {
+                    print(error)
+                }
+            }
+        }.resume()
+    }
+}
+
+struct SliderExView: View {
+    @StateObject var list = SliderViewModel()
+    @State private var currentIndex = 1
+    let timer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
+
+    var body: some View {
+
+        HStack {
+            ScrollView(.horizontal, showsIndicators: false) {
+                LazyHStack(spacing: 0) {
+                    ForEach(list.datas, id: \.id) { item in
+                        AsyncImage(url: URL(string: item.url)) { image in
+                            image.resizable().frame(width: UIScreen.main.bounds.width, height: 215)
+                        } placeholder: {
+                            Image("logo_gray").resizable().frame(width: UIScreen.main.bounds.width, height: 215)
+                        }
+                    }
+                    .frame(width: UIScreen.main.bounds.width)
+              
+                        .offset(x: CGFloat(currentIndex % 10) * -UIScreen.main.bounds.width, y: 0)
+                   
+                    .animation(.easeInOut(duration: 0.4))
+                    .onReceive(timer) { _ in
+                        if !list.images.isEmpty {
+                            currentIndex = (currentIndex ) % 10
+                        }
+                    }
+                }
+            }
+        }
+        .onAppear {
+            list.getData()
+        }
+    }
+}

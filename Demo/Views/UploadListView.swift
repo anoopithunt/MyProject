@@ -46,8 +46,8 @@ struct UploadListView: View {
 
 struct UploadListView_Previews: PreviewProvider {
     static var previews: some View {
-//        UploadListView()
-        LoginViewExample1()
+        UploadListView()
+//        LoginViewExample1()
     }
 }
 

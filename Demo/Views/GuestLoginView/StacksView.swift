@@ -10,6 +10,8 @@ import AlertToast
 
 struct StacksView: View {
     @Environment(\.dismiss) var dismiss
+    @State var rotate: [Int] = [0, 10, -10]
+    @State var index: Int = -1
     let columns = [
             GridItem(.flexible()),
             GridItem(.flexible())
@@ -20,7 +22,7 @@ struct StacksView: View {
         NavigationView {
             ZStack {
                 Image("u").resizable()
-                VStack(spacing: 0) {
+                VStack(spacing: 6) {
                     HStack(spacing: 25){
                         Button(action: {
                             dismiss()
@@ -54,8 +56,60 @@ struct StacksView: View {
                     ScrollView{
                         LazyVGrid(columns: columns, spacing: 10) {
                             ForEach(list.datas, id: \.id){ item in
+                                VStack(alignment: .center, spacing: 8){
+                                    NavigationLink(destination: StackBookListView(id: item.stack_detail.id, name: item.stack_detail.name).navigationTitle("")
+                                        .navigationBarHidden(true)
+                                        .navigationBarBackButtonHidden(true), label: {
+                                      ZStack{
+                                          ForEach(item.stack_book_link.indices.reversed(), id: \.self) { index in
+                                             
+                                              AsyncImage(url: URL(string: item.stack_book_link[index].book_url)){ img in
+                                                  img.resizable().frame(width: 125, height: 155)
+                                                      .rotationEffect(Angle(degrees: Double(rotate[ index])))
+                                                      .shadow(radius: 5)
+                                              }placeholder: {
+                                                  VStack{
+                                                      Image("add_plus")//.resizable()
+                                                  }.background(Color("gray")).frame(width: 145, height: 155)
+                                                //.frame(width: 145, height: 155)
+                                                 .rotationEffect(Angle(degrees: Double(rotate[ index])))
+                                                      .shadow(radius: 0.3)
+                                              }
 
-                                StacksViewTile(title: item.stack_detail.name,stacks: "\(item.stack_book_link_count)")
+                                          }
+                                      }.frame(width: 140,height: 165,alignment: .center) .padding(12)
+                                  })
+                                   
+                      
+                                    HStack{
+                                        Text(item.stack_detail.name).font(.system(size: 22)).padding(.leading,4).foregroundColor(Color("default_"))
+                                        Spacer()
+                                    }
+                                    
+                                    HStack(spacing: 6){
+                                        Text("\(item.stack_book_link_count)").foregroundColor(.gray).font(.system(size: 16))
+                                        Image("stack_blue").resizable().frame(width: 25, height: 20)
+                                        Image(systemName: "eye.slash.fill").resizable().frame(width: 25, height: 20).foregroundColor(.gray)
+                                        Spacer()
+                                        Menu {
+                                            Button {
+                                                
+                                            } label: {
+                                                Label("Edit", systemImage: "square.and.pencil").foregroundColor(.green).font(.system(size: 22))
+                                            }
+                                            Button {
+                                                
+                                            } label: {
+                                                Label("Delete", systemImage: "trash")
+                                            }
+
+                                        } label: {
+                                            Image(systemName: "ellipsis")
+                                                .font(.system(size: 22, weight: .bold)).foregroundColor(Color("default_")).rotationEffect(.degrees(90)).padding(.trailing)
+                                        }
+                                    }.padding(.bottom).padding(.leading,4)
+                                   
+                                }.background(Color("gray")).cornerRadius(12).frame(width: UIScreen.main.bounds.width/2.2).shadow(color: .gray.opacity(0.5),radius: 1).padding(.horizontal)
                             }
 
                         }.onAppear{
@@ -77,14 +131,17 @@ struct StacksView: View {
 struct StacksView_Previews: PreviewProvider {
     static var previews: some View {
         StacksView()
-       
-//        RadioButton()
+    
+//        Stacks()
     }
 }
 
 struct StacksViewAlertView: View{
+    @State private var selected = 0
+    let labels = ["Public", "Private"]
+    @State var pressed: Bool = false
     @Binding var rcShow: Bool
-    @State private var isSelected = true
+   @State private var isEditing = false
     let screenSize = UIScreen.main.bounds
     @State var text: String = ""
     @State var rupee: String = ""
@@ -103,14 +160,36 @@ struct StacksViewAlertView: View{
                 .frame(width: UIScreen.main.bounds.width*0.94, height: 90).background(Color("orange"))
            
                 VStack (alignment: .leading){
-
-                    FloatingTextField(placeHolder: "Enter the Name", text: $text).padding()
-                    FloatingTextField(placeHolder: "Enter the Description", text: $rupee).padding()
-                    Text("Make your stack").foregroundColor(.black).font(.system(size:22)).padding(.leading)
+                    CustomTextField(placeHolder: "Enter the Name", text: $text).padding(6)
+                  
+                    CustomTextField(placeHolder: "Enter the Description", text: $rupee).padding(6)
                    
-                    
-                    
-                    HStack{
+                    Text("Make your stack").foregroundColor(.black).font(.system(size:22)).padding(.leading)
+                    VStack(alignment: .leading){
+                        HStack(spacing: 2) {
+                            ForEach(0..<labels.count) { index in
+                                RadioButton(selected: self.$selected, index: index, label: self.labels[index])
+                            }
+                        }.padding()
+                        if selected == 1 {
+                 
+                                Button(action: {
+                                    pressed.toggle()
+                                }, label: {
+                                    HStack{
+                                        Image(systemName: !pressed ? "square" : "checkmark.square.fill")//.padding()
+                                            .font(.system(size: 28))
+                                            .foregroundColor(.black)
+                                        Text("**I Agree**")
+                                            .multilineTextAlignment(.leading).foregroundColor(.black)//.bold()
+                                    }.padding(.leading,4)
+                                })
+                              
+                            Text("Dear User,please note that if you have fully organized your stack and all book content placed in it matches your title according to you, You may allow it to be publicly placed in the public media. Please note that if the content you put in this type does not match your original title,then the library may block it and unnecessarily cancle your stack as aviolation.\nNote: Books placed in the stack will not appear in the public stack if the number is less than 3.").font(.system(size: 14)).foregroundColor(.black).padding(.leading, 38)
+           
+                        }
+                    }
+                    HStack(alignment: .top){
                         Spacer()
                         Button(action: {
                                             self.rcShow = false
@@ -121,22 +200,22 @@ struct StacksViewAlertView: View{
                                 .background(Color("default_"))
                                 .foregroundColor(.white)
                                 .cornerRadius(33)
-                        }.padding(12)
+                        }//.padding(12)
                         Button(action: {
                                            
                             
                         }){
                             Text("Create").font(.headline)
                                 .frame(width: 116, height: 45, alignment: .center)
-                                .background(Color("default_"))
+                                .background(self.pressed ? Color("default_") : Color.gray)
                                 .foregroundColor(.white)
                                 .cornerRadius(33)
-                        }.padding(.trailing)
-                    }
+                        }
+                    }.padding(.trailing)
                     
-           
+                    
                
-            }
+                }.padding(4)
             
             
         }
@@ -190,17 +269,7 @@ struct StacksViewTile: View{
                         .padding(5)
                 }
             }.frame(width: 130,height: 165,alignment: .center) .padding(5)
-//            AsyncImage(url: URL(string: image)){
-//                image in
-//                image.resizable()
-//                    .frame(height: 155)
-//                    .padding(5)
-//            }placeholder: {
-//                Image("add_stack")
-//                    .resizable()
-//                    .frame(height: 155)
-//                    .padding(5)
-//            }
+
             HStack{
                 Text(title).font(.system(size: 22)).padding(.leading).foregroundColor(Color("default_"))
                 Spacer()
@@ -278,122 +347,7 @@ public struct StackDetail:Decodable {
    
 }
 
-// Radio Button Design
-struct RadioButtonField: View {
-    let id: String
-    let label: String
-    let size: CGFloat
-    let color: Color
-    let textSize: CGFloat
-    let isMarked:Bool
-    let callback: (String)->()
-    
-    init(
-        id: String,
-        label:String,
-        size: CGFloat = 20,
-        color: Color = Color.black,
-        textSize: CGFloat = 22,
-        isMarked: Bool = false,
-        callback: @escaping (String)->()
-        ) {
-        self.id = id
-        self.label = label
-        self.size = size
-        self.color = color
-        self.textSize = textSize
-        self.isMarked = isMarked
-        self.callback = callback
-    }
-    
-    var body: some View {
-        Button(action:{
-            self.callback(self.id)
-        }) {
-            HStack(alignment: .center, spacing: 10) {
-                Image(systemName: self.isMarked ? "largecircle.fill.circle" : "circle")
-                    .renderingMode(.original)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: self.size, height: self.size)
-                Text(label)
-                    .font(Font.system(size: textSize))
-                Spacer()
-            }.foregroundColor(self.color)
-        }
-        .foregroundColor(Color.white)
-    }
-}
-
-
-enum Gender: String {
-    case male = "Male"
-    case female = "Female"
-}
-
-struct RadioButtonGroups: View {
-    let callback: (String) -> ()
-    
-    @State var selectedId: String = ""
-    
-    var body: some View {
-      HStack {
-          radioMaleMajority
-            radioFemaleMajority
-        
-        }
-    }
-    
-    var radioMaleMajority: some View {
-        RadioButtonField(
-            id: Gender.male.rawValue,
-            label: Gender.male.rawValue,
-            isMarked: selectedId == Gender.male.rawValue ? true : false,
-            callback: radioGroupCallback
-        )
-    }
-    
-    var radioFemaleMajority: some View {
-        RadioButtonField(
-            id: Gender.female.rawValue,
-            label: Gender.female.rawValue,
-            isMarked: selectedId == Gender.female.rawValue ? true : false,
-            callback: radioGroupCallback
-        )
-    }
-    
-    func radioGroupCallback(id: String) {
-        selectedId = id
-        callback(id)
-    }
-}
-
-//import AlertToast
-
-struct RadioButton: View {
-    @State private var showToast = false
-    var body: some View {
-        VStack(alignment: .leading){
-            Button(action: {
-                self.showToast.toggle()
-            }, label: {
-                Text("Gender")
-                    .font(Font.headline)
-            })
-          
-            RadioButtonGroups { selected in
-                print("Selected Gender is: \(selected)")
-            }
-           
-        }.padding()
-            .toast(isPresenting: $showToast, duration: 2, tapToDismiss: true, alert: {
-
-                AlertToast(displayMode: .hud, type: .regular, title: "This is Toast Message here we alert the toast..")
-            })
-    }
-}
-
-// View Model of Stacks for get uthentication
+// View Model of Stacks for get Authentication
 class StacksService{
     
     func getStacksData(token: String, completion: @escaping (Result<StacksModel, NetworkError>) -> Void) {
@@ -434,7 +388,8 @@ class StacksService{
 class StacksViewModel: ObservableObject{
    
     @Published var datas = [StacksDatum]()
-    @Published var images = [StackBookLink]()
+//    @Published var revimage: [String] = []
+    @Published var image: [String] = []
     @Published var totalPage = Int()
     @Published var currentPage = 1
     func getStacksData() {
@@ -449,9 +404,16 @@ class StacksViewModel: ObservableObject{
                 case .success(let results):
                     DispatchQueue.main.async {
                         self.datas = results.studentStacks.data
-                        //self.images = results.studentStacks.data.
                         self.totalPage = results.studentStacks.total
 //                        self.datas.append(contentsOf: results.studentStacks.data)
+                        for data in self.datas {
+                            for imgdata in data.stack_book_link.reversed(){
+                                self.image.append(imgdata.book_url)
+                             
+                            }
+//                            self.image =  self.revimage.reversed()
+                            
+                        }
                         print(self.datas)
                     }
                 case .failure(let error):
@@ -482,3 +444,92 @@ struct TooltipText: View {
             )
     }
 }
+
+
+struct Stacks: View{
+
+    @State var rotate: [Int] = [0, 10, -10]
+       @State var index: Int = -1
+       @StateObject var list = StacksViewModel()
+       
+       var body: some View{
+           
+           VStack(spacing: 35){
+               ForEach(list.datas, id: \.id) { item in
+                   ZStack{
+                       ForEach(item.stack_book_link.indices.reversed(), id: \.self) { index in
+                           AsyncImage(url: URL(string: item.stack_book_link[index].book_url)){ img in
+                               img.resizable().frame(width: 125, height: 155)
+                                   .rotationEffect(Angle(degrees: Double(rotate[ index])))
+                                   .shadow(radius: 5)
+                           }placeholder: {
+                               Image("u").resizable().frame(width: 125, height: 155).rotationEffect(Angle(degrees: Double(rotate[ index])))
+                                   .shadow(radius: 5)
+                           }
+
+                       }
+                   }
+               }
+           }
+           .onAppear{
+               list.getStacksData()
+           }
+       }
+    
+}
+
+
+
+struct RadioButton: View {
+    @Binding var selected: Int
+    let index: Int
+    let label: String
+
+    var body: some View {
+        HStack {
+            Text(label)
+            
+            Image(systemName: selected == index ? "largecircle.fill.circle" : "circle")
+                .foregroundColor(.black)
+            Spacer()
+        }
+        .onTapGesture {
+            self.selected = self.index
+        }
+    }
+}
+
+struct RadioButtonGroup: View {
+    @State private var selected = 0
+    @State  var labels = ["Public", "Private"]
+    @State var pressed: Bool = false
+    
+    init( labels: [String]  = ["Public", "Private"]) {
+
+        self.labels = labels
+
+    }
+    var body: some View {
+        VStack(alignment: .leading){
+            HStack(spacing: 2) {
+                ForEach(0..<labels.count) { index in
+                    RadioButton(selected: self.$selected, index: index, label: self.labels[index])
+                }
+            }.padding()
+            if selected == 1 {
+                HStack{
+                    Button(action: {
+                        pressed.toggle()
+                    }, label: {
+                        Image(systemName: !pressed ? "square" : "checkmark.square.fill").font(.system(size: 28)).foregroundColor(.black)
+                        
+                    })
+                    Text("I Agree").bold()
+                }.padding(.leading,4)
+                Text("Views and their content in SwiftUI depend on the value of state properties quite often. Images views are no exception, so we’ll introduce a new state property here that we’ll use in order to determine the image to display.").padding(.leading, 35)
+
+            }
+        }
+    }
+}
+

@@ -81,9 +81,9 @@ struct LoginPageView: View {
                     }, label: {
                         ButtonView(btnName: "Login")
                     })
-//                .navigationBarBackButtonHidden(true)
-                    NavigationLink(destination: StacksView(), isActive: $loginVM.isAuthenticated){
-                        EmptyView()
+                .navigationBarBackButtonHidden(true)
+                    NavigationLink(destination: GuestUploadListView(), isActive: $loginVM.isAuthenticated){
+                        EmptyView().navigationTitle("").navigationBarBackButtonHidden(true).navigationBarHidden(true)
                     }.navigationTitle("").navigationBarBackButtonHidden(true).navigationBarHidden(true)
                     HStack(alignment: .center, spacing: 9){
                     Text("If you are Guest,please")

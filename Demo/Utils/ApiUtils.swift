@@ -23,17 +23,24 @@ struct ApiUtils
 struct APILoginUtility
 {
     static let loginAuthurl = "https://www.alibrary.in/api/auth/login"
-   
+    
     static let loginDashboardApi: String? = "https://www.alibrary.in/api/guest/guestDashboard"
-   
+    
     static let loginUserPlan: String? = "https://www.alibrary.in/api/userplans"
     static let userProfileGuest: String? = "https://www.alibrary.in/api/guest/userProfileGuest"
     static let userAccountSettingAPi: String? = "https://www.alibrary.in/api/student/userAccSetting"
     static let guestPurchagedbooksApi: String? = "https://www.alibrary.in/api/guest/guest-purchased-books"
-    
-    //static let guestStracksApi: String? = "https://alibrary.in/api/student/student-stacks"
     static let guestRCtransactionApi: String? = "https://alibrary.in/api/guest/rc-history"
     static let studentStacksApi: String? = "https://alibrary.in/api/student/student-stacks"
+    static let studentStacksBookListApi: String? = "https://alibrary.in/api/student/stack-book-list?id=" //790
+    
+    static let studentPaymentHistoryApi: String? = "https://www.alibrary.in/api/student/payment-history" //1
+    static let guestSubscribeApi: String? = "https://www.alibrary.in/api/guest/userrcbooks"
+    static let guestBookRequestApi: String? = "https://www.alibrary.in/api/guest/user-book-requests?request_type=0&category_id=&sub_category_id="
+    static let guestBookRequestSelfApi: String? = "https://www.alibrary.in/api/guest/user-book-requests?request_type=1&category_id=&sub_category_id="
+    static let guestBookRequestOthersApi: String? = "https://www.alibrary.in/api/guest/user-book-requests?request_type=2&category_id=&sub_category_id="
+   //Upload List 
+    static let guestUploadListDashboardApi: String? = "https://alibrary.in/api/guest/ownpdfs?page="
 }
 
 // Clean code for Api 

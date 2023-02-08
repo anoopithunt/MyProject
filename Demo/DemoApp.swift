@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import FirebaseCore
+//import FirebaseCore
 
 
 //class AppDelegate: NSObject, UIApplicationDelegate {
@@ -22,14 +22,13 @@ import FirebaseCore
 @main
 struct DemoApp: App {
 //    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @UIApplicationDelegateAdaptor private var appDelegate: AppDelegate
+//    @UIApplicationDelegateAdaptor private var appDelegate: AppDelegate
     var body: some Scene {
         WindowGroup {
           
             LoginPageView()
-//            PurchagedBooksView()
-//            ContentView()
-            
+//            SliderExView()
+          
         }
     }
 }
