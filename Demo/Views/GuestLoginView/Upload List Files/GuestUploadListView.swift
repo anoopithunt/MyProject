@@ -9,79 +9,83 @@ import SwiftUI
 
 struct GuestUploadListView: View {
     @StateObject var list = GuestUploadListDashboardViewModel()
+    
+    @Environment(\.dismiss) var dismiss
   
     var body: some View {
-        
         
         NavigationView{
             ZStack{
                 Image("u").resizable()
-                //                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-//                    .ignoresSafeArea()
+                    .ignoresSafeArea()
                 
-                VStack(spacing: 0){
-                    HStack(spacing: 25){
+                VStack(spacing: 8){
+                    HStack{
                         Button(action: {
-                            
+                            dismiss()
                         },
                                label: {
                             
                             Image(systemName: "arrow.backward")
                             
-                                .font(.system(size:22, weight:.heavy))
+                                .font(.system(size:24, weight:.heavy))
                             
-                                .foregroundColor(.white)
+                                .foregroundColor(.white).padding(.leading)
                         })
                         Text("Upload List")
-                            .font(.system(size: 22, weight: .medium))
+                            .font(.system(size: 24, weight: .medium))
                             .foregroundColor(.white)
                         Spacer()
-                        Image("cloud_screen").resizable().frame(width: 30, height: 25)
+                        Image("cloud_screen").resizable().frame(width: 30, height: 25).padding(.trailing)
                         
-                    }.padding(.horizontal)
-                        .frame(width: UIScreen.main.bounds.width, height: 65)
+                    } .frame(width: UIScreen.main.bounds.width, height: 65)
                         .background(Color("orange"))
+                    
                   
                         HStack{
                             NavigationLink(destination: {
-                                
+                                GuestPublishedView().navigationTitle("")
+                                    .navigationBarHidden(true)
+                                    .navigationBarBackButtonHidden(true)
                             }, label: {
-                                
-                                
                                 GuestUploadListTileView(uploadData: $list.publishPDFs, uploadIcon: "pdf_gray", uploadImage: "published", uploadType: "Published PDF")
                             })
-                            
+
                             NavigationLink(destination: {
-                                
+                                GuestUnPublishedView().navigationTitle("")
+                                    .navigationBarHidden(true)
+                                    .navigationBarBackButtonHidden(true)
                             }, label: {
                                 GuestUploadListTileView(uploadData: $list.unPublishPDFs, uploadIcon: "pdf_gray", uploadImage: "unpublished", uploadType: "Unpublished PDF")
-                               
+
                             })
                         }
-                        
                         
                         
                         HStack{
                             NavigationLink(destination: {
-                                
+                                GuestDraftView().navigationTitle("")
+                                    .navigationBarHidden(true)
+                                    .navigationBarBackButtonHidden(true)
                             }, label: {
-                                
+
                                 GuestUploadListTileView(uploadData: $list.draftPdfs, uploadIcon: "pdf_gray", uploadImage: "draft", uploadType: "Draft PDF")
-                                
+
                             })
 
-                            
-                          
+
+
                             NavigationLink(destination: {
-                                
+                                GuestDeleteListView().navigationTitle("")
+                                    .navigationBarHidden(true)
+                                    .navigationBarBackButtonHidden(true)
                             }, label: {
-                                
-                                GuestUploadListTileView(uploadData: $list.draftPdfs, uploadIcon: "delete_gray_new", uploadImage: "delete_uploads", uploadType: "Delete PDF")
+
+                                GuestUploadListTileView(uploadData: $list.deletePdfs, uploadIcon: "delete_gray_new", uploadImage: "delete_uploads", uploadType: "Delete PDF")
                             })
 
-                         
+
                         }
-                 
                     
                   
                     Spacer()
@@ -210,18 +214,19 @@ struct GuestUploadListTileView:View{
     
     
     var body: some View{
+        
         VStack(alignment: .leading){
             HStack(spacing: 12){
                 Spacer()
                 Image(uploadIcon).resizable().frame(width: 17, height: 19)
                 Text("\(uploadData)").foregroundColor(.gray).font(.system(size: 22, weight: .semibold))
-            }.padding()
+            }.padding(8)
             Image(uploadImage).resizable().frame(width: 75, height: 75).padding(.leading)
             VStack(alignment: .leading){
-                Rectangle().foregroundColor(.black).frame(height: 2.3)
+                Rectangle().foregroundColor(.black).frame(width: UIScreen.main.bounds.width/2.2,height: 2.0)
                 Text(uploadType).foregroundColor(.white).font(.system(size: 20, weight: .medium)).padding(.leading)
-            }.padding(.bottom,4).background(Color.gray)
+            }.padding(.bottom,2).background(Color.gray)
             
-        }.background(Color("gray")).cornerRadius(6).frame(width: UIScreen.main.bounds.width/2.2 , height: 235)
+        }.background(Color("gray")).cornerRadius(6).frame(width: UIScreen.main.bounds.width/2.2 ).padding(2)
     }
 }

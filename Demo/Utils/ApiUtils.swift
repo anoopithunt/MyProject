@@ -22,6 +22,9 @@ struct ApiUtils
 
 struct APILoginUtility
 {
+    static let baseURL: String = "https://www.alibrary.in/api/"
+    
+    
     static let loginAuthurl = "https://www.alibrary.in/api/auth/login"
     
     static let loginDashboardApi: String? = "https://www.alibrary.in/api/guest/guestDashboard"
@@ -36,11 +39,21 @@ struct APILoginUtility
     
     static let studentPaymentHistoryApi: String? = "https://www.alibrary.in/api/student/payment-history" //1
     static let guestSubscribeApi: String? = "https://www.alibrary.in/api/guest/userrcbooks"
-    static let guestBookRequestApi: String? = "https://www.alibrary.in/api/guest/user-book-requests?request_type=0&category_id=&sub_category_id="
-    static let guestBookRequestSelfApi: String? = "https://www.alibrary.in/api/guest/user-book-requests?request_type=1&category_id=&sub_category_id="
-    static let guestBookRequestOthersApi: String? = "https://www.alibrary.in/api/guest/user-book-requests?request_type=2&category_id=&sub_category_id="
+
+    static let guestBookRequestApi: String = baseURL +   "guest/user-book-requests?request_type="//0&category_id=&sub_category_id="
+//    static let guestBookRequestSelfApi: String? = "https://www.alibrary.in/api/guest/user-book-requests?request_type=1&category_id=&sub_category_id="
+//    static let guestBookRequestOthersApi: String? = "https://www.alibrary.in/api/guest/user-book-requests?request_type=2&category_id=&sub_category_id="
    //Upload List 
     static let guestUploadListDashboardApi: String? = "https://alibrary.in/api/guest/ownpdfs?page="
+    static let guestUploadListDraftApi: String? = baseURL + "guest/draft-pdf?page="
+//    static let guestUploadListDraftApi: String? = "https://alibrary.in/api/guest/draft-pdf?page="
+    static let guestUploadListDeleteApi: String? = baseURL + "guest/unpublish-pdf?is_publish=4&page="
+    static let guestUnPublishedListDeleteApi: String? = "https://alibrary.in/api/guest/unpublish-pdf?is_publish=2"
+    static let guestUnPublishedListApi: String = "https://alibrary.in/api/guest/unpublish-pdf?is_publish="
+    static let guestUnPublishedApi: String = baseURL + "guest/unpublish-pdf?is_publish="
+    static let guestPublishedApi: String = baseURL + "guest/publish-pdf"
+    static let guestReportedBookListApi: String = baseURL + "guest/book-reports"
+    static let preViewBooksApi: String = baseURL + "previewbook"  //https://alibrary.in/api/previewbook?id=17
 }
 
 // Clean code for Api 

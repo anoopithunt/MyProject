@@ -52,14 +52,14 @@ struct ReadCreditView: View {
                                         Text("\(item.rc_count) RC").foregroundColor(.gray)
                                         Image(systemName: "arrow.down").foregroundColor(.green)
                                     }
-                                }.padding().background(Color.white).cornerRadius(12).shadow(color: .gray, radius: 0.2, x: 0, y: -0.1)
-                                if list.currentPage < list.totalPage - 1{
-                                    CircleProgressView().frame(alignment: .center).onAppear{
-                                            list.currentPage = list.currentPage + 1
-                                            print("\(list.currentPage)")
-                                        list.getRCTransactionData()
-                                        }
-                                    }
+                                }.padding().background(Color.white).cornerRadius(12).shadow(color: .gray, radius: 0.5)
+//                                if list.currentPage < list.totalPage - 1{
+//                                    CircleProgressView().frame(alignment: .center).onAppear{
+//                                            list.currentPage = list.currentPage + 1
+////                                            print("\(list.currentPage)")
+//                                        list.getRCTransactionData()
+//                                        }
+//                                    }
                             }
                             
                         }

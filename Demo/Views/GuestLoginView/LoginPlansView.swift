@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import PagerTabStripView
+//import PagerTabStripView
 import RichText
 
 struct LoginPlansView: View {

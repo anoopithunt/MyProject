@@ -14,7 +14,6 @@ struct PaymentHistoryView: View {
         
         ZStack{
             Image("u").resizable()
-                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
                .ignoresSafeArea()
             VStack{
                 HStack(spacing: 25){
@@ -37,6 +36,7 @@ struct PaymentHistoryView: View {
                 }.padding(9)
                   .frame(width: UIScreen.main.bounds.width, height: 65)
                     .background(Color("orange"))
+                
                 ScrollView{
                     ForEach(list.datas, id: \.id){ item in
                         ZStack{
@@ -232,7 +232,7 @@ class PaymentHistoryViewModel: ObservableObject{
                     DispatchQueue.main.async {
                         self.datas = results.paymentHeaders.data
                         self.totalPage = results.paymentHeaders.total
-//                        self.datas.append(contentsOf: results.studentStacks.data)
+                        //self.datas.append(contentsOf: results.paymentHeaders.data)
                       
                         print(self.datas)
                     }

@@ -27,6 +27,7 @@ struct DemoApp: App {
         WindowGroup {
           
             LoginPageView()
+//            Pdf()
 //            SliderExView()
           
         }

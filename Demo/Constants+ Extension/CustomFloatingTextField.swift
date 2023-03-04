@@ -7,6 +7,9 @@
 
 import Foundation
 import SwiftUI
+
+
+
 struct CustomFloatingTextField: View {
     let textFieldHeight: CGFloat = 50
     private var placeHolderText: String = ""
@@ -69,6 +72,13 @@ struct CustomFloatingTextField: View {
 
 struct CustomFloatingTextField_Previews: PreviewProvider {
 
+   
+
+
+
+    
+    
+    
     static var previews: some View {
         Ex()
     }

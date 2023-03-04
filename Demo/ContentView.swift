@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-import PagerTabStripView
+//import PagerTabStripView
 
 
 struct ContentView: View {
@@ -18,34 +18,51 @@ struct ContentView: View {
 }
 
 struct MyPagerView: View {
+    @State var currentTab: Int = 0
+    
     var body: some View {
         VStack{
-        PagerTabStripView() {
-            AccountView()
-                .frame(width: UIScreen.main.bounds.width)
-                .pagerTabItem {
-                    TitleNavBarItem(title: "ACCOUNT", systomIcon: "character.bubble.fill")
-                       
-                }
-               
-            UserAccountProfileView()
-                .frame(width: UIScreen.main.bounds.width)
-                .pagerTabItem {
-                    TitleNavBarItem(title: "PROFILE", systomIcon: "person.circle.fill")
-                }
-         
-            UserAccountPasswordView()
-                .frame(width: UIScreen.main.bounds.width)
-                    .pagerTabItem {
-                        TitleNavBarItem(title: "PASSWORD", systomIcon: "lock.fill")
-                    }
+            Spacer().frame(height: 80)
+//        PagerTabStripView() {
+//            AccountView()
+//                .frame(width: UIScreen.main.bounds.width)
+//                .pagerTabItem {
+//                    TitleNavBarItem(title: "ACCOUNT", systomIcon: "character.bubble.fill")
+//
+//                }
+//
+//            UserAccountProfileView()
+//                .frame(width: UIScreen.main.bounds.width)
+//                .pagerTabItem {
+//                    TitleNavBarItem(title: "PROFILE", systomIcon: "person.circle.fill")
+//                }
+//
+//            UserAccountPasswordView()
+//                .frame(width: UIScreen.main.bounds.width)
+//                    .pagerTabItem {
+//                        TitleNavBarItem(title: "PASSWORD", systomIcon: "lock.fill")
+//                    }
+//
+//        }
+//        .pagerTabStripViewStyle(.barButton(placedInToolbar: false, tabItemSpacing: 0, tabItemHeight: 80,indicatorViewHeight: 3, indicatorView: {
+//            Color.black
+//        })).padding(-2)
+//
+//        .foregroundColor(.white)
+//
             
-        }
-        .pagerTabStripViewStyle(.barButton(placedInToolbar: false, tabItemSpacing: 0, tabItemHeight: 80,indicatorViewHeight: 3, indicatorView: {
-            Color.black
-        })).padding(-2)
-  
-        .foregroundColor(.white)
+            
+            ZStack {
+                TabView(selection: self.$currentTab) {
+                    AccountView().tag(0)
+                    UserAccountProfileView().tag(1)
+                    UserAccountPasswordView().tag(2)
+                }
+                .tabViewStyle(.page(indexDisplayMode: .never))
+                .edgesIgnoringSafeArea(.bottom)
+                
+                PagerTabBarView(currentTab: self.$currentTab)
+            }
             
         }
     }
@@ -355,7 +372,8 @@ struct ProView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
 
-        ContentView()
+//        ContentView()
+        MyPagerView()
 //        MainHomePageView()
     }
 }
@@ -593,7 +611,38 @@ struct MainHomePageView: View {
 }
 
 
-
+struct PagerTabBarView: View {
+    @Binding var currentTab: Int
+    @Namespace var namespace
+    
+    var tabBarOptions: [String] = ["ACCOUNT","PROFILE", "PASSWORD"]
+    var body: some View {
+        VStack {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 20) {
+                    ForEach(Array(zip(self.tabBarOptions.indices,
+                                      self.tabBarOptions)),
+                            id: \.0,
+                            content: {
+                        index, name in
+                        TabBarItem(currentTab: self.$currentTab,
+                                   namespace: namespace.self,
+                                   tabBarItemName: name,
+                                   tab: index)
+                        
+                    })
+                }.padding(.leading,5)
+                .background(Color("orange")).frame(width: UIScreen.main.bounds.width)
+                
+            }
+            .background(Color.white)
+        .frame(height: 80)
+          
+            Spacer()
+        }
+        .edgesIgnoringSafeArea(.all)
+    }
+}
 
 
 //// Side Menu Design Start------

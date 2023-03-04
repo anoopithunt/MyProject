@@ -388,7 +388,6 @@ class StacksService{
 class StacksViewModel: ObservableObject{
    
     @Published var datas = [StacksDatum]()
-//    @Published var revimage: [String] = []
     @Published var image: [String] = []
     @Published var totalPage = Int()
     @Published var currentPage = 1
@@ -409,13 +408,15 @@ class StacksViewModel: ObservableObject{
                         for data in self.datas {
                             for imgdata in data.stack_book_link.reversed(){
                                 self.image.append(imgdata.book_url)
-                             
+
                             }
-//                            self.image =  self.revimage.reversed()
-                            
+
                         }
-                        print(self.datas)
+                        print(self.image)
                     }
+                
+            
+                
                 case .failure(let error):
                     print(error.localizedDescription)
             }
@@ -444,7 +445,7 @@ struct TooltipText: View {
             )
     }
 }
-
+//
 
 struct Stacks: View{
 

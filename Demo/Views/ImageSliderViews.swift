@@ -130,31 +130,33 @@ extension String {
 import Foundation
 
 // MARK: - Welcome
-public struct SliderModel:Decodable {
+public struct SliderModel: Decodable {
     public let bookDetails: [SliderBookDetail]
-
 }
 
 // MARK: - BookDetail
-public struct SliderBookDetail:Decodable {
+public struct SliderBookDetail: Decodable {
     public let id: Int
     public let title: String
     public let url: String
-
 }
-
 
 class SliderViewModel: ObservableObject {
     @Published var datas = [SliderBookDetail]()
     @Published var images = [String]()
+    var currentIndex = 0
     let url = "https://www.alibrary.in/api/web-home"
+    let timer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
 
     init() {
-        getData()
+        getData { _ in }
     }
 
-    func getData() {
-        guard let url = URL(string: "\(url)") else { return }
+    func getData(completion: @escaping (Result<Void, Error>) -> Void) {
+        guard let url = URL(string: "\(url)") else {
+            completion(.failure(NSError(domain: "SliderViewModel", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"])))
+            return
+        }
         URLSession.shared.dataTask(with: url) { (data, _, _) in
             if let data = data {
                 do {
@@ -162,22 +164,33 @@ class SliderViewModel: ObservableObject {
                     DispatchQueue.main.async {
                         self.datas = results.bookDetails
                         self.images = self.datas.map { $0.url }
+                        completion(.success(()))
                     }
                 } catch {
-                    print(error)
+                    completion(.failure(error))
                 }
             }
         }.resume()
+    }
+
+    func startTimer() {
+        currentIndex = 0 // Set currentIndex to 0 before starting the timer
+        timer.upstream.connect()
+    }
+
+    @objc func updateCurrentIndex() {
+        if currentIndex == datas.count - 1 {
+            currentIndex = 0
+        } else {
+            currentIndex += 1
+        }
     }
 }
 
 struct SliderExView: View {
     @StateObject var list = SliderViewModel()
-    @State private var currentIndex = 1
-    let timer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
 
     var body: some View {
-
         HStack {
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(spacing: 0) {
@@ -189,20 +202,33 @@ struct SliderExView: View {
                         }
                     }
                     .frame(width: UIScreen.main.bounds.width)
-              
-                        .offset(x: CGFloat(currentIndex % 10) * -UIScreen.main.bounds.width, y: 0)
-                   
-                    .animation(.easeInOut(duration: 0.4))
-                    .onReceive(timer) { _ in
-                        if !list.images.isEmpty {
-                            currentIndex = (currentIndex ) % 10
-                        }
-                    }
+                    .id(UUID())
+                    .offset(x: CGFloat(list.currentIndex) * -UIScreen.main.bounds.width, y: 0)
+                    .animation(.linear)
                 }
             }
         }
         .onAppear {
-            list.getData()
+            list.getData { result in
+                if case .success = result {
+                    list.startTimer()
+                }
+            }
         }
+        .onDisappear {
+            list.timer.upstream.connect().cancel()
+        }
+        .onChange(of: list.datas) { _ in
+            list.startTimer()
+        }
+        .onReceive(list.timer) { _ in
+            list.updateCurrentIndex()
+        }
+    }
+}
+
+extension SliderBookDetail: Equatable {
+    public static func ==(lhs: SliderBookDetail, rhs: SliderBookDetail) -> Bool {
+        return lhs.id == rhs.id
     }
 }

@@ -29,7 +29,7 @@ struct LoginPageView: View {
                 VStack(alignment: .center) {
                 Image("alib_black_logo")
                     .resizable()
-                    .frame(width: UIScreen.main.bounds.width*0.6, height: UIScreen.main.bounds.height*0.16, alignment: .center)
+                    .frame(width: UIScreen.main.bounds.width*0.6, height: UIScreen.main.bounds.height*0.18, alignment: .center)
                     .padding(.top)
 //                Divider()
                     CustomFloatingTextField(placeHolder: "UserName or Email id", leadingImage: "person.crop.rectangle.fill",text: $loginVM.username).padding()
@@ -73,7 +73,7 @@ struct LoginPageView: View {
     
 //                NavigationLink(destination: ContentView().navigationBarBackButtonHidden(false).navigationBarHidden(true)) {
 // ButtonView(btnName: "Login")
-//
+//  sumitsglobal@gmail.com   password
 //                }
                     
                     Button(action: {
@@ -82,9 +82,15 @@ struct LoginPageView: View {
                         ButtonView(btnName: "Login")
                     })
                 .navigationBarBackButtonHidden(true)
-                    NavigationLink(destination: GuestUploadListView(), isActive: $loginVM.isAuthenticated){
+                    NavigationLink(destination: //DashboardView()
+                                   PDFKitViews()
+                        .navigationTitle("")
+                        .navigationBarHidden(true)
+                        .navigationBarBackButtonHidden(true), isActive: $loginVM.isAuthenticated){
                         EmptyView().navigationTitle("").navigationBarBackButtonHidden(true).navigationBarHidden(true)
-                    }.navigationTitle("").navigationBarBackButtonHidden(true).navigationBarHidden(true)
+                    }.navigationTitle("")
+                        .navigationBarBackButtonHidden(true)
+                        .navigationBarHidden(true)
                     HStack(alignment: .center, spacing: 9){
                     Text("If you are Guest,please")
                         

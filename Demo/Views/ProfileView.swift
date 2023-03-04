@@ -17,7 +17,7 @@ struct UserAccountProfileView: View{
         
         
         ZStack {
-            Image("u").resizable()
+            Image("u").resizable().ignoresSafeArea()
             
             VStack{
                 ZStack{

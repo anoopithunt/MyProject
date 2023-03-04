@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct BookRequestView: View {
-    @StateObject var list = GuestGuestBookRequestViewModel()
+    
+    @StateObject var list = GuestBookRequestViewModel()
     @State private var selectedOption = 0
       let options = ["All", "self", "Others"]
     @State var value = ""
     var placeholder = "All"
-
+    @State  var searchText: String = ""
+    @Environment(\.dismiss) var dismiss
     var body: some View {
         
         ZStack{
@@ -21,7 +23,7 @@ struct BookRequestView: View {
             VStack{
                 HStack(spacing: 25){
                     Button(action: {
-                        
+                        dismiss()
                     },
                            label: {
                         
@@ -37,19 +39,19 @@ struct BookRequestView: View {
                    
                     
                     Spacer()
-                    
+                    //Drop Down List Design Start
                     Menu {
                         ForEach(options, id: \.self){ client in
                             Button(client) {
                                 self.value = client
                                 if self.value == "All"{
-                                    list.getBookRequestData()
+                                    list.getBookRequestData(request: 0)
                                 }
                                 else if self.value == "self" {
-                                    list.getBookRequestSelfData()
+                                    list.getBookRequestData(request: 1)
                                 }
                                 else if self.value == "Others" {
-                                    list.getBookRequestOthersData()
+                                    list.getBookRequestData(request: 2)
                                 }
                             }
                         }
@@ -65,7 +67,7 @@ struct BookRequestView: View {
                             }
                         
                     }
-                               
+                    //Drop Down List Design End
                    
                     
                     Image("month_filter").resizable().frame(width: 25, height: 25)
@@ -74,6 +76,14 @@ struct BookRequestView: View {
                   .frame(width: UIScreen.main.bounds.width, height: 65)
                     .background(Color("orange"))
                 
+                if self.value == "self"  || self.value == "Others"{
+                    
+                    TextField("Search books..", text: $searchText).padding(8).cornerRadius(8)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.red, lineWidth: 0.6)
+                        )
+                }
                 ScrollView{
                     
                     ForEach(list.datas,id: \.id){
@@ -81,7 +91,7 @@ struct BookRequestView: View {
                         HStack{
                             VStack{
                                 AsyncImage(url: URL(string: item.partner_logo)){
-                                    img in img.resizable().cornerRadius(20).frame(width:65, height:65)
+                                    img in img.resizable().cornerRadius(45).frame(width:65, height:65)
                                 }placeholder: {
                                     Image("logo_gray").resizable().frame(width:65, height:65).cornerRadius(20)
                                 }
@@ -123,7 +133,7 @@ struct BookRequestView: View {
                     }
                 }
             }.onAppear{
-                list.getBookRequestData()
+                list.getBookRequestData(request: 0)
             }
         }
        
@@ -199,176 +209,70 @@ public struct BookRequestDatum :Decodable {
 
 
 // MARK: - Authenticatication class
+
 class GuestBookRequestService{
-    
-    func getBookRequestData(token: String, completion: @escaping (Result<GuestBookRequestModel, NetworkError>) -> Void) {
-        
-        guard let url = URL(string: APILoginUtility.guestBookRequestApi!) else {
-            completion(.failure(.invalidURL))
-            return
-        }
-        
-        var request = URLRequest(url: url)
-        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
-            
-            guard let data = data, error == nil else {
-                completion(.failure(.noData))
-                return
-            }
-            
-            guard let response = try? JSONDecoder().decode(GuestBookRequestModel.self, from: data) else {
-                completion(.failure(.decodingError))
-                return
-            }
-            
-            completion(.success(response))
-            
-        }.resume()
-        
-        
-    }
-    
-    
-    func getBookRequestSelfData(token: String, completion: @escaping (Result<GuestBookRequestModel, NetworkError>) -> Void) {
-        
-        guard let url = URL(string: APILoginUtility.guestBookRequestSelfApi!) else {
-            completion(.failure(.invalidURL))
-            return
-        }
-        
-        var request = URLRequest(url: url)
-        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
-            
-            guard let data = data, error == nil else {
-                completion(.failure(.noData))
-                return
-            }
-            
-            guard let response = try? JSONDecoder().decode(GuestBookRequestModel.self, from: data) else {
-                completion(.failure(.decodingError))
-                return
-            }
-            
-            completion(.success(response))
-            
-        }.resume()
-        
-        
-    }
-    
-    func getBookRequestOthersData(token: String, completion: @escaping (Result<GuestBookRequestModel, NetworkError>) -> Void) {
-        
-        guard let url = URL(string: APILoginUtility.guestBookRequestOthersApi!) else {
-            completion(.failure(.invalidURL))
-            return
-        }
-        
-        var request = URLRequest(url: url)
-        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
-            
-            guard let data = data, error == nil else {
-                completion(.failure(.noData))
-                return
-            }
-            
-            guard let response = try? JSONDecoder().decode(GuestBookRequestModel.self, from: data) else {
-                completion(.failure(.decodingError))
-                return
-            }
-            
-            completion(.success(response))
-            
-        }.resume()
-        
-        
-    }
-    
-    
-    
-}
-
-
-//View model
-
-class GuestGuestBookRequestViewModel: ObservableObject{
    
-    @Published var datas = [BookRequestDatum]()
-    @Published var totalPage = Int()
-//    @Published var currentPage = 1
-    func getBookRequestData() {
+    func getBookRequestData(token: String,request: Int, completion: @escaping (Result<GuestBookRequestModel, NetworkError>) -> Void) {
         
-        let defaults = UserDefaults.standard
-        guard let token = defaults.string(forKey: "access_token") else {
+        guard let url = URL(string: "\(APILoginUtility.guestBookRequestApi)\(request)") else {
+            completion(.failure(.invalidURL))
             return
         }
+        print(url)
         
-        GuestBookRequestService().getBookRequestData(token: token){ (result) in
-            switch result {
-                case .success(let results):
-                    DispatchQueue.main.async {
-                        self.datas = results.userbookrequests.data
-                        self.totalPage = results.userbookrequests.total
-//                        self.datas.append(contentsOf: results.studentStacks.data)
-                      
-                        print(self.datas)
-                    }
-                case .failure(let error):
-                    print(error.localizedDescription)
+        var request = URLRequest(url: url)
+        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            guard let data = data, error == nil else {
+                completion(.failure(.noData))
+                return
             }
-        }
-    }
-    func getBookRequestSelfData() {
-        
-        let defaults = UserDefaults.standard
-        guard let token = defaults.string(forKey: "access_token") else {
-            return
-        }
-        
-        GuestBookRequestService().getBookRequestSelfData(token: token){ (result) in
-            switch result {
-                case .success(let results):
-                    DispatchQueue.main.async {
-                        self.datas = results.userbookrequests.data
-                        self.totalPage = results.userbookrequests.total
-//                        self.datas.append(contentsOf: results.studentStacks.data)
-                      
-                        print(self.datas)
-                    }
-                case .failure(let error):
-                    print(error.localizedDescription)
+            
+            guard let response = try? JSONDecoder().decode(GuestBookRequestModel.self, from: data) else {
+                completion(.failure(.decodingError))
+                return
             }
-        }
-    }
-    
-    func getBookRequestOthersData() {
+            
+            completion(.success(response))
+            
+        }.resume()
         
-        let defaults = UserDefaults.standard
-        guard let token = defaults.string(forKey: "access_token") else {
-            return
-        }
         
-        GuestBookRequestService().getBookRequestOthersData(token: token){ (result) in
-            switch result {
-                case .success(let results):
-                    DispatchQueue.main.async {
-                        self.datas = results.userbookrequests.data
-                        self.totalPage = results.userbookrequests.total
-//                        self.datas.append(contentsOf: results.studentStacks.data)
-                      
-                        print(self.datas)
-                    }
-                case .failure(let error):
-                    print(error.localizedDescription)
-            }
-        }
     }
-      
 }
 
 
+
+
+// MARK: - ViewModel class
+
+
+class GuestBookRequestViewModel: ObservableObject{
+    
+   @State var request = 1
+    @Published var datas  = [BookRequestDatum]()
+    @Published var totalPage = Int()
+    func getBookRequestData(request: Int) {
+        
+        let defaults = UserDefaults.standard
+        guard let token = defaults.string(forKey: "access_token") else {
+            return
+        }
+        
+        GuestBookRequestService().getBookRequestData(token: token, request: request){ (result) in
+            switch result {
+            case .success(let results):
+                DispatchQueue.main.async {
+                    
+                    self.datas = results.userbookrequests.data
+                    self.totalPage = results.userbookrequests.total
+                     
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+}
