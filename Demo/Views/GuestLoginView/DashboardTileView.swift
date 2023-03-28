@@ -71,60 +71,66 @@ struct DashboardView: View {
     var body: some View {
 
         NavigationView {
-            VStack{
-//                    CustomNavBarView()
-                HStack {
-                    NavigationLink(destination: StacksView()
-                        .navigationTitle("")
-                        .navigationBarHidden(true)
-                        .navigationBarBackButtonHidden(true)){
-                            DashboardTileView(tileName: "Stack" , tileCount: "\(accountListVM.ownStacks)", iconTileImage: "stack_gray", mainTileImage: "stack_prime")
-                            
-                        }
-                    Spacer()
-                        .frame(width:20)
-                    
-                    NavigationLink(destination: GuestUploadListView()
-                        .navigationTitle("")
-                        .navigationBarHidden(true)
-                        .navigationBarBackButtonHidden(true)){
-                            DashboardTileView(tileName: "Upload Pdf" , tileCount: "\(accountListVM.partnerBookRCs)", iconTileImage: "pdf_gray", mainTileImage: "upload_pdf")
-                        }
-                }
-                    Spacer().frame(height: 22)
-                
-                HStack {
-                    
-                   
-                            
-                            DashboardTileView(tileName: "Read Credits(RC)" , tileCount: "\(accountListVM.totalRC)", iconTileImage: "payment_gray", mainTileImage: "read_credit_new")
-                            
-                            Spacer()
-                                .frame(width:20)
+            ScrollView{
+                VStack{
+                    //                    CustomNavBarView()
+                    HStack{
+                        Text(accountListVM.rem_plan_days).font(.system(size: 24, weight: .bold)).foregroundColor(.white)
+                        Spacer()
+                    }.padding(.leading)
+                        .frame(width: UIScreen.main.bounds.width,height: 35).background(Color.cyan)
+                    HStack {
+                        NavigationLink(destination: StacksView()
+                            .navigationTitle("")
+                            .navigationBarHidden(true)
+                            .navigationBarBackButtonHidden(true)){
+                                DashboardTileView(tileName: "Stack" , tileCount: "\(accountListVM.ownStacks)", iconTileImage: "stack_gray", mainTileImage: "stack_prime")
+                                
+                            }
+                        Spacer()
+                            .frame(width:20)
                         
-                            DashboardTileView(tileName: "Subscription" , tileCount: "\(accountListVM.successPayCount)", iconTileImage: "pdf_gray", mainTileImage: "subscription")
-                        
-                }
+                        NavigationLink(destination: GuestUploadListView()
+                            .navigationTitle("")
+                            .navigationBarHidden(true)
+                            .navigationBarBackButtonHidden(true)){
+                                DashboardTileView(tileName: "Upload Pdf" , tileCount: "\(accountListVM.partnerBookRCs)", iconTileImage: "pdf_gray", mainTileImage: "upload_pdf")
+                            }
+                    }
                     Spacer().frame(height: 22)
-                HStack {
-                    NavigationLink(destination: PurchagedBooksView()
-                        .navigationTitle("")
-                        .navigationBarHidden(true)
-                        .navigationBarBackButtonHidden(true)){
-                            
-                            DashboardTileView(tileName: "Purchased Book" , tileCount: "\(accountListVM.purchasedBooks)", iconTileImage: "purchased_gray", mainTileImage: "purchased_book")
-                        }
-                    Spacer()
-                        .frame(width:20)
-                  
-                    NavigationLink(destination: PaymentHistoryView()
-                        .navigationTitle("")
-                        .navigationBarHidden(true)
-                        .navigationBarBackButtonHidden(true)){
-                            DashboardTileView(tileName: "Pay" , tileCount: "\(accountListVM.successPayCount)", mainTileImage: "payment_hist")
-                       
-                        }
-                }
+                    
+                    HStack {
+                        
+                        
+                        
+                        DashboardTileView(tileName: "Read Credits(RC)" , tileCount: "\(accountListVM.totalRC)", iconTileImage: "payment_gray", mainTileImage: "read_credit_new")
+                        
+                        Spacer()
+                            .frame(width:20)
+                        
+                        DashboardTileView(tileName: "Subscription" , tileCount: "\(accountListVM.successPayCount)", iconTileImage: "pdf_gray", mainTileImage: "subscription")
+                        
+                    }
+                    Spacer().frame(height: 22)
+                    HStack {
+                        NavigationLink(destination: PurchagedBooksView()
+                            .navigationTitle("")
+                            .navigationBarHidden(true)
+                            .navigationBarBackButtonHidden(true)){
+                                
+                                DashboardTileView(tileName: "Purchased Book" , tileCount: "\(accountListVM.purchasedBooks)", iconTileImage: "purchased_gray", mainTileImage: "purchased_book")
+                            }
+                        Spacer()
+                            .frame(width:20)
+                        
+                        NavigationLink(destination: PaymentHistoryView()
+                            .navigationTitle("")
+                            .navigationBarHidden(true)
+                            .navigationBarBackButtonHidden(true)){
+                                DashboardTileView(tileName: "Pay" , tileCount: "\(accountListVM.successPayCount)", mainTileImage: "payment_hist")
+                                
+                            }
+                    }
                     Spacer().frame(height: 22)
                     HStack {
                         
@@ -136,14 +142,15 @@ struct DashboardView: View {
                                 DashboardTileView(tileName: "Read Credit Funds" , tileCount: "\(accountListVM.rcFundCounts)", iconTileImage: "test_correct_gray", mainTileImage: "rcf_ti")
                             }
                         Spacer()
-                           .frame(width:20)
+                            .frame(width:20)
                         DashboardTileView(tileName: "Book Request" , tileCount: "\(accountListVM.bookRequestCount)", iconTileImage: "test_correct_gray", mainTileImage: "book_req")
                     }
-    //                Spacer().frame(height: 22)
+                    //                Spacer().frame(height: 22)
                 }
-            .background(Image("u"))
-        }.onAppear{
-            accountListVM.getDashBoardData()
+                .background(Image("u"))
+            }.onAppear{
+                accountListVM.getDashBoardData()
+            }
         }
         
     }
@@ -173,6 +180,7 @@ public struct DashBoardModel: Decodable {
     public let partnerBookRCs: Int
     public let bookRequestCount: Int
     public let rcFundCounts: Int
+    public let rem_plan_days: String
     public let successPayCount: Int
     public let data: Int
 

@@ -231,6 +231,7 @@ class AuthenticationListService: ObservableObject {
     @Published var bookRequestCount = Int()
     @Published var rcFundCounts = Int()
     @Published var successPayCount = Int()
+    @Published var rem_plan_days = String()
 
     
     
@@ -252,6 +253,7 @@ class AuthenticationListService: ObservableObject {
                         self.ownStacks = results.ownStacks
                         self.totalRC = results.totalRC
                         self.successPayCount = results.successPayCount
+                        self.rem_plan_days = results.rem_plan_days
                         print(results)
                     }
                 case .failure(let error):

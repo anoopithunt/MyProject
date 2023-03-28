@@ -44,8 +44,8 @@ struct ImageSliderViews: View {
 
 struct ImageSliderViews_Previews: PreviewProvider {
     static var previews: some View {
-//        ImageSliderViews()
-        SliderExView()
+        ImageSlider()
+//        SliderExView()
     }
 }
 
@@ -187,24 +187,65 @@ class SliderViewModel: ObservableObject {
     }
 }
 
+
+class SliderViewModel1: ObservableObject {
+    @Published var datas = [SliderBookDetail]()
+    @Published var images = [String]()
+    var currentIndex = 0
+    let url = "https://www.alibrary.in/api/web-home"
+    let timer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
+
+    init() {
+        getData()
+    }
+    
+    func getData() {
+        guard let url = URL(string: url) else { return }
+        URLSession.shared.dataTask(with: url) { (data, _, _) in
+            if let data = data {
+                do {
+                    let results = try JSONDecoder().decode(SliderModel.self, from: data)
+                   
+                    DispatchQueue.main.async {
+                        
+                        self.datas = results.bookDetails
+                        for img in self.datas{
+                            self.images.append(img.url)
+                        }
+                       
+                    }
+                }
+                catch {
+                    print(error)
+                }
+            }
+        }.resume()
+    }
+}
+
 struct SliderExView: View {
     @StateObject var list = SliderViewModel()
+    @State private var selection = 0
+       let colors: [Color] = [.red, .green, .blue]
+       let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
 
     var body: some View {
-        HStack {
-            ScrollView(.horizontal, showsIndicators: false) {
-                LazyHStack(spacing: 0) {
-                    ForEach(list.datas, id: \.id) { item in
-                        AsyncImage(url: URL(string: item.url)) { image in
-                            image.resizable().frame(width: UIScreen.main.bounds.width, height: 215)
-                        } placeholder: {
-                            Image("logo_gray").resizable().frame(width: UIScreen.main.bounds.width, height: 215)
+        VStack{
+            HStack {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHStack(spacing: 0) {
+                        ForEach(list.datas, id: \.id) { item in
+                            AsyncImage(url: URL(string: item.url)) { image in
+                                image.resizable().frame(width: UIScreen.main.bounds.width, height: 215)
+                            } placeholder: {
+                                Image("logo_gray").resizable().frame(width: UIScreen.main.bounds.width, height: 215)
+                            }
                         }
+                        .frame(width: UIScreen.main.bounds.width)
+                        .id(UUID())
+                        .offset(x: CGFloat(list.currentIndex) * -UIScreen.main.bounds.width, y: 0)
+                        .animation(.linear)
                     }
-                    .frame(width: UIScreen.main.bounds.width)
-                    .id(UUID())
-                    .offset(x: CGFloat(list.currentIndex) * -UIScreen.main.bounds.width, y: 0)
-                    .animation(.linear)
                 }
             }
         }
@@ -232,3 +273,49 @@ extension SliderBookDetail: Equatable {
         return lhs.id == rhs.id
     }
 }
+
+
+struct ImageSlider: View {
+    @StateObject var viewModel = SliderViewModel1()
+    @State private var currentIndex = 0
+    let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
+    
+    var body: some View {
+        GeometryReader { geometry in
+            ScrollView(.horizontal, showsIndicators: false) {
+                ScrollViewReader { scrollView in
+                    LazyHStack(spacing: 0) {
+                        ForEach(viewModel.images, id: \.self) { imageUrl in
+                            AsyncImage(url: URL(string: imageUrl)) { image in
+                                image
+                                    .resizable()
+                                    .frame(width: geometry.size.width, height: geometry.size.height/3)
+                            } placeholder: {
+                                ProgressView()
+                                    .frame(width: geometry.size.width, height: geometry.size.height/3)
+                            }
+                        }
+                    }
+                    .onChange(of: currentIndex) { value in
+                        withAnimation {
+                            scrollView.scrollTo(value, anchor: .center)
+                        }
+                    }
+                }
+                .frame(height: geometry.size.height)
+                .onAppear {
+                    viewModel.getData()
+                    startTimer()
+                }
+            }
+        }
+        .onReceive(timer) { _ in
+            currentIndex = currentIndex < viewModel.images.count - 1 ? currentIndex + 1 : 0
+        }
+    }
+    
+    func startTimer() {
+        timer.upstream.connect().cancel()
+    }
+}
+

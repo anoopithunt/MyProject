@@ -64,6 +64,7 @@ struct PDFKitViews: View {
                                 
                                 
                             }.padding(.horizontal)
+                           
                             
                             PDFViewWrapper(url: URL(string: "\(list.path)/\(currentPage).pdf")!, password: "alib_\(list.id)")
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -139,7 +140,6 @@ struct PDFKitViews: View {
                         
                     }
                     .padding()
-                    
                 }.onAppear{
                     list.getBookData()
                 }.sheet(item: $selectedItem) { item in
