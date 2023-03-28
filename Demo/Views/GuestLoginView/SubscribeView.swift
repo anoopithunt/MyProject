@@ -10,104 +10,207 @@ import SwiftUI
 struct SubscribeView: View {
     @StateObject var list = GuestSubscribeViewModel()
     let columns = [
-            GridItem(.flexible()),
-            GridItem(.flexible())
-        ]
-   
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+    @State private var selectedOption = 0
+    let options = ["All Books", "Paid Books", "Prime Books"]
+    @State var value = ""
+    var placeholder = "All Books"
+    
     @State var searchText: String = ""
     var body: some View {
-        ZStack{
-            Image("u").resizable()
-                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-                .ignoresSafeArea()
-            
-            VStack(spacing: 0){
-                HStack(spacing: 25){
-                    Button(action: {
+        NavigationView{
+            ZStack{
+                Image("u").resizable().ignoresSafeArea()
+                
+                VStack(spacing:0){
+                    HStack(spacing: 12) {
+                        Button(action: {
+                            //                        dismiss()
+                            print("close")
+                        }, label: {
+                            Image(systemName: "arrow.backward")
+                                .font(.system(size: 22, weight: .heavy))
+                                .foregroundColor(.white)
+                        })
                         
-                    },
-                           label: {
-                        
-                        Image(systemName: "arrow.backward")
-                        
-                            .font(.system(size:22, weight:.heavy))
-                        
+                        Text("Subscriptions")
+                            .font(.system(size: 24, weight: .semibold))
                             .foregroundColor(.white)
-                    })
-                    Text("Subscription")
-                        .font(.system(size: 22, weight: .medium))
-                        .foregroundColor(.white)
-                    Spacer()
-                    
-                }.padding(9)
-                  .frame(width: UIScreen.main.bounds.width, height: 65)
-                    .background(Color("orange"))
-                
-                
-                ZStack{
-                    Rectangle().fill(Color("orange")).frame(height: 45)
-
-                    TextField("search books", text: $searchText).font(.system(size: 24)).padding()
-                        .foregroundColor(.gray)
-                        .frame(height: 35).background(Color.white)
-                        .cornerRadius(10)
-                        .padding(.horizontal,11)
-                        .overlay{
-                        HStack{
-                            Spacer()
-                            Image(systemName: "magnifyingglass").font(.system(size: 26, weight: .heavy)).foregroundColor(.gray.opacity(0.7)).padding(.trailing,18)
-                        }.frame(height: 24)
-                        }
-                }.frame(width: UIScreen.main.bounds.width, height: 45)
-               
-                
-                ScrollView{
-                    LazyVGrid(columns: columns, spacing: 10){
                         
-                        
-                        ForEach(list.datas , id: \.id){
-                            item in
-
-                            VStack(alignment: .leading){
-                                AsyncImage(url: URL(string: item.book_media.url!)){
-                                    img in
-                                    img.resizable().frame( height: 235)
-                                }placeholder: {
-                                    Image("logo_gray").resizable().frame( height: 235)
+                        Spacer()
+                        Menu {
+                            ForEach(options, id: \.self){ client in
+                                Button(client) {
+                                    
+                                    self.value = client
+                                    
+                                    if self.value == "All Books"{
+                                        
+                                        list.getSubscribeData(booktype: "all")
+                                        
+                                    }
+                                    
+                                    else if self.value == "Paid Books" {
+                                        
+                                        list.getSubscribeData(booktype: "paid")
+                                        
+                                    }
+                                    
+                                    else if self.value == "Prime Books" {
+                                        
+                                        list.getSubscribeData(booktype: "prime")
+                                        
+                                    }
+                                    
                                 }
-                                Text(item.book_detail.title).foregroundColor(Color("default_")).font(.system(size: 16, weight: .medium)).lineLimit(2)
-                                TimerView(endDateText: "\(item.rc_enddate)")//.frame(height: 45)
                                 
-                                HStack{
-                                    if item.book_detail.is_prime == 0 {
-                                        Text("Paid").font(.system(size: 20, weight: .bold)).foregroundColor(Color("green"))
+                            }
+                            
+                        } label: {
+                            HStack(spacing: 2){
+                                
+                                Text(value.isEmpty ? placeholder : value)
+                                    .frame(width: 125)
+                                
+                                    .onAppear{
+                                        
                                     }
-                                    else{
-                                        Text("Prime").font(.system(size: 20, weight: .bold)).foregroundColor(.cyan)
-                                    }
-                                    Spacer()
-                                    Image("rc_read_book").resizable().frame(width: 35, height: 35)
-                                }.padding(.horizontal, 4)
-                                                              
-                            }.background(Color.white).cornerRadius(8).shadow(color: .gray, radius: 1)
-                           
+                                    .foregroundColor(value.isEmpty ? .black : .black)
+                                Image(systemName: "arrowtriangle.down.fill")
+                                    .foregroundColor(Color.white)
+                                    .font(Font.system(size: 12, weight: .semibold))
+                                //.padding()
+                            }
+                            .padding()
+                            
+                            
                         }
                     }
+                    .padding(.horizontal)
+                    .frame(width: UIScreen.main.bounds.width, height: 65)
+                    .background(Color("orange"))
+                    ZStack{
+                        
+                        Rectangle()
+                            .fill(Color("orange"))
+                            .frame(height: 45)
+                        
+                        
+                        TextField("search books", text: $searchText)
+                            .font(.system(size: 24))
+                            .padding()
+                        
+                            .foregroundColor(.gray)
+                        
+                            .frame(height: 35).background(Color.white)
+                        
+                            .cornerRadius(10)
+                        
+                            .padding(.horizontal,11)
+                        
+                            .overlay{
+                                
+                                HStack{
+                                    
+                                    Spacer()
+                                    
+                                    Image(systemName: "magnifyingglass")
+                                    
+                                        .font(.system(size: 26, weight: .heavy))
+                                    
+                                        .foregroundColor(.gray.opacity(0.7))
+                                    
+                                        .padding(.trailing,18)
+                                    
+                                }
+                                .frame(height: 24)
+                                
+                            }
+                        
+                    }
+                    
+                    .frame(width: UIScreen.main.bounds.width, height: 45)
+                    
+                    
+                    
+                    ScrollView{
+                        
+                        LazyVGrid(columns: columns, spacing: 10){
+                            
+                            ForEach(list.datas , id: \.id){
+                                item in
+                                VStack(alignment: .leading){
+                                    
+                                    AsyncImage(url: URL(string: item.book_media.url!)){
+                                        
+                                        img in
+                                        
+                                        NavigationLink(destination: {
+                                            PDFKitViews(id: item.book_media.id)
+                                            
+                                        }, label: {
+                                            img.resizable()
+                                            
+                                                .frame( height: 225)
+                                        })
+                                        
+                                    }placeholder: {
+                                        Image("logo_gray")
+                                            .resizable()
+                                            .frame( height: 225)
+                                    }
+                                    Text(item.book_detail.title).foregroundColor(Color("default_"))
+                                        .font(.system(size: 16, weight: .medium))
+                                        .lineLimit(2)
+                                    TimerView(endDateText: "\(item.rc_enddate)")//.frame(height: 45)
+                                    
+                                    HStack{
+                                        if item.book_detail.is_prime == 0 {
+                                            Text("Paid")
+                                                .font(.system(size: 20, weight: .bold)).foregroundColor(Color("green"))
+                                        }
+                                        else{
+                                            Text("Prime").font(.system(size: 20, weight: .bold)).foregroundColor(.cyan)
+                                        }
+                                        Spacer()
+                                        Image("rc_read_book").resizable().frame(width: 35, height: 35)
+                                    }.padding(.horizontal, 4)
+                                    
+                                }.background(Color.white).cornerRadius(8).shadow(color: .gray, radius: 1)
+                                
+                            }
+                            
+                        }
+                    }
+                    
                 }
-            }.onAppear{
-                list.getSubscribeData()
+            }
+            
+            
+            .overlay(alignment: .topTrailing){
+               
                 
             }
+            
+            .onAppear{
+                list.getSubscribeData(booktype: "all")
+                
+            }
+            
         }
         
     }
-    
 }
+
+
 
 struct SubscribeView_Previews: PreviewProvider {
     static var previews: some View {
 //        TimerExample(endDate: .now + 900)
-        DateTimerView()
+        SubscribeView()
+       
     }
 }
 //Model
@@ -135,9 +238,9 @@ public struct SubscribeTotalRc:Decodable {
 public struct SubscribeUserRCBooks:Decodable {
     public let current_page: Int
     public var data: [SubscribeDatum]
-    public let first_page_url: String
+//    public let first_page_url: String
     public let per_page: Int
-    public let to: Int
+    public let to: Int?
     public let total: Int
 
 }
@@ -197,8 +300,9 @@ public struct SubscribeBookMedia:Decodable {
 // MARK: - Authenticatication class
 class GuestSubscribeService{
     
-    func getSubscribeData(token: String, completion: @escaping (Result<SubscribeModel, NetworkError>) -> Void) {
-        guard let url = URL(string: APILoginUtility.guestSubscribeApi!) else {
+    func getSubscribeData(token: String,booktype: String, completion: @escaping (Result<SubscribeModel, NetworkError>) -> Void) {  //https://alibrary.in/api/guest/userrcbooks?bookSearch=&page=&booktype=prime
+        
+        guard let url = URL(string: APILoginUtility.guestSubscribeApi! + "?bookSearch=&page=&booktype=\(booktype)") else {
             completion(.failure(.invalidURL))
             return
         }
@@ -235,19 +339,19 @@ class GuestSubscribeViewModel: ObservableObject{
     @Published var datas = [SubscribeDatum]()
     @Published var totalPage = Int()
 //    @Published var currentPage = 1
-    func getSubscribeData() {
+    func getSubscribeData(booktype: String) {
         
         let defaults = UserDefaults.standard
         guard let token = defaults.string(forKey: "access_token") else {
             return
         }
         
-        GuestSubscribeService().getSubscribeData(token: token){ (result) in
+        GuestSubscribeService().getSubscribeData(token: token, booktype: booktype){ (result) in
             switch result {
                 case .success(let results):
                     DispatchQueue.main.async {
                         self.datas = results.userRCBooks.data
-                        self.totalPage = results.userRCBooks.to
+                        self.totalPage = results.userRCBooks.to ?? 0
 //                        self.datas.append(contentsOf: results.studentStacks.data)
                       
                         print(self.datas)

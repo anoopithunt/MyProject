@@ -69,16 +69,22 @@ struct DashboardView: View {
 
 
     var body: some View {
-
+        
         NavigationView {
-            ScrollView{
+            ZStack{
                 VStack{
-                    //                    CustomNavBarView()
+                    Color.white.frame(height: 0.1)
+                    
                     HStack{
-                        Text(accountListVM.rem_plan_days).font(.system(size: 24, weight: .bold)).foregroundColor(.white)
-                        Spacer()
-                    }.padding(.leading)
-                        .frame(width: UIScreen.main.bounds.width,height: 35).background(Color.cyan)
+                        Text(accountListVM.rem_plan_days)
+                            .font(.system(size: 24, weight: .bold))
+                            .foregroundColor(.white)
+                            Spacer()
+                        }.padding(.leading)
+                        .frame(width: UIScreen.main.bounds.width,height: 35)
+                        .background(Color.cyan)//
+//                        CustomNavBarView()
+                        ScrollView(showsIndicators: false){
                     HStack {
                         NavigationLink(destination: StacksView()
                             .navigationTitle("")
@@ -102,13 +108,26 @@ struct DashboardView: View {
                     HStack {
                         
                         
-                        
-                        DashboardTileView(tileName: "Read Credits(RC)" , tileCount: "\(accountListVM.totalRC)", iconTileImage: "payment_gray", mainTileImage: "read_credit_new")
+                        NavigationLink(destination: {
+                            ReadCreditView().navigationTitle("")
+                                .navigationBarHidden(true)
+                                .navigationBarBackButtonHidden(true)
+                        }, label: {
+                            DashboardTileView(tileName: "Read Credits(RC)" , tileCount: "\(accountListVM.totalRC)", iconTileImage: "payment_gray", mainTileImage: "read_credit_new")
+                        })
+                     
                         
                         Spacer()
                             .frame(width:20)
+                        NavigationLink(destination: {
+                            SubscribeView()
+                                .navigationTitle("")
+                                .navigationBarHidden(true)
+                                .navigationBarBackButtonHidden(true)
+                        }, label: {
+                            DashboardTileView(tileName: "Subscription" , tileCount: "\(accountListVM.successPayCount)", iconTileImage: "pdf_gray", mainTileImage: "subscription")
+                        })
                         
-                        DashboardTileView(tileName: "Subscription" , tileCount: "\(accountListVM.successPayCount)", iconTileImage: "pdf_gray", mainTileImage: "subscription")
                         
                     }
                     Spacer().frame(height: 22)
@@ -127,31 +146,46 @@ struct DashboardView: View {
                             .navigationTitle("")
                             .navigationBarHidden(true)
                             .navigationBarBackButtonHidden(true)){
-                                DashboardTileView(tileName: "Pay" , tileCount: "\(accountListVM.successPayCount)", mainTileImage: "payment_hist")
+                                DashboardTileView(tileName: "Pay" , tileCount: "\(accountListVM.successPayCount)",iconTileImage: "", mainTileImage: "payment_hist")
                                 
                             }
                     }
                     Spacer().frame(height: 22)
-                    HStack {
-                        
-                        NavigationLink(destination: ReadCreditView()
-                            .navigationTitle("")
-                            .navigationBarHidden(true)
-                            .navigationBarBackButtonHidden(true)){
+                            HStack {
                                 
-                                DashboardTileView(tileName: "Read Credit Funds" , tileCount: "\(accountListVM.rcFundCounts)", iconTileImage: "test_correct_gray", mainTileImage: "rcf_ti")
+                                NavigationLink(destination: ReadCreditView()
+                                    .navigationTitle("")
+                                    .navigationBarHidden(true)
+                                    .navigationBarBackButtonHidden(true)){
+                                        
+                                        DashboardTileView(tileName: "Read Credit Funds" , tileCount: "\(accountListVM.rcFundCounts)", iconTileImage: "test_correct_gray", mainTileImage: "rcf_ti")
+                                    }
+                                Spacer()
+                                    .frame(width:20)
+                                NavigationLink(destination: {
+                                    BookRequestView()
+                                        .navigationTitle("")
+                                        .navigationBarHidden(true)
+                                        .navigationBarBackButtonHidden(true)
+                                }, label: {
+                                    DashboardTileView(tileName: "Book Request" , tileCount: "\(accountListVM.bookRequestCount)", iconTileImage: "test_correct_gray", mainTileImage: "book_req")
+                                    
+                                })
                             }
-                        Spacer()
-                            .frame(width:20)
-                        DashboardTileView(tileName: "Book Request" , tileCount: "\(accountListVM.bookRequestCount)", iconTileImage: "test_correct_gray", mainTileImage: "book_req")
-                    }
                     //                Spacer().frame(height: 22)
                 }
                 .background(Image("u"))
+                        Spacer()
+                        MagazineBannerView()
+                        
             }.onAppear{
                 accountListVM.getDashBoardData()
-            }
+            } 
+//                }
+                
+                
         }
+    }
         
     }
 }

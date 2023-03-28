@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct StackBookListView: View {
-//    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) var dismiss
     @StateObject var list = StacksBooksListViewModel()
     let columns =  [GridItem(.flexible()), GridItem(.flexible()) ]
     @State private var isShareSheetShowing = false
     @State var id: Int
     @State var name: String
-    init(id: Int, name: String){
-        self.id = id
-        self.name = name
-    }
+//    init(id: Int, name: String){
+//        self.id = id
+//        self.name = name
+//    }
     
     var body: some View {
         NavigationView{
@@ -26,7 +26,7 @@ struct StackBookListView: View {
                 VStack(spacing: 0) {
                     HStack(spacing: 25){
                         Button(action: {
-//                            dismiss()
+                            dismiss()
                         },
                                label: {
                             
@@ -37,7 +37,6 @@ struct StackBookListView: View {
                                 .foregroundColor(.white)
                         })
                         Text(name)
-                        
                             .font(.system(size: 24, weight: .medium))
                             .foregroundColor(.white)
                         
@@ -97,7 +96,7 @@ struct StackBookListView: View {
                
             }
            
-        }
+        }//.navigationViewStyle(StackNavigationViewStyle())
     }
     func shareButton() {
            
@@ -142,7 +141,7 @@ public struct StackBookListDatum:Decodable {
     public let stack_details: StackBookListDetails
     public let stack_book: StackBookList
     public let book_media: StackBookListMedia
-    public let partner_stack: PartnerBookListStack
+//    public let partner_stack: PartnerBookListStack
 
 }
 
@@ -158,29 +157,29 @@ public struct StackBookListMedia:Decodable {
 // MARK: - PartnerStack
 public struct PartnerBookListStack:Decodable {
     public let id: Int
-    public let partner_detail: PartnerDetail
+//    public let partner_detail: PartnerDetail
 
 }
 
 // MARK: - PartnerDetail
 public struct PartnerDetail:Decodable {
     public let id: Int
-    public let dob: String
+    public let dob: String?
 
 }
 
 // MARK: - StackBook
 public struct StackBookList:Decodable {
     public let id: Int
-    public let upload_type_id: Int
+//    public let upload_type_id: Int
     public let name: String
     public let tot_pages: Int
     public let title: String
     public let author_name: String
-    public let isbn_no: String
+    public let isbn_no: String?
     public let size: String
     public let publish_date: String
-    public let validity_date: String
+    public let validity_date: String?
     public let published: String
 
 }

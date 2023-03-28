@@ -73,7 +73,7 @@ struct SearchBooksCollectionView: View {
                         
                    
                 }.padding().frame(width: UIScreen.main.bounds.width, height: 65).background(Color("orange"))
-                SearchViewTile(searchText: searchText).frame(height: 65)
+                SearchViewTile(searchText: searchText).frame(height:65)
                 ScrollView(.horizontal,showsIndicators: false){
                     
                     HStack{
@@ -144,7 +144,7 @@ struct SearchViewTile:View{
             TextField("search books", text: $searchText).font(.system(size: 24)).padding().foregroundColor(.gray).frame(height: 55).background(Color.white).cornerRadius(10).padding(.horizontal,11).overlay{
                 HStack{
                     Spacer()
-                    Image(systemName: "magnifyingglass").font(.system(size: 26, weight: .heavy)).foregroundColor(.gray.opacity(0.7)).padding(.trailing,20)
+                    Image("magnifying_glass_right").resizable().frame(width: 28, height: 28).padding(.trailing,20).shadow(color: .black,radius: 0.7)
                 }.frame(height: 55)
             }
         }

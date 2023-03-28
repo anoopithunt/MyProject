@@ -57,9 +57,11 @@ struct StacksView: View {
                         LazyVGrid(columns: columns, spacing: 10) {
                             ForEach(list.datas, id: \.id){ item in
                                 VStack(alignment: .center, spacing: 8){
-                                    NavigationLink(destination: StackBookListView(id: item.stack_detail.id, name: item.stack_detail.name).navigationTitle("")
-                                        .navigationBarHidden(true)
-                                        .navigationBarBackButtonHidden(true), label: {
+                                    NavigationLink(destination:{ StackBookListView(id: item.stack_detail.id, name: item.stack_detail.name).navigationTitle("")
+                                            .navigationBarHidden(true)
+                                            .navigationBarBackButtonHidden(true)
+                                        
+                                    }, label: {
                                       ZStack{
                                           ForEach(item.stack_book_link.indices.reversed(), id: \.self) { index in
                                              
@@ -87,9 +89,16 @@ struct StacksView: View {
                                     }
                                     
                                     HStack(spacing: 6){
-                                        Text("\(item.stack_book_link_count)").foregroundColor(.gray).font(.system(size: 16))
-                                        Image("stack_blue").resizable().frame(width: 25, height: 20)
-                                        Image(systemName: "eye.slash.fill").resizable().frame(width: 25, height: 20).foregroundColor(.gray)
+                                        Text("\(item.stack_book_link_count)")
+                                            .foregroundColor(.gray)
+                                            .font(.system(size: 16))
+                                        Image("stack_blue")
+                                            .resizable()
+                                            .frame(width: 25, height: 20)
+                                        Image(systemName: "eye.slash.fill")
+                                            .resizable()
+                                            .frame(width: 25, height: 20)
+                                            .foregroundColor(.gray)
                                         Spacer()
                                         Menu {
                                             Button {
@@ -120,7 +129,7 @@ struct StacksView: View {
                     Spacer()
                 }
                 if shown{
-                    StacksViewAlertView(rcShow: $shown)
+//                    StacksViewAlertView(rcShow: $shown)
                 }
             }
            
@@ -335,14 +344,14 @@ public struct StackBook:Decodable {
     public let name: String
     public let title: String
     public let author_name: String
-    public let isbn_no: String
+    public let isbn_no: String?
     
 }
 
 public struct StackDetail:Decodable {
     public let id: Int
     public let name: String
-    public let description: String
+    public let description: String?
   
    
 }

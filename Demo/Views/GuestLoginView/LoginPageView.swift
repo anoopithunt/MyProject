@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LoginPageView: View {
-    @Environment(\.dismiss) var dismiss
+//    @Environment(\.dismiss) var dismiss
     @State var isTapped = false
     @State private var showingModal = false
 
@@ -82,12 +82,13 @@ struct LoginPageView: View {
                         ButtonView(btnName: "Login")
                     })
                 .navigationBarBackButtonHidden(true)
-                    NavigationLink(destination: //DashboardView()
-                                   PDFKitViews()
+                    NavigationLink(destination: DashboardView()
+//                                   PDFKitViews(id: 17)
                         .navigationTitle("")
                         .navigationBarHidden(true)
                         .navigationBarBackButtonHidden(true), isActive: $loginVM.isAuthenticated){
-                        EmptyView().navigationTitle("").navigationBarBackButtonHidden(true).navigationBarHidden(true)
+                        EmptyView().navigationTitle("")
+                                .navigationBarBackButtonHidden(true).navigationBarHidden(true)
                     }.navigationTitle("")
                         .navigationBarBackButtonHidden(true)
                         .navigationBarHidden(true)

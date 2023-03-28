@@ -6,38 +6,17 @@
 //
 
 import SwiftUI
-//import Firebase
-//import FirebaseFirestore
+import CoreImage.CIFilterBuiltins
 
 struct QRGeneratorView: View {
-//    @State var data: [String: Any] = [:]
-//    let db = Firestore.firestore()
-//    init(){
-//        let collectionRef = db.collection("myCollection")
-//        collectionRef.addSnapshotListener { (querySnapshot, error) in
-//            if let error = error {
-//                print("Error getting documents: \(error)")
-//            } else {
-//                for document in querySnapshot!.documents {
-//                    let data = document.data()
-//                    print(data)
-//                }
-//            }
-//        }
-//        self.data = data
-//    }
-    
 
     @State var qrURL = "https://alibrary.page.link/?link=https://alibrary.page.link/publisher?id=5&apn=com.primeitzen.alibrary"
     var body: some View {
         VStack {
-            TextField("Enter code", text: $qrURL)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding().hidden()
-           
-            Image(uiImage: UIImage(data: getQRCodeDate(text: "Anoop Mishra")!)!)
+            Image(uiImage: UIImage(data: getQRCodeDate(text: qrURL)!)!)
                 .resizable()
                 .frame(width: 200, height: 200)
+            QRCodeView(text: qrURL).frame(width: 200, height: 200)
         }
     }
     
@@ -57,5 +36,28 @@ struct QRGeneratorView: View {
 struct QRGeneratorView_Previews: PreviewProvider {
     static var previews: some View {
         QRGeneratorView()
+    }
+}
+
+struct QRCodeView: View {
+    let text: String
+    let filter = CIFilter.qrCodeGenerator()
+    
+    var body: some View {
+        Image(uiImage: generateQRCode(from: text))
+            .interpolation(.none)
+            .resizable()
+            .scaledToFit()
+    }
+    
+    func generateQRCode(from string: String) -> UIImage {
+        let data = Data(string.utf8)
+        filter.setValue(data, forKey: "inputMessage")
+        if let outputImage = filter.outputImage {
+            if let cgImage = CIContext().createCGImage(outputImage, from: outputImage.extent) {
+                return UIImage(cgImage: cgImage)
+            }
+        }
+        return UIImage(systemName: "xmark.circle") ?? UIImage()
     }
 }

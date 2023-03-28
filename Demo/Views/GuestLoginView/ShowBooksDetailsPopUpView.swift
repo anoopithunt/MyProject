@@ -88,103 +88,156 @@ struct ShowBooksDetailsView: View {
     @State var pages = String()
     @State var relatedBookUrl = [RelatedBooks]()
     @State var id:String
+    @State var unit_mrp = Int()
+    @State var unit_price = Int()
+    @State private var showDetails = false
 //    @Binding var originalIsActive: Bool
     var body: some View {
-        ZStack {
-            Image("u").resizable().background(Color.white).ignoresSafeArea()
-          
-         
-            VStack(spacing: 5){
-                HStack{
-                    Button(action: {
-                        backbtn()
-                    }, label: {
-                        Image(systemName: "chevron.left").foregroundColor(.black).font(.system(size: 34))
-                    })
-                   
-                    Spacer()
-                    Text(title).font(.headline).bold().multilineTextAlignment(.center)
-                    Spacer()
-                    Image(systemName: "square.and.arrow.up").resizable().frame(width: 25,height: 32)
-                }.padding()
-                
-                ScrollView(.vertical,showsIndicators: false){
-                   Button(action: {
-                       shown.toggle()
-                   }, label: {
-                       AsyncImage(url: URL(string: url)){ image in
-                           image.resizable().frame(width: 185, height: 242).shadow(radius: 12).cornerRadius(12).padding(.bottom, 25)
-                       }placeholder: {
-                           Image("logo_gray").resizable().frame(width: 185, height: 262).shadow(radius: 5).padding(.bottom, 35)
-                       }
-                   })
-                 
-                    
-                    VStack(alignment: .leading,spacing: 12){
-                        HStack(alignment: .firstTextBaseline,spacing: 35){
-                            Text("Author").foregroundColor(.black.opacity(0.9)).font(.caption)
-                            Spacer().frame(width: 35)
-                            Text(authorName).foregroundColor(.gray.opacity(0.9)).font(.caption)
-                            Spacer()
-                        }.multilineTextAlignment(.center)
-                        HStack(alignment: .firstTextBaseline,spacing: 35){
-                            Text("Published").foregroundColor(.black.opacity(0.9)).font(.caption)
-                            Spacer().frame(width: 18)
-                            Text(published).foregroundColor(.gray.opacity(0.9)).font(.caption)
-                        }.multilineTextAlignment(.center)
-                        HStack(alignment: .firstTextBaseline,spacing: 35){
-                            Text("Pages").foregroundColor(.black.opacity(0.9)).font(.caption)
-                            Spacer().frame(width: 37)
-                            Text("\(pages)").foregroundColor(.gray.opacity(0.9)).font(.caption)
-                        }.multilineTextAlignment(.center)
-                        
-                    }.padding().frame(width: UIScreen.main.bounds.width*0.8).background(Color.white).border(.gray, width: 0.2).cornerRadius(5)
-                        .shadow( radius: 1)
-                    
+        NavigationView {
+            ZStack {
+                Image("u").resizable().background(Color.white).ignoresSafeArea()
+              
+             
+                VStack(spacing: 5){
                     HStack{
-                        Text("Related Books").bold().foregroundColor(.black.opacity(0.7))
+                       
+                        Button(action: {
+                            backbtn()
+                        }, label: {
+                            Image(systemName: "chevron.left").foregroundColor(.black).font(.system(size: 34))
+                        })
+                       
                         Spacer()
+                        Text(title).font(.headline).bold().multilineTextAlignment(.center)
+                        Spacer()
+                        Image(systemName: "square.and.arrow.up").resizable().frame(width: 25,height: 32)
                     }.padding()
-
-                    ScrollView(.horizontal,showsIndicators: false){
+                    
+                    ScrollView(.vertical,showsIndicators: false){
                         HStack{
-
-                            
-                            ForEach(relatedBookUrl, id: \.id) { books in
-                                
-                                
-                                NavigationLink(destination: ShowBooksDetailsView(id: "\(books.id)").navigationTitle("")
-                                    .navigationBarHidden(true)
-                                    .navigationBarBackButtonHidden(true)){
-                                        AsyncImage(url: URL(string: books.book_media.url)){ image in
-                                            image.resizable().frame(width:185,height: 222).padding()
-                                            
-                                        }placeholder: {
-                                            Image("logo_gray").resizable().frame(width: 195,height: 232).padding()
+                            Spacer()
+                            Button(action: {
+                                shown.toggle()
+                            }, label: {
+                                AsyncImage(url: URL(string: url)){ image in
+                                    image.resizable().frame(width: 185, height: 242).shadow(radius: 12).cornerRadius(12).padding(.bottom, 25)
+                                }placeholder: {
+                                    Image("logo_gray").resizable().frame(width: 185, height: 262).shadow(radius: 5).padding(.bottom, 35)
+                                }
+                            })
+                            VStack{
+                                ZStack {
+                                    Text("Purchased").font(.system(size: 22))
+                                        .padding(8)//.padding(.horizontal)
+                                        .background(Color.white).cornerRadius(12)
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 12)
+                                                .stroke(Color.black, lineWidth: 1)
+                                        )
+                                        .opacity(showDetails ? 1 : 0)
+                                        .offset(x: showDetails ? -80 :  -30)
+                                        .animation(.linear(duration: 1.6))
+                                    
+                                    Button(action: {
+                                        withAnimation {
+                                            showDetails.toggle()
                                         }
-                                        
-                                    }
+                                    }, label: {
+                                        Image("purchased_book_crown")
+                                            .resizable()
+                                            .frame(width: 55, height: 55)
+                                            .rotationEffect(.degrees(showDetails ? 360 : 0))
+                                    }).background(Color("green")).cornerRadius(33)
+                                }
+                                Spacer()
                             }
                         }
-                        .padding(.horizontal)
                         
-   
-                       
-                        Spacer(minLength: 45)
+                        VStack(alignment: .leading,spacing: 12){
+                            HStack(alignment: .firstTextBaseline,spacing: 35){
+                                Text("Author").foregroundColor(.black.opacity(0.9)).font(.caption)
+                                Spacer().frame(width: 35)
+                                Text(authorName).foregroundColor(.gray.opacity(0.9)).font(.caption)
+                                Spacer()
+                            }.multilineTextAlignment(.center)
+                            HStack(alignment: .firstTextBaseline,spacing: 35){
+                                Text("Published").foregroundColor(.black.opacity(0.9)).font(.caption)
+                                Spacer().frame(width: 18)
+                                Text(published).foregroundColor(.gray.opacity(0.9)).font(.caption)
+                            }.multilineTextAlignment(.center)
+                            HStack(alignment: .firstTextBaseline,spacing: 35){
+                                Text("Pages").foregroundColor(.black.opacity(0.9)).font(.caption)
+                                Spacer().frame(width: 37)
+                                Text("\(pages)").foregroundColor(.gray.opacity(0.9)).font(.caption)
+                            }.multilineTextAlignment(.center)
+                            
+//                            HStack(alignment: .firstTextBaseline,spacing: 35){
+//                                Text("M.R.P.").foregroundColor(.black.opacity(0.9)).font(.caption)
+//                                Spacer().frame(width: 37)
+//                                Text("~₹\(unit_mrp)~   ₹\(unit_price)")
+//                                    .foregroundColor(.gray.opacity(0.9)).font(.caption)
+//                            }.multilineTextAlignment(.center)
+                            
+                            
+                        }.padding().frame(width: UIScreen.main.bounds.width*0.8).background(Color.white).border(.gray, width: 0.2).cornerRadius(5)
+                            .shadow( radius: 1)
+                        
+                        HStack{
+                            Text("Related Books").bold().foregroundColor(.black.opacity(0.7))
+                            Spacer()
+                        }.padding()
+
+                        ScrollView(.horizontal,showsIndicators: false){
+                            HStack{
+
+                                
+                                ForEach(relatedBookUrl, id: \.id) { books in
+                                    
+                                    
+                                    NavigationLink(destination: ShowBooksDetailsView(id: "\(books.id)").navigationTitle("")
+                                        .navigationBarHidden(true)
+                                        .navigationBarBackButtonHidden(true)){
+                                            AsyncImage(url: URL(string: books.book_media.url)){ image in
+                                                image.resizable().frame(width:185,height: 222).padding()
+                                                
+                                            }placeholder: {
+                                                Image("logo_gray").resizable().frame(width: 195,height: 232).padding()
+                                            }
+                                            
+                                        }
+                                }
+                            }
+                            .padding(.horizontal)
+                            
+       
+                           
+                            Spacer(minLength: 45)
+                        }
                     }
                 }
-            }
-            VStack{
-                Spacer()
-                Text("Preview").foregroundColor(.white).frame(width: UIScreen.main.bounds.width-65, height: 55).background(Color.cyan).cornerRadius(24).overlay{ RoundedRectangle(cornerRadius: 24)
-                    .stroke(.white, lineWidth: 1)}
-            }
-            if shown{
-                ShowBooksDetailsPopUpView(bookUrl: url, long_desc: long_desc, title: bookTitle, isbn_no: isbn_no, isShown: $shown)
-            }
-        }.onAppear{
-            
-            getData(id: self.id)
+                VStack{
+                    Spacer()
+                    
+                    NavigationLink(destination: {
+                        PDFKitViews(id: Int(id)!).navigationTitle("")
+                            .navigationBarHidden(true)
+                            .navigationBarBackButtonHidden(true)
+                        
+                    }, label: {
+                        Text("Preview").foregroundColor(.white).frame(width: UIScreen.main.bounds.width-65, height: 55).background(Color.cyan).cornerRadius(24).overlay{ RoundedRectangle(cornerRadius: 24)
+                            .stroke(.white, lineWidth: 1)
+                            
+                        }
+                    })
+                    
+                }
+                if shown{
+                    ShowBooksDetailsPopUpView(bookUrl: url, long_desc: long_desc, title: bookTitle, isbn_no: isbn_no, isShown: $shown)
+                }
+            }.onAppear{
+                
+                getData(id: self.id)
+        }
         }
         
         
@@ -198,14 +251,16 @@ struct ShowBooksDetailsView: View {
                     let results1 = try JSONDecoder().decode(ShowBookDetailsModel.self, from: data).relatedBooks
                     
                     DispatchQueue.main.async {
-
+                        self.id = "\(results.id)"
                         self.title = results.title
+//                        self.unit_price = results.unit_price
+//                        self.unit_mrp = results.unit_mrp
                         self.authorName = results.author_name
                         self.published = results.published
                         self.long_desc = results.long_desc
                         self.pages = "\(results.tot_pages)"
-                        self.url = results.book_media.bookurl
-                        self.isbn_no = results.isbn_no
+                        self.url = results.book_media.url
+                        self.isbn_no = results.isbn_no ?? ""
                         self.relatedBookUrl = results1
                        
                     }
@@ -247,7 +302,10 @@ public struct ShowBookDetailsData: Decodable {
     public let category_name: String
     public let subcategory_name: String
     public let published: String
-    public let isbn_no: String
+    public let isbn_no: String?
+//    public let unit_price: String?
+//    public let unit_mrp: String?
+   
     public let book_media:ShowBookDetailMedia
 
 }
@@ -257,12 +315,12 @@ public struct ShowBookDetailsData: Decodable {
 public struct ShowBookDetailMedia:Decodable,Hashable {
     public var id: Int
     public let book_id: Int
-    public let bookurl: String
-    enum CodingKeys: String, CodingKey{
-        case id
-        case book_id
-        case bookurl = "url"
-    }
+    public let url: String
+//    enum CodingKeys: String, CodingKey{
+//        case id
+//        case book_id
+//        case bookurl = "url"
+//    }
 
 }
 

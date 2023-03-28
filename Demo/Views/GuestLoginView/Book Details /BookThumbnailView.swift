@@ -12,7 +12,7 @@ struct BookThumbnailView: View {
     @Binding var isOpenThumbnail: Bool
     @Binding var currentPage: Int
         let columns = [GridItem(.flexible()),GridItem(.flexible()),GridItem(.flexible())]
-    
+    @State var id: Int = 17
         var body: some View {
             VStack{
 //                Spacer().frame(height: 45)
@@ -47,7 +47,7 @@ struct BookThumbnailView: View {
                     }
                 }
             }.onAppear{
-                list.getBookData()
+                list.getBookData(id: self.id)
             }
         }
 }
@@ -75,7 +75,7 @@ struct ThumbView: View {
             }
             
             ZStack{
-                PDFKitViews()
+                PDFKitViews(id: 17)
                 BookThumbnailView(isOpenThumbnail: $isOpenThumbnail, currentPage: $currentPage)
                     .frame(width: UIScreen.main.bounds.width)
                     .offset(x: self.isOpenThumbnail ? 0 : 2*UIScreen.main.bounds.width)

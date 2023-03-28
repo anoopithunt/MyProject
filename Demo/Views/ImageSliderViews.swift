@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ImageSliderViews: View {
     @StateObject var list = Base64ViewModel()
@@ -44,7 +45,7 @@ struct ImageSliderViews: View {
 
 struct ImageSliderViews_Previews: PreviewProvider {
     static var previews: some View {
-        ImageSlider()
+        ImageSlider1()
 //        SliderExView()
     }
 }
@@ -193,7 +194,7 @@ class SliderViewModel1: ObservableObject {
     @Published var images = [String]()
     var currentIndex = 0
     let url = "https://www.alibrary.in/api/web-home"
-    let timer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
+//    let timer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
 
     init() {
         getData()
@@ -275,47 +276,22 @@ extension SliderBookDetail: Equatable {
 }
 
 
-struct ImageSlider: View {
-    @StateObject var viewModel = SliderViewModel1()
-    @State private var currentIndex = 0
-    let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
+struct ImageSlider1: View {
+    @StateObject var list = SliderViewModel1()
     
     var body: some View {
-        GeometryReader { geometry in
-            ScrollView(.horizontal, showsIndicators: false) {
-                ScrollViewReader { scrollView in
-                    LazyHStack(spacing: 0) {
-                        ForEach(viewModel.images, id: \.self) { imageUrl in
-                            AsyncImage(url: URL(string: imageUrl)) { image in
-                                image
-                                    .resizable()
-                                    .frame(width: geometry.size.width, height: geometry.size.height/3)
-                            } placeholder: {
-                                ProgressView()
-                                    .frame(width: geometry.size.width, height: geometry.size.height/3)
-                            }
-                        }
-                    }
-                    .onChange(of: currentIndex) { value in
-                        withAnimation {
-                            scrollView.scrollTo(value, anchor: .center)
-                        }
-                    }
-                }
-                .frame(height: geometry.size.height)
-                .onAppear {
-                    viewModel.getData()
-                    startTimer()
-                }
-            }
+        
+        VStack {
+            ImageAutoSlider(imageUrls: list.images, autoScrollInterval: 2, animationDuration: 0.2).frame(height: 133)
+            
+        }.onAppear {
+                    list.getData()
         }
-        .onReceive(timer) { _ in
-            currentIndex = currentIndex < viewModel.images.count - 1 ? currentIndex + 1 : 0
-        }
-    }
-    
-    func startTimer() {
-        timer.upstream.connect().cancel()
     }
 }
+
+
+
+
+
 

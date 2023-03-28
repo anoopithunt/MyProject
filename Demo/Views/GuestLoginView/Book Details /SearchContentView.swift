@@ -34,9 +34,6 @@ struct SearchContentView: View {
                     .background(Color.gray)
                     .cornerRadius(12)
             })
-                BlinkingImage()
-                    .frame(width: 50, height: 50)
-                
                 Spacer()
                 HStack{
                     Spacer()
@@ -58,7 +55,7 @@ struct SearchContentView: View {
 
 struct SearchContentView_Previews: PreviewProvider {
     static var previews: some View {
-        PDFKitViews()
+        PDFKitViews(id: 17)
     }
 }
 

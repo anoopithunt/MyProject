@@ -69,10 +69,10 @@ struct PaymentHistoryView: View {
                                     }
                                 }
                           VStack(alignment: .leading){
-                              Text(item.product_name)
+                              Text(item.product_name ?? "")
                                   .font(.system(size: 16, weight: .medium))
                                   .foregroundColor(.black).lineLimit(2)
-                              Text(item.createdAt)
+                              Text(item.createdAt ?? "")
                                         .font(.system(size: 14, weight: .light))
                                         .foregroundColor(.gray)
                                     Text("Order ID:\(item.id)")
@@ -81,7 +81,7 @@ struct PaymentHistoryView: View {
                                 }
                                 Spacer()
                                 VStack{
-                                    Text("₹\(Int(item.paid_amount))")
+                                    Text("₹\(Int(item.paid_amount ?? 0))")
                                         .font(.system(size: 20, weight: .light))
                                         .foregroundColor(.gray)
                                     Spacer()
@@ -134,18 +134,18 @@ public struct PaymentHeaders:Decodable {
 // MARK: - Datum
 public struct PaymentHistoryDatum:Decodable {
     public let id: Int
-    public let total_amount: Int
-    public let disc_percent: Int?
+//    public let total_amount: Int?
+//    public let disc_percent: Int?
     public let disc_amount: Double?
     public let sgst: Int?
     public let cgst: Int?
     public let ugst: Int?
-    public let paid_amount: Double
+    public let paid_amount: Double?
     public let status: String?
-    public let product_type: String
-    public let product_name: String
+    public let product_type: String?
+    public let product_name: String?
     public let book_url: String
-    public let createdAt: String
+    public let createdAt: String?
     public let payment_item: PurplePaymentItem
     public let payment_items: [PaymentItemElement]
 
@@ -157,22 +157,22 @@ public struct PurplePaymentItem:Decodable {
     public let id: Int
     public let payment_header_id: Int
     public let product_id: Int
-    public let product_type: String
+    public let product_type: String?
 
 }
 //
 // MARK: - PaymentItemElement
 public struct PaymentItemElement:Decodable {
     public let id: Int
-    public let product_type: String
-    public let product_detail: PaymentProductDetail
-    public let productItems: String
+    public let product_type: String?
+//    public let product_detail: PaymentProductDetail
+    public let productItems: String?
 }
 //
 // MARK: - ProductDetail
 public struct PaymentProductDetail:Decodable {
     public let id: Int
-    public let name: String
+    public let name: String?
     public let book_url: String?
 
 }

@@ -156,11 +156,11 @@ import Foundation
 public struct GuestBookRequestModel :Decodable {
     public let userbookrequests: UserBookRequest
     public let request_type: String
-    public let role: String
+    public let role: String?
     public let categories: [BookRequestCategory]
 //    public let subcategories: [Any?]
-    public let category_id: Int
-    public let sub_category_id: Int
+    public let category_id: Int?
+    public let sub_category_id: Int?
 //    public let data: Int
   
 
@@ -169,8 +169,8 @@ public struct GuestBookRequestModel :Decodable {
 // MARK: - BookRequestCategory
 public struct BookRequestCategory :Decodable {
     public let id: Int
-    public let category_name: String
-    public let parent_cat_id: Int
+    public let category_name: String?
+    public let parent_cat_id: Int?
 
 }
 
@@ -178,13 +178,9 @@ public struct BookRequestCategory :Decodable {
 public struct UserBookRequest :Decodable {
     public let current_page: Int
     public let data: [BookRequestDatum]
-    public let first_page_url: String
-    public let from: Int
-    public let last_page: Int
-    public let last_page_url: String
-    public let path: String
-    public let per_page: Int
-    public let to: Int
+    public let path: String?
+//    public let per_page: Int
+    public let to: Int?
     public let total: Int
 
 }

@@ -13,6 +13,15 @@
       "idiom" : "universal"
     },
     {
+      "color" : {
+        "color-space" : "srgb",
+        "components" : {
+          "alpha" : "1.000",
+          "blue" : "0.814",
+          "green" : "0.451",
+          "red" : "0.437"
+        }
+      },
       "idiom" : "universal",
       "locale" : "en"
     }

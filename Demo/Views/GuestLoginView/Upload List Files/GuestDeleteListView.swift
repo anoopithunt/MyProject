@@ -23,25 +23,30 @@ struct GuestDeleteListView: View {
             Image("u").resizable().ignoresSafeArea()
             
             VStack{
-                HStack(spacing: 25){
-                    Button(action: {
-                        dismiss()
-                    },
-                           label: {
-                        
-                        Image(systemName: "arrow.backward")
-                            .font(.system(size:22, weight:.heavy))
-                            .foregroundColor(.white)
-                    })
-                    Text("Deleted Books")
-                        .font(.system(size: 22, weight: .medium))
-                        .foregroundColor(.white)
-                    Spacer()
-                    
-                    
-                }.padding(.horizontal)
-                    .frame(width: UIScreen.main.bounds.width, height: 65)
-                    .background(Color("orange"))
+                //                HStack(spacing: 25){
+                //                    Button(action: {
+                //                        dismiss()
+                //                    },
+                //                           label: {
+                //
+                //                        Image(systemName: "arrow.backward")
+                //                            .font(.system(size:22, weight:.heavy))
+                //                            .foregroundColor(.white)
+                //                    })
+                //                    Text("Deleted Books")
+                //                        .font(.system(size: 22, weight: .medium))
+                //                        .foregroundColor(.white)
+                //                    Spacer()
+                //
+                //
+                //                }.padding(.horizontal)
+                //                    .frame(width: UIScreen.main.bounds.width, height: 65)
+                //                    .background(Color("orange"))
+                
+                
+                
+                NavHeaderClosure(title: "Deleted Books"){
+                   
                 ScrollView{
                     LazyVGrid(columns: columns, spacing: 10){
                         ForEach(list.datas, id: \.id){item in
@@ -56,7 +61,7 @@ struct GuestDeleteListView: View {
                                     Image("logo_gray").resizable()
                                         .frame(height: 235)
                                 }
-//                                Rectangle().frame(height: 0.4).foregroundColor(Color.gray)
+                                //                                Rectangle().frame(height: 0.4).foregroundColor(Color.gray)
                                 Divider().frame(height: 0.2).foregroundColor(Color.red)
                                 
                                 Text(item.title)
@@ -71,6 +76,7 @@ struct GuestDeleteListView: View {
                         }
                     }
                 }
+            }
             }.onAppear{
 //                list.getDeleteListData()
                 list.getUnPublishedListData(publish: 4)

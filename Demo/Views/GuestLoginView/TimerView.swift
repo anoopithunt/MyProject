@@ -9,9 +9,9 @@ import SwiftUI
 
 struct TimerView: View {
     
-    @State  var endDateText: String 
-        @State  var remainingTime = ""
-        @State  var timer: Timer?
+     @State  var endDateText: String
+     @State  var remainingTime = ""
+     @State  var timer: Timer?
     init(endDateText: String) {
         self.endDateText = endDateText
     }
@@ -115,7 +115,7 @@ struct ContentTimerView: View{
                 }
             }
         }.onAppear{
-            list.getSubscribeData()
+            list.getSubscribeData(booktype: "all")
            
         }
         

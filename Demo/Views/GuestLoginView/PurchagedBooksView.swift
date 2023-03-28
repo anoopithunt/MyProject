@@ -68,7 +68,8 @@ struct PurchagedBooksView: View {
     var body: some View {
         ZStack{
             Image("u").resizable().foregroundColor(.white).ignoresSafeArea()
-            VStack{
+            NavigationView{
+                VStack{
                     HStack(spacing: 20){
                         
                         Button(action: {
@@ -82,18 +83,27 @@ struct PurchagedBooksView: View {
                         Text("**Purchaged Collections**").font(.system(size: 25))
                         Spacer()
                     }.padding(.horizontal).frame(height: 75).background(Color("orange")).foregroundColor(.white)
-                ScrollView {
-                    LazyVGrid(columns: column, spacing: 10) {
-                        ForEach(list.datas, id: \.id){ item in
-                            PurchagedBooksTile(name: item.book.name, img: "https://storage.googleapis.com/pdffilesalib/pdf/coverpage/\( item.book.book_media.url ?? "")")
+                    ScrollView {
+                        LazyVGrid(columns: column, spacing: 10) {
+                            ForEach(list.datas, id: \.id){ item in
+                                NavigationLink(destination: {
+                                    ShowBooksDetailsView( id: "\(item.book.id)")
+                                        .navigationTitle("")
+                                        .navigationBarHidden(true)
+                                        .navigationBarBackButtonHidden(true)
+                                }, label: {
+                                    PurchagedBooksTile(name: item.book.name, img: "https://storage.googleapis.com/pdffilesalib/pdf/coverpage/\( item.book.book_media.url ?? "")")
+                                })
+                                
+                            }
                         }
+                        
                     }
                     
+                    
+                }.onAppear{
+                    list.getPurchasedBooksData()
                 }
-                
-                
-            }.onAppear{
-                list.getPurchasedBooksData()
             }
         }
     }
@@ -114,12 +124,12 @@ struct PurchagedBooksTile: View{
             VStack(alignment: .leading,spacing:8){
                 AsyncImage(url: URL(string: img)){
                     image in
-                    image.resizable().frame(width:180, height: 280)
+                    image.resizable().frame(height: 250)
                 }placeholder: {
-                    Image("logo_gray").resizable().frame(width:180, height: 280)
+                    Image("logo_gray").resizable().frame(height: 250)
                 }
                 Text(name).bold().foregroundColor(Color("default_"))
-                Text("Purchased book").bold()
+                Text("Purchased book").bold().foregroundColor(.black)
                 HStack{
                     
                     Image("purchased_book_owner").resizable().frame(width: 45, height: 45)
@@ -127,7 +137,7 @@ struct PurchagedBooksTile: View{
                     Image("rc_read_book_a").resizable().frame(width: 45, height: 45)
                    
                 }.padding(.horizontal,5)
-            }.padding(8).background(Color("gray")).frame(width: 190, height: .infinity).cornerRadius(5)
+            }.padding(8).background(Color.white).cornerRadius(5).shadow(radius: 2)
 //        }
     }
 }

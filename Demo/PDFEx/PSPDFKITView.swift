@@ -36,7 +36,7 @@ struct Pdf: View{
             
             
         }.onAppear{
-            list.getBookData()
+            list.getBookData(id: 17)
         }
     }
 }

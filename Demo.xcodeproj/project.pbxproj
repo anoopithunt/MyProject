@@ -17,10 +17,12 @@
 		D023AB1029C86FE0002C4842 /* Marquee in Frameworks */ = {isa = PBXBuildFile; productRef = D023AB0F29C86FE0002C4842 /* Marquee */; };
 		D023AB1929C8727B002C4842 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = D023AB1829C8727B002C4842 /* AlertToast */; };
 		D023AB2229C8778F002C4842 /* RichText in Frameworks */ = {isa = PBXBuildFile; productRef = D023AB2129C8778F002C4842 /* RichText */; };
-		D023AB2829C87AB9002C4842 /* PagerTabStripView in Frameworks */ = {isa = PBXBuildFile; productRef = D023AB2729C87AB9002C4842 /* PagerTabStripView */; };
+		D023AB2829C87AB9002C4842 /* PagerTabStripView in Frameworks */ = {isa = PBXBuildFile; productRef = D023AB2729C87AB9002C4842 /* PagerTabStripView */; settings = {ATTRIBUTES = (Weak, ); }; };
+		D02BC0AD29E43DF20054BE91 /* GuestStackBookListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02BC0AC29E43DF20054BE91 /* GuestStackBookListView.swift */; };
 		D02D4FB329796649006318E4 /* QRGeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02D4FB229796649006318E4 /* QRGeneratorView.swift */; };
 		D0337BA629559B7E009C3367 /* LoginPlansView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0337BA529559B7E009C3367 /* LoginPlansView.swift */; };
 		D039FCA728B77A070006DB32 /* SearchMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039FCA628B77A070006DB32 /* SearchMenu.swift */; };
+		D03ACD4E29DEE92E000E3D41 /* NavHeaderClosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03ACD4D29DEE92E000E3D41 /* NavHeaderClosure.swift */; };
 		D03EA39728A792E700D9C4E8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03EA39628A792E700D9C4E8 /* HomeView.swift */; };
 		D03EA39928A7960400D9C4E8 /* PDFKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03EA39828A7960400D9C4E8 /* PDFKitView.swift */; };
 		D03EA39E28A79F7700D9C4E8 /* DocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03EA39D28A79F7700D9C4E8 /* DocumentView.swift */; };
@@ -60,10 +62,14 @@
 		D05640DC29AB75FF0076DA54 /* GuestDraftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05640DB29AB75FF0076DA54 /* GuestDraftView.swift */; };
 		D056960829B0B70300890EC0 /* GuestUnPublishedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D056960729B0B70300890EC0 /* GuestUnPublishedView.swift */; };
 		D056EDD128A128E3005BC4FC /* NewsAPIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D056EDD028A128E3005BC4FC /* NewsAPIView.swift */; };
+		D056FDBB29DD585D001EDFE2 /* BookReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D056FDBA29DD585D001EDFE2 /* BookReportView.swift */; };
+		D056FDBD29DD6E62001EDFE2 /* BookQRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D056FDBC29DD6E62001EDFE2 /* BookQRCodeView.swift */; };
 		D057F2B9296D818500ED964E /* UserAccountSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057F2B8296D818500ED964E /* UserAccountSettingView.swift */; };
 		D058C96328B4B1F800BDBEF1 /* SideMenuViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D058C96228B4B1F800BDBEF1 /* SideMenuViews.swift */; };
 		D058C96A28B5075F00BDBEF1 /* CorouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D058C96928B5075F00BDBEF1 /* CorouselView.swift */; };
 		D05AEC8A29CAEBF400D92174 /* BookThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05AEC8929CAEBF400D92174 /* BookThumbnailView.swift */; };
+		D05B931829D2D93E00D66392 /* ImageAutoSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05B931729D2D93E00D66392 /* ImageAutoSlider.swift */; };
+		D05B931A29D31C9D00D66392 /* MagazineBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05B931929D31C9C00D66392 /* MagazineBannerView.swift */; };
 		D05C2BC429A76A1300311832 /* BookRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05C2BC329A76A1300311832 /* BookRequestView.swift */; };
 		D05D428E29CD7B750057EB90 /* LatestMagazineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05D428D29CD7B750057EB90 /* LatestMagazineView.swift */; };
 		D069104E29C05F4300C5568A /* AlibraryWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D069104D29C05F4300C5568A /* AlibraryWebView.swift */; };
@@ -79,11 +85,20 @@
 		D075D198289D3C8100C52AC1 /* DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D075D197289D3C8100C52AC1 /* DemoTests.swift */; };
 		D075D1A2289D3C8100C52AC1 /* DemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D075D1A1289D3C8100C52AC1 /* DemoUITests.swift */; };
 		D075D1A4289D3C8100C52AC1 /* DemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D075D1A3289D3C8100C52AC1 /* DemoUITestsLaunchTests.swift */; };
+		D076764229E5383500B57FE7 /* PagerTabStripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D076764129E5383500B57FE7 /* PagerTabStripView.swift */; };
 		D078FCE82969670E00AE82A8 /* CorouserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D078FCE72969670E00AE82A8 /* CorouserView.swift */; };
 		D07929E0299643F300D86174 /* StackBookListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07929DF299643F300D86174 /* StackBookListView.swift */; };
+		D07C859C29E92F43001DBBAF /* UserGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07C859B29E92F43001DBBAF /* UserGuideView.swift */; };
+		D07C859E29E94C0D001DBBAF /* UserGuidePdfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07C859D29E94C0D001DBBAF /* UserGuidePdfView.swift */; };
 		D07D0D83298A89E000B022DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07D0D82298A89E000B022DD /* AppDelegate.swift */; };
+		D07D7A2F29E168F70062FA9E /* GuestUserStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07D7A2E29E168F70062FA9E /* GuestUserStackView.swift */; };
+		D086C03B29E0174400CD7F38 /* SelfLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086C03A29E0174400CD7F38 /* SelfLibraryView.swift */; };
+		D086C03D29E03A5F00CD7F38 /* GuestUserUploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086C03C29E03A5F00CD7F38 /* GuestUserUploadView.swift */; };
 		D08BA0B8299B763300886C8D /* ShowBooksDetailsPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08BA0B7299B763300886C8D /* ShowBooksDetailsPopUpView.swift */; };
 		D08BA0BA299BA7BB00886C8D /* PaymentHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08BA0B9299BA7BB00886C8D /* PaymentHistoryView.swift */; };
+		D08C56DF29DE9C2300C566CD /* LibrariesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08C56DE29DE9C2300C566CD /* LibrariesView.swift */; };
+		D08C56E129DEBF0900C566CD /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08C56E029DEBF0900C566CD /* LibraryView.swift */; };
+		D090163B29DC0123008F29E0 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D090163A29DC0123008F29E0 /* ToastView.swift */; };
 		D0989B3A28A3990200B24B55 /* GridLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0989B3928A3990200B24B55 /* GridLayoutView.swift */; };
 		D0989B4228A3B3ED00B24B55 /* ExView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0989B4128A3B3ED00B24B55 /* ExView.swift */; };
 		D0989B4528A3E9A700B24B55 /* ReadingSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0989B4428A3E9A700B24B55 /* ReadingSectionView.swift */; };
@@ -122,10 +137,12 @@
 		D01357A9293B3BB300F476FD /* AccountSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingView.swift; sourceTree = "<group>"; };
 		D01357AC293B47B900F476FD /* ImageSliderViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSliderViews.swift; sourceTree = "<group>"; };
 		D02002A2295DB8840090E1E5 /* LoginPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageView.swift; sourceTree = "<group>"; };
+		D02BC0AC29E43DF20054BE91 /* GuestStackBookListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestStackBookListView.swift; sourceTree = "<group>"; };
 		D02D4FB029794538006318E4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D02D4FB229796649006318E4 /* QRGeneratorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRGeneratorView.swift; sourceTree = "<group>"; };
 		D0337BA529559B7E009C3367 /* LoginPlansView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPlansView.swift; sourceTree = "<group>"; };
 		D039FCA628B77A070006DB32 /* SearchMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMenu.swift; sourceTree = "<group>"; };
+		D03ACD4D29DEE92E000E3D41 /* NavHeaderClosure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavHeaderClosure.swift; sourceTree = "<group>"; };
 		D03EA39628A792E700D9C4E8 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		D03EA39828A7960400D9C4E8 /* PDFKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFKitView.swift; sourceTree = "<group>"; };
 		D03EA39D28A79F7700D9C4E8 /* DocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentView.swift; sourceTree = "<group>"; };
@@ -170,10 +187,14 @@
 		D05640DB29AB75FF0076DA54 /* GuestDraftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestDraftView.swift; sourceTree = "<group>"; };
 		D056960729B0B70300890EC0 /* GuestUnPublishedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestUnPublishedView.swift; sourceTree = "<group>"; };
 		D056EDD028A128E3005BC4FC /* NewsAPIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAPIView.swift; sourceTree = "<group>"; };
+		D056FDBA29DD585D001EDFE2 /* BookReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookReportView.swift; sourceTree = "<group>"; };
+		D056FDBC29DD6E62001EDFE2 /* BookQRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookQRCodeView.swift; sourceTree = "<group>"; };
 		D057F2B8296D818500ED964E /* UserAccountSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountSettingView.swift; sourceTree = "<group>"; };
 		D058C96228B4B1F800BDBEF1 /* SideMenuViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViews.swift; sourceTree = "<group>"; };
 		D058C96928B5075F00BDBEF1 /* CorouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorouselView.swift; sourceTree = "<group>"; };
 		D05AEC8929CAEBF400D92174 /* BookThumbnailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookThumbnailView.swift; sourceTree = "<group>"; };
+		D05B931729D2D93E00D66392 /* ImageAutoSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAutoSlider.swift; sourceTree = "<group>"; };
+		D05B931929D31C9C00D66392 /* MagazineBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagazineBannerView.swift; sourceTree = "<group>"; };
 		D05C2BC329A76A1300311832 /* BookRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookRequestView.swift; sourceTree = "<group>"; };
 		D05D428D29CD7B750057EB90 /* LatestMagazineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestMagazineView.swift; sourceTree = "<group>"; };
 		D069104D29C05F4300C5568A /* AlibraryWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlibraryWebView.swift; sourceTree = "<group>"; };
@@ -189,11 +210,20 @@
 		D075D197289D3C8100C52AC1 /* DemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoTests.swift; sourceTree = "<group>"; };
 		D075D1A1289D3C8100C52AC1 /* DemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoUITests.swift; sourceTree = "<group>"; };
 		D075D1A3289D3C8100C52AC1 /* DemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D076764129E5383500B57FE7 /* PagerTabStripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagerTabStripView.swift; sourceTree = "<group>"; };
 		D078FCE72969670E00AE82A8 /* CorouserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorouserView.swift; sourceTree = "<group>"; };
 		D07929DF299643F300D86174 /* StackBookListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackBookListView.swift; sourceTree = "<group>"; };
+		D07C859B29E92F43001DBBAF /* UserGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGuideView.swift; sourceTree = "<group>"; };
+		D07C859D29E94C0D001DBBAF /* UserGuidePdfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGuidePdfView.swift; sourceTree = "<group>"; };
 		D07D0D82298A89E000B022DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D07D7A2E29E168F70062FA9E /* GuestUserStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestUserStackView.swift; sourceTree = "<group>"; };
+		D086C03A29E0174400CD7F38 /* SelfLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfLibraryView.swift; sourceTree = "<group>"; };
+		D086C03C29E03A5F00CD7F38 /* GuestUserUploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestUserUploadView.swift; sourceTree = "<group>"; };
 		D08BA0B7299B763300886C8D /* ShowBooksDetailsPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowBooksDetailsPopUpView.swift; sourceTree = "<group>"; };
 		D08BA0B9299BA7BB00886C8D /* PaymentHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentHistoryView.swift; sourceTree = "<group>"; };
+		D08C56DE29DE9C2300C566CD /* LibrariesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibrariesView.swift; sourceTree = "<group>"; };
+		D08C56E029DEBF0900C566CD /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
+		D090163A29DC0123008F29E0 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		D0989B3928A3990200B24B55 /* GridLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridLayoutView.swift; sourceTree = "<group>"; };
 		D0989B4128A3B3ED00B24B55 /* ExView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExView.swift; sourceTree = "<group>"; };
 		D0989B4428A3E9A700B24B55 /* ReadingSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingSectionView.swift; sourceTree = "<group>"; };
@@ -252,6 +282,7 @@
 				D0522F9E293DC63D00B26278 /* String+Extension.swift */,
 				D04889012947125400FB5A6F /* HtmlFormattedText.swift */,
 				D0FDC668295482AA00044E7D /* Marquees+Extension.swift */,
+				D05B931729D2D93E00D66392 /* ImageAutoSlider.swift */,
 			);
 			path = "Constants+ Extension";
 			sourceTree = "<group>";
@@ -270,6 +301,7 @@
 				D047013E2943397C00EDB8C5 /* NotificationsView.swift */,
 				D0FEA7DB29504D0A005054A4 /* PrimeBooksCollectionView.swift */,
 				D03FA9F22952FA4600C09495 /* CategoriesView.swift */,
+				D05B931929D31C9C00D66392 /* MagazineBannerView.swift */,
 				D078FCE72969670E00AE82A8 /* CorouserView.swift */,
 				D0472E9A2954372F00E84B1E /* HomePublisherView.swift */,
 				D0FDC6632954729900044E7D /* ProgressView.swift */,
@@ -305,6 +337,8 @@
 		D04888FC29470FF100FB5A6F /* GuestLoginView */ = {
 			isa = PBXGroup;
 			children = (
+				D07C859A29E92F14001DBBAF /* User Guide Entities */,
+				D08C56DD29DE9BF600C566CD /* Libraries Entities */,
 				D069541529C8418300DE47EF /* Book Details  */,
 				D04888FD2947103800FB5A6F /* ReadCreditView.swift */,
 				D04888FF294711FC00FB5A6F /* AboutUsAlertView.swift */,
@@ -324,6 +358,7 @@
 				D08BA0B9299BA7BB00886C8D /* PaymentHistoryView.swift */,
 				D04B79F229A0C74800D511D0 /* SubscribeView.swift */,
 				D04A064129A608A00032AAFC /* TimerView.swift */,
+				D090163A29DC0123008F29E0 /* ToastView.swift */,
 				D05C2BC329A76A1300311832 /* BookRequestView.swift */,
 				D04E1B9A29BC6C46000EFDD1 /* ReportedBooklistView.swift */,
 				D05640DA29AB2A1C0076DA54 /* Upload List Files */,
@@ -378,6 +413,8 @@
 				D069541829C841DA00DE47EF /* PDFKitViews.swift */,
 				D05AEC8929CAEBF400D92174 /* BookThumbnailView.swift */,
 				D05D428D29CD7B750057EB90 /* LatestMagazineView.swift */,
+				D056FDBA29DD585D001EDFE2 /* BookReportView.swift */,
+				D056FDBC29DD6E62001EDFE2 /* BookQRCodeView.swift */,
 			);
 			path = "Book Details ";
 			sourceTree = "<group>";
@@ -450,6 +487,30 @@
 				D075D1A3289D3C8100C52AC1 /* DemoUITestsLaunchTests.swift */,
 			);
 			path = DemoUITests;
+			sourceTree = "<group>";
+		};
+		D07C859A29E92F14001DBBAF /* User Guide Entities */ = {
+			isa = PBXGroup;
+			children = (
+				D07C859B29E92F43001DBBAF /* UserGuideView.swift */,
+				D07C859D29E94C0D001DBBAF /* UserGuidePdfView.swift */,
+			);
+			name = "User Guide Entities";
+			sourceTree = "<group>";
+		};
+		D08C56DD29DE9BF600C566CD /* Libraries Entities */ = {
+			isa = PBXGroup;
+			children = (
+				D08C56DE29DE9C2300C566CD /* LibrariesView.swift */,
+				D08C56E029DEBF0900C566CD /* LibraryView.swift */,
+				D03ACD4D29DEE92E000E3D41 /* NavHeaderClosure.swift */,
+				D086C03A29E0174400CD7F38 /* SelfLibraryView.swift */,
+				D086C03C29E03A5F00CD7F38 /* GuestUserUploadView.swift */,
+				D07D7A2E29E168F70062FA9E /* GuestUserStackView.swift */,
+				D02BC0AC29E43DF20054BE91 /* GuestStackBookListView.swift */,
+				D076764129E5383500B57FE7 /* PagerTabStripView.swift */,
+			);
+			name = "Libraries Entities";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -547,11 +608,6 @@
 			);
 			mainGroup = D075D17A289D3C8000C52AC1;
 			packageReferences = (
-				D056EDCA28A12830005BC4FC /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
-				D03EA3A828A7C26800D9C4E8 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
-				D03EA3AB28A7C29A00D9C4E8 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
-				D03D460128ABA3C900FE87DD /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
-				D03D460228ABAF5600FE87DD /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				D03D460528ABAF9100FE87DD /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				D04DD6A328ACCACE004C8773 /* XCRemoteSwiftPackageReference "PSPDFKit-SP" */,
 				D01357AB293B479A00F476FD /* XCRemoteSwiftPackageReference "ImageSlideshow" */,
@@ -610,9 +666,11 @@
 				D054134A293F3AC300826D8B /* LoginAPiView.swift in Sources */,
 				D04888FE2947103800FB5A6F /* ReadCreditView.swift in Sources */,
 				D075D189289D3C8000C52AC1 /* ContentView.swift in Sources */,
+				D086C03D29E03A5F00CD7F38 /* GuestUserUploadView.swift in Sources */,
 				D0522FA5293DECB800B26278 /* StacksView.swift in Sources */,
 				D069105029C06DA100C5568A /* GuestPublishedView.swift in Sources */,
 				D051F5B229AF69900072CA67 /* GuestDeleteListView.swift in Sources */,
+				D08C56DF29DE9C2300C566CD /* LibrariesView.swift in Sources */,
 				D0989B4528A3E9A700B24B55 /* ReadingSectionView.swift in Sources */,
 				D099EE022959A21A001E4DFE /* AuthenticationModel.swift in Sources */,
 				D04A064229A608A00032AAFC /* TimerView.swift in Sources */,
@@ -623,6 +681,7 @@
 				D047013F2943397C00EDB8C5 /* NotificationsView.swift in Sources */,
 				D01357A3293B2C4B00F476FD /* UnderlineTextField.swift in Sources */,
 				D044C587299A62F200881D26 /* ShareView.swift in Sources */,
+				D05B931A29D31C9D00D66392 /* MagazineBannerView.swift in Sources */,
 				D05417D4295C41F500E3ABB2 /* PrimePurchageAlertView.swift in Sources */,
 				D05D428E29CD7B750057EB90 /* LatestMagazineView.swift in Sources */,
 				D039FCA728B77A070006DB32 /* SearchMenu.swift in Sources */,
@@ -637,16 +696,19 @@
 				D042B0CE2940B62B00026875 /* JWTAuthExample.swift in Sources */,
 				D08BA0B8299B763300886C8D /* ShowBooksDetailsPopUpView.swift in Sources */,
 				D0FDC6642954729900044E7D /* ProgressView.swift in Sources */,
+				D056FDBB29DD585D001EDFE2 /* BookReportView.swift in Sources */,
 				D069541929C841DA00DE47EF /* PDFKitViews.swift in Sources */,
 				D0522FA7293E070300B26278 /* UploadListView.swift in Sources */,
 				D01357A1293B2BED00F476FD /* CustomFloatingTextField.swift in Sources */,
 				D069541729C841A500DE47EF /* SearchContentView.swift in Sources */,
 				D0989B3A28A3990200B24B55 /* GridLayoutView.swift in Sources */,
 				D0FEA7DC29504D0A005054A4 /* PrimeBooksCollectionView.swift in Sources */,
+				D07C859E29E94C0D001DBBAF /* UserGuidePdfView.swift in Sources */,
 				D099EE042959C590001E4DFE /* GuestProfileView.swift in Sources */,
 				D043DF9F289E7B0600159269 /* UserAuth.swift in Sources */,
 				D043DF81289E423600159269 /* CkeckoutView.swift in Sources */,
 				D07929E0299643F300D86174 /* StackBookListView.swift in Sources */,
+				D08C56E129DEBF0900C566CD /* LibraryView.swift in Sources */,
 				D056EDD128A128E3005BC4FC /* NewsAPIView.swift in Sources */,
 				D0337BA629559B7E009C3367 /* LoginPlansView.swift in Sources */,
 				D01357AD293B47B900F476FD /* ImageSliderViews.swift in Sources */,
@@ -656,7 +718,9 @@
 				D04581D1297E7D9400B32575 /* PurchagedBooksView.swift in Sources */,
 				D0522FA1293DD32B00B26278 /* DashboardTileView.swift in Sources */,
 				D0735EDA29728D8600E862FE /* CustomAlertView.swift in Sources */,
+				D07C859C29E92F43001DBBAF /* UserGuideView.swift in Sources */,
 				D05640DC29AB75FF0076DA54 /* GuestDraftView.swift in Sources */,
+				D056FDBD29DD6E62001EDFE2 /* BookQRCodeView.swift in Sources */,
 				D04E1B9B29BC6C46000EFDD1 /* ReportedBooklistView.swift in Sources */,
 				D056960829B0B70300890EC0 /* GuestUnPublishedView.swift in Sources */,
 				D0989B4228A3B3ED00B24B55 /* ExView.swift in Sources */,
@@ -665,9 +729,13 @@
 				D055AABD28A2500900F46706 /* webView.swift in Sources */,
 				D055FD4B28B36765009059F7 /* ModelView.swift in Sources */,
 				D05267D72956E4770030B70D /* LoginPlanViewModel.swift in Sources */,
+				D086C03B29E0174400CD7F38 /* SelfLibraryView.swift in Sources */,
+				D07D7A2F29E168F70062FA9E /* GuestUserStackView.swift in Sources */,
 				D04889042947447A00FB5A6F /* JWTAuthenticationExampleView.swift in Sources */,
+				D02BC0AD29E43DF20054BE91 /* GuestStackBookListView.swift in Sources */,
 				D06ADA372966B9F00068277C /* CopyRightView.swift in Sources */,
 				D0FEA7D52950487B005054A4 /* HttpUtils.swift in Sources */,
+				D03ACD4E29DEE92E000E3D41 /* NavHeaderClosure.swift in Sources */,
 				D04889022947125400FB5A6F /* HtmlFormattedText.swift in Sources */,
 				D03FA9F32952FA4600C09495 /* CategoriesView.swift in Sources */,
 				D01357AA293B3BB300F476FD /* AccountSettingView.swift in Sources */,
@@ -676,9 +744,12 @@
 				D05449B228A0EA5B006A17E9 /* VideoPlayerView.swift in Sources */,
 				D04DD6A728ACCB51004C8773 /* PSPDFKITView.swift in Sources */,
 				D03EA39E28A79F7700D9C4E8 /* DocumentView.swift in Sources */,
+				D090163B29DC0123008F29E0 /* ToastView.swift in Sources */,
 				D052D41E294B0742007F3667 /* ApiUtils.swift in Sources */,
 				D054887D28B0DF4A0076FDCA /* modelData.swift in Sources */,
 				D02002A3295DB8850090E1E5 /* LoginPageView.swift in Sources */,
+				D076764229E5383500B57FE7 /* PagerTabStripView.swift in Sources */,
+				D05B931829D2D93E00D66392 /* ImageAutoSlider.swift in Sources */,
 				D057F2B9296D818500ED964E /* UserAccountSettingView.swift in Sources */,
 				D05C2BC429A76A1300311832 /* BookRequestView.swift in Sources */,
 				D0EB986B28AF89A3000914EF /* PdfPage.swift in Sources */,
@@ -1053,39 +1124,7 @@
 				minimumVersion = 4.0.0;
 			};
 		};
-		D03D460128ABA3C900FE87DD /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		D03D460228ABAF5600FE87DD /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		D03D460528ABAF9100FE87DD /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		D03EA3A828A7C26800D9C4E8 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		D03EA3AB28A7C29A00D9C4E8 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
 			requirement = {
@@ -1115,14 +1154,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 0.1.3;
-			};
-		};
-		D056EDCA28A12830005BC4FC /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
 			};
 		};
 		D062446F2987E04C00B9DCD4 /* XCRemoteSwiftPackageReference "WaterfallGrid" */ = {

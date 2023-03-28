@@ -10,6 +10,11 @@ import SwiftUI
 struct ReadCreditView: View {
     @Environment(\.dismiss) var dismiss
     @StateObject var list = RCTransactionViewModel()
+    
+    @State private var selectedButtonIndex = 0
+    
+    @State var source = ""
+    
     @State var shown = false
     var body: some View {
         NavigationView {
@@ -41,31 +46,96 @@ struct ReadCreditView: View {
                             
                            
                         }.padding().frame(width: UIScreen.main.bounds.width, height: 65).background(Color("orange"))
+                        HStack{
+                            Button(action: {
+                                self.selectedButtonIndex = 0
+                                list.getRCTransactionData(source: source)
+                            }, label: {
+                                Text("All").padding(.horizontal)
+                                    .padding(.vertical, 4)
+                                    .background(Color("default_"))
+                                    .cornerRadius(18)
+                                    .foregroundColor(selectedButtonIndex == 0 ? Color.orange : Color.white)
+                                                        
+                                    .font(.system(size: 22, weight: .regular))
+                            })
+                          
+                        ScrollView(.horizontal){
+                            HStack{
+                                ForEach(list.rcSources.indices, id: \.self) { index in
+                                    
+                                    Button(action: {
+                                        self.selectedButtonIndex = index + 1
+                                        list.getRCTransactionData(source: list.rcSources[selectedButtonIndex-1].source)
+                                    }, label: {
+                                        
+                                        Text(list.rcSources[index].description)
+                                            .padding(.horizontal)
+                                            .padding(.vertical, 4)
+                                            .background(Color("default_"))
+                                            .cornerRadius(18)
+                                            .foregroundColor(selectedButtonIndex == index + 1 ? Color.orange : Color.white)
+                                            .font(.system(size: 22, weight: .regular))
+                                        
+                                    })
+                                    
+                                }
+                            }
+                            }
+                        }
                         
                         ScrollView{
                             ForEach(list.datas, id: \.id){ item in
+                                
                                 VStack(alignment: .leading, spacing: 8){
+                                    
                                     Text(item.createdAt).foregroundColor(.gray)
                                     HStack{
                                         Text(item.description).foregroundColor(.gray)
                                         Spacer()
                                         Text("\(item.rc_count) RC").foregroundColor(.gray)
-                                        Image(systemName: "arrow.down").foregroundColor(.green)
+                                        Image(systemName: item.description == "Book Purchase" ? "arrow.up" : "arrow.down").foregroundColor(item.description == "Book Purchase" ? .red : .green)
                                     }
                                 }.padding().background(Color.white).cornerRadius(12).shadow(color: .gray, radius: 0.5)
-//                                if list.currentPage < list.totalPage - 1{
-//                                    CircleProgressView().frame(alignment: .center).onAppear{
-//                                            list.currentPage = list.currentPage + 1
-////                                            print("\(list.currentPage)")
-//                                        list.getRCTransactionData()
-//                                        }
-//                                    }
+                               
+                            }
+                            
+                            if list.currentPage < list.totalPage {
+                                      
+                                GeometryReader { proxy in
+                                           
+                                    Color.clear
+                                              
+                                        .frame(height: 100)
+                                          
+                                        .onAppear {
+                                                 
+                                            let yOffset = proxy.frame(in: .global).maxY
+                                                  
+                                            let contentHeight = UIScreen.main.bounds.height
+                                                  
+                                            let height = UIScreen.main.bounds.height
+                                                  
+                                            let threshold = contentHeight - height
+                                                  
+                                            if yOffset > threshold {
+                                                    
+                                                list.loadNextPage(source: source)
+                                                  
+                                            }
+                                            
+                                        }
+                                      
+                                }
+                                 
                             }
                             
                         }
+                     
                         Spacer()
+                        
                     }.onAppear{
-                        list.getRCTransactionData()
+                        list.getRCTransactionData(source: source)
                     }
                     
                     
@@ -170,11 +240,11 @@ public struct RCTransHistories:Decodable, Encodable {
     public let current_page: Int
     public let data: [RCTransDatum]
     public let first_page_url: String
-    public let from: Int
-    public let last_page: Int
-    public let last_page_url: String
-    public let path: String
-    public let per_page: Int
+//    public let from: Int
+//    public let last_page: Int
+//    public let last_page_url: String
+//    public let path: String
+//    public let per_page: Int
     public let total: Int
 
 }
@@ -206,44 +276,65 @@ public struct RCTransTotalRc:Decodable, Encodable {
 
 class RCTransactionViewModel: ObservableObject{
    
-    @Published var datas = [RCTransDatum]()
-   @Published var totalRC = Int()//[RCTransTotalRc]()
-    @Published var totalPage = Int()
-    @Published var currentPage = 1
-    func getRCTransactionData() {
+       @Published var datas = [RCTransDatum]()
+       @Published var rcSources = [RCTransSource]()
+       @Published var totalRC = Int()
+       @Published var totalPage = Int()
+       @Published var currentPage = 1
+//    var filterData = false
+//    var bookType = ""
+    
+    func getRCTransactionData(source: String, page: Int = 1) {
         
         let defaults = UserDefaults.standard
         guard let token = defaults.string(forKey: "access_token") else {
             return
         }
         
-        RCTransactionService().getRCTransactionData(token: token){ (result) in
+        RCTransactionService().getRCTransactionData(token: token, source: source, page: page){ (result) in
+            
             switch result {
-                case .success(let results):
-                    DispatchQueue.main.async {
+            case .success(let results):
+                DispatchQueue.main.async {
+                    if page == 1 {
                         self.datas = results.rcTransHistories.data
-                        self.totalRC = results.totalRc.total_rc
-                        self.totalPage = results.rcTransHistories.total
-//                        self.datas.append(contentsOf: results.rcTransHistories.data)
-//                        print(results)
+                        self.rcSources = results.rcSources
+                                   
+                    } else {
+                        self.datas.append(contentsOf: results.rcTransHistories.data)
+                        
                     }
-                case .failure(let error):
-                    print(error.localizedDescription)
-            }
+                                
+                    self.totalRC = results.totalRc.total_rc
+                                   
+                    self.totalPage = results.rcTransHistories.total
+                                }
+                            case .failure(let error):
+                                print(error.localizedDescription)
+                        }
+                    }
+            
+        }
+  
+    func loadNextPage(source: String) {
+            guard currentPage < totalPage else { return }
+            currentPage += 1
+            getRCTransactionData(source: source, page: currentPage)
         }
      
         
     }
       
-}
+
 
 
 
 class RCTransactionService{
     
-    func getRCTransactionData(token: String, completion: @escaping (Result<RCTransHistoriesModel, NetworkError>) -> Void) {
+    // https://alibrary.in/api/guest/rc-history?source=plan-purchase&page=
+    func getRCTransactionData(token: String,source: String,page: Int, completion: @escaping (Result<RCTransHistoriesModel, NetworkError>) -> Void) {
             
-        guard let url = URL(string: APILoginUtility.guestRCtransactionApi!) else {
+        guard let url = URL(string: APILoginUtility.guestRCtransactionApi! + "?source=\(source)&page=" ) else {
             completion(.failure(.invalidURL))
             return
         }
