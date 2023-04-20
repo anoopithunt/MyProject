@@ -62,6 +62,7 @@ struct APILoginUtility
     
     static let studentLibraryApi: String = baseURL + "student/select-library" //https://www.alibrary.in/api/student/select-library
     static let guestLibraryApi: String = baseURL + "guest/selectLibrary" //https://www.alibrary.in/api/guest/selectLibrary
+    static let guestBookRequestListApi: String = baseURL + "guest/show-linkbookrequest?id=" //https://www.alibrary.in/api/guest/selectLibrary
     
     
 }

@@ -22,9 +22,9 @@ struct UserGuideView: View {
                                 
                                 NavigationLink(destination: {
                                     UserGuidePdfView(title: item.title , pdfurl: item.url)
-//                                        .navigationTitle("")
-//                                        .navigationBarHidden(true)
-//                                        .navigationBarBackButtonHidden(true)
+                                        .navigationTitle("")
+                                        .navigationBarHidden(true)
+                                        .navigationBarBackButtonHidden(true)
                                 }, label: {
                                     
                                     HStack{

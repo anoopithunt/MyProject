@@ -30,7 +30,7 @@ struct CustomAlertView: View {
                         self.dateString = self.dateFormatter.string(from: newDate)
                     }
             }
-        }
+        }.background(Color.gray)
     }
 }
 
@@ -91,7 +91,7 @@ struct DatePickerWithButtons: View {
     @State var selectedDate: Date = Date()
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .top) {
             
             Color.black.opacity(0.3)
                 .edgesIgnoringSafeArea(.all)

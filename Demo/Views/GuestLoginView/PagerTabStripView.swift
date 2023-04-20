@@ -11,80 +11,77 @@ import WebKit
 struct PagerTabStripView1: View {
     @State private var selectedTab = 0
     @State var show: Bool = true
-    let views: [AnyView] = [AnyView(LoginPageView()), AnyView(StackBookListView(id: 891, name: "hello feh ")), AnyView(Stacks())]
+    let views: [AnyView] = [AnyView(LoginPageView()), AnyView(SubscribeView()), AnyView(Stacks())]
     let tabItems = ["First", "Second", "Third"]
        var body: some View {
            VStack(spacing:0) {
-//               Spacer()
-//               HStack(spacing: 0) {
-//                   Button(action: { self.selectedTab = 0 }) {
-//                       Text("First")
-//                           .frame(maxWidth: .infinity)
-//                           .padding()
-//                           .background(Color.orange)
-//                   }
-//                   .overlay(
-//                       selectedTab == 0 ?
-//                       Rectangle()
-//                           .frame(height: 3)
-//                           .foregroundColor(.black)
-//                           .animation(.linear(duration: 1))
-//                           .padding(.top, 52) : nil
-//                   )
-//                   Button(action: { self.selectedTab = 1 }) {
-//                       Text("Second")
-//                           .frame(maxWidth: .infinity)
-//                           .padding()
-//                           .background(Color.orange)
-//                   }
-//                   .overlay(
-//                       selectedTab == 1 ?
-//                       Rectangle()
-//                           .frame(height: 3)
-//                           .foregroundColor(.black)
-//                           .animation(.linear(duration: 1))
-//                           .padding(.top, 52) : nil
-//                   )
-//                   Button(action: { self.selectedTab = 2 }) {
-//                       Text("Third")
-//                           .frame(maxWidth: .infinity)
-//                           .padding()
-//                           .background(Color.orange)
-//                   }
-//                   .overlay(
-//                       selectedTab == 2 ?
-//                       Rectangle()
-//                           .frame(height: 3)
-//                           .foregroundColor(.black)
-//                           .animation(.linear(duration: 1))
-//                           .padding(.top, 52) : nil
-//                   )
-//               }.foregroundColor(.white).font(.system(size: 22, weight: .bold))
-//
-//
-//
-//               // TabView with content
-//               TabView(selection: $selectedTab) {
-//
-//                       LoginPageView()
-//
-//
-//                       .tag(0)
-//                   StackBookListView(id: 891, name: "hello feh ")
-//                       .tag(1)
-//                   Stacks()
-//                       .tag(2)
-//               }
-//               .tabViewStyle(.page(indexDisplayMode: .never))
-//           }
-           NavigationView{
-//               NavHeaderClosure(title: "heelooo"){
-               CustomAlert(isShowing: $show, message: "Hello Alert")
-//                   PagerTabStripView(views: views, tabItemNames: tabItems)
+               Spacer()
+               HStack(spacing: 0) {
+                   Button(action: { self.selectedTab = 0 }) {
+                       Text("First")
+                           .frame(maxWidth: .infinity)
+                           .padding()
+                           .background(Color.orange)
+                   }
+                   .overlay(
+                       selectedTab == 0 ?
+                       Rectangle()
+                           .frame(height: 3)
+                           .foregroundColor(.black)
+                           .animation(.linear(duration: 1))
+                           .padding(.top, 52) : nil
+                   )
+                   Button(action: { self.selectedTab = 1 }) {
+                       Text("Second")
+                           .frame(maxWidth: .infinity)
+                           .padding()
+                           .background(Color.orange)
+                   }
+                   .overlay(
+                       selectedTab == 1 ?
+                       Rectangle()
+                           .frame(height: 3)
+                           .foregroundColor(.black)
+                           .animation(.linear(duration: 1))
+                           .padding(.top, 52) : nil
+                   )
+                   Button(action: { self.selectedTab = 2 }) {
+                       Text("Third")
+                           .frame(maxWidth: .infinity)
+                           .padding()
+                           .background(Color.orange)
+                   }
+                   .overlay(
+                       selectedTab == 2 ?
+                       Rectangle()
+                           .frame(height: 3)
+                           .foregroundColor(.black)
+                           .animation(.linear(duration: 1))
+                           .padding(.top, 52) : nil
+                   )
+               }.foregroundColor(.white).font(.system(size: 22, weight: .bold))
+
+
+
+               // TabView with content
+               TabView(selection: $selectedTab) {
+
+                       LoginPageView()
+
+
+                       .tag(0)
+                   StackBookListView(id: 891, name: "hello feh ")
+                       .tag(1)
+                   Stacks()
+                       .tag(2)
                }
+               .tabViewStyle(.page(indexDisplayMode: .never))
+           }
+          
            }
        }
-}
+
+
 
 
 

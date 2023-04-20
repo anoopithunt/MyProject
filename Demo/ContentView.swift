@@ -483,7 +483,7 @@ struct MainHomePageView: View {
                       
                       
                   case .plans:
-                      EmptyView()
+                      LectureAudioView()
                   case .screen2:
                       
                       EmptyView()

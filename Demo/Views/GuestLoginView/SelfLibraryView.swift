@@ -14,8 +14,8 @@ struct SelfLibraryView: View {
         ZStack{
             Image("u").resizable().ignoresSafeArea()
             
-            VStack(spacing:22){
-                NavigationView{
+//            VStack(spacing:22){
+//                NavigationView{
                     NavHeaderClosure(title: "Self Library", content: {
                         
                         VStack{
@@ -42,8 +42,8 @@ struct SelfLibraryView: View {
                     })
                     Spacer()
                 }.navigationViewStyle(StackNavigationViewStyle())
-            }
-        }
+////            }
+//        }
     }
 }
 

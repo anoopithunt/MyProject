@@ -14,8 +14,14 @@ struct ReadCreditView: View {
     @State private var selectedButtonIndex = 0
     
     @State var source = ""
+    @State var name = ""
+    @State var type = ""
+    @State var book = ""
+    @State var startDate = ""
+    @State var endDate = ""
     
     @State var shown = false
+    @State var isBuy = false
     var body: some View {
         NavigationView {
             ZStack {
@@ -44,7 +50,7 @@ struct ReadCreditView: View {
                                 Image(systemName: "plus").font(.system(size: 22, weight: .medium)).foregroundColor(.white)
                             })
                             
-                           
+                            
                         }.padding().frame(width: UIScreen.main.bounds.width, height: 65).background(Color("orange"))
                         HStack{
                             Button(action: {
@@ -56,91 +62,105 @@ struct ReadCreditView: View {
                                     .background(Color("default_"))
                                     .cornerRadius(18)
                                     .foregroundColor(selectedButtonIndex == 0 ? Color.orange : Color.white)
-                                                        
+                                
                                     .font(.system(size: 22, weight: .regular))
                             })
-                          
-                        ScrollView(.horizontal){
-                            HStack{
-                                ForEach(list.rcSources.indices, id: \.self) { index in
-                                    
-                                    Button(action: {
-                                        self.selectedButtonIndex = index + 1
-                                        list.getRCTransactionData(source: list.rcSources[selectedButtonIndex-1].source)
-                                    }, label: {
+                            
+                            ScrollView(.horizontal){
+                                HStack{
+                                    ForEach(list.rcSources.indices, id: \.self) { index in
                                         
-                                        Text(list.rcSources[index].description)
-                                            .padding(.horizontal)
-                                            .padding(.vertical, 4)
-                                            .background(Color("default_"))
-                                            .cornerRadius(18)
-                                            .foregroundColor(selectedButtonIndex == index + 1 ? Color.orange : Color.white)
-                                            .font(.system(size: 22, weight: .regular))
+                                        Button(action: {
+                                            self.selectedButtonIndex = index + 1
+                                            list.getRCTransactionData(source: list.rcSources[selectedButtonIndex-1].source)
+                                        }, label: {
+                                            
+                                            Text(list.rcSources[index].description)
+                                                .padding(.horizontal)
+                                                .padding(.vertical, 4)
+                                                .background(Color("default_"))
+                                                .cornerRadius(18)
+                                                .foregroundColor(selectedButtonIndex == index + 1 ? Color.orange : Color.white)
+                                                .font(.system(size: 22, weight: .regular))
+                                            
+                                        })
                                         
-                                    })
-                                    
+                                    }
                                 }
-                            }
                             }
                         }
                         
                         ScrollView{
                             ForEach(list.datas, id: \.id){ item in
-                                
-                                VStack(alignment: .leading, spacing: 8){
-                                    
-                                    Text(item.createdAt).foregroundColor(.gray)
-                                    HStack{
-                                        Text(item.description).foregroundColor(.gray)
-                                        Spacer()
-                                        Text("\(item.rc_count) RC").foregroundColor(.gray)
-                                        Image(systemName: item.description == "Book Purchase" ? "arrow.up" : "arrow.down").foregroundColor(item.description == "Book Purchase" ? .red : .green)
+                                Button(action: {
+                                    isBuy = true
+                                    name = item.book_name
+                                    if item.description == "Book Purchase"{
+                                        book = item.book_url
                                     }
-                                }.padding().background(Color.white).cornerRadius(12).shadow(color: .gray, radius: 0.5)
-                               
-                            }
-                            
-                            if list.currentPage < list.totalPage {
-                                      
-                                GeometryReader { proxy in
-                                           
-                                    Color.clear
-                                              
-                                        .frame(height: 100)
-                                          
-                                        .onAppear {
-                                                 
-                                            let yOffset = proxy.frame(in: .global).maxY
-                                                  
-                                            let contentHeight = UIScreen.main.bounds.height
-                                                  
-                                            let height = UIScreen.main.bounds.height
-                                                  
-                                            let threshold = contentHeight - height
-                                                  
-                                            if yOffset > threshold {
-                                                    
-                                                list.loadNextPage(source: source)
-                                                  
-                                            }
-                                            
+                                    else {
+                                        book = item.rc_url
+                                        
+                                    }
+                                    type = item.description
+                                    startDate = item.createdAt
+                                    endDate = item.rc_enddate
+                                }, label: {
+                                    VStack(alignment: .leading, spacing: 8){
+                                        
+                                        Text(item.createdAt).foregroundColor(.gray)
+                                        HStack{
+                                            Text(item.description).foregroundColor(.gray)
+                                            Spacer()
+                                            Text("\(item.rc_count) RC").foregroundColor(.gray)
+                                            Image(systemName: item.description == "Book Purchase" ? "arrow.up" : "arrow.down").foregroundColor(item.description == "Book Purchase" ? .red : .green)
                                         }
-                                      
-                                }
-                                 
+                                    }.padding()
+                                        .background(Color.white)
+                                        .cornerRadius(12)
+                                        .shadow(color: .gray, radius: 0.5)
+                                    
+                                })
+                                
+                                
+                                
                             }
                             
+                            if list.currentPage  < list.totalPage {
+                                
+                                GeometryReader { proxy in
+                                    
+                                    Color.clear
+                                        .frame(height: 100)
+                                    
+                                        .onAppear {
+                                            
+                                            let yOffset = proxy.frame(in: .global).maxY
+                                            
+                                            let contentHeight = UIScreen.main.bounds.height
+                                            
+                                            let height = UIScreen.main.bounds.height
+                                            
+                                            let threshold = contentHeight - height
+                                            
+                                            if yOffset > threshold {
+                                                
+                                                list.loadNextPage(source: source)
+                                            }
+                                        }
+                                }
+                            }
                         }
-                     
                         Spacer()
-                        
                     }.onAppear{
                         list.getRCTransactionData(source: source)
                     }
                     
-                    
                     if shown {
                         BuyReadCreaditAlert(rcShow: $shown)
+                    }
+                    else if isBuy {
+                        BuyPurchaseAlert(isBuy: $isBuy, name: name, book: book, type: type,startDate: startDate, endDate: endDate)
                     }
                 }
             }.navigationBarTitle("")
@@ -151,9 +171,12 @@ struct ReadCreditView: View {
 struct ReadCreditView_Previews: PreviewProvider {
     static var previews: some View {
         ReadCreditView()
+//        BuyPurchaseAlert()
        
     }
 }
+
+
 struct BuyReadCreaditAlert: View{
     @Binding var rcShow: Bool
     @State private var isLoading = true
@@ -174,7 +197,7 @@ struct BuyReadCreaditAlert: View{
            
                 VStack {
 
-                    FloatingTextField(placeHolder: "Read Credit (Minimum 300)", text: $text).padding()
+                    FloatingTextField(placeHolder: "Read Credit (Minimum 300)", text: $text).keyboardType(.numberPad).padding()
                     FloatingTextField(placeHolder: "Total Cost (Rupee)", text: $rupee).padding()
  
 
@@ -218,8 +241,98 @@ struct BuyReadCreaditAlert: View{
     }
     }
 
-import Foundation
-
+struct BuyPurchaseAlert: View{
+    @Binding var isBuy:Bool
+    @State var name: String// = "Parenting with Presence Practices"
+    @State var book: String// = "Parenting with Presence Practices"
+    @State var type: String //= "Book Purchase"
+    @State  var read: String = "1"
+    
+    @State  var startDate: String //= "12-05-2023 05:16:56"
+    @State  var endDate: String //= "11-06-2023 00:00:00"
+   
+    var body: some View{
+        ZStack{
+            Color.black.opacity(0.2).ignoresSafeArea()
+            VStack(spacing: 24){
+                
+                    AsyncImage(url: URL(string: book)){
+                        img in
+                        img.resizable()
+                            .frame(width: 255, height: 255)
+                            .padding()
+                    }placeholder: {
+                        Image("logo_gray")
+                            .resizable()
+                            .frame(width: 235, height: 255)
+                            .padding()
+                    }
+                
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], alignment: .leading, spacing: 20) {
+                    if type == "Book Purchase" {
+                        Text("Name")
+                            .foregroundColor(.black)
+                            .font(.system(size: 18))
+                        Text(name)
+                            .foregroundColor(.gray)
+                            .font(.system(size: 18)).lineLimit(2)
+                    }
+                    Text("Type")
+                        .foregroundColor(.black)
+                        .font(.system(size: 18))
+                    Text(type)
+                        .foregroundColor(.gray)
+                        .font(.system(size: 18))
+                    Text("Read")
+                        .foregroundColor(.black)
+                        .font(.system(size: 18))
+                    HStack{
+                        Text(read)
+                            .foregroundColor(.gray)
+                            .font(.system(size: 18))
+                        Image(systemName: type == "Book Purchase" ? "arrow.up" : "arrow.down").font(.system(size: 18, weight: .heavy))
+                            .foregroundColor(type == "Book Purchase" ? .red : .green)
+                    }
+                    Text("Read Start Date")
+                        .foregroundColor(.black)
+                        .font(.system(size: 18))
+                    Text(startDate)
+                        .foregroundColor(.gray)
+                        .font(.system(size: 16))
+                    if type == "Book Purchase"{
+                        Text("Read End Date")
+                            .foregroundColor(.black)
+                            .font(.system(size: 18))
+                        Text(endDate)
+                            .foregroundColor(.orange)
+                            .font(.system(size: 16))
+                    }
+                }.padding(8)
+                HStack(spacing: 12){
+                    Spacer()
+                    Button(action: {
+                        self.isBuy = false
+                    }, label: {
+                        Text("OKay")
+                            .padding(.horizontal, 25)
+                            .padding(.vertical, 8)
+                            .background(Color("default_"))
+                            .cornerRadius(25)
+                            .foregroundColor(.white)
+                            .font(.system(size: 24, weight: .bold))
+                    
+                    })
+                  
+                }.padding(.horizontal)
+                    .padding()
+            }.background(Color.white)
+                .cornerRadius(4)
+                .shadow(2)
+                .padding()
+        }
+    }
+}
+ 
 // MARK: - Welcome
 public struct RCTransHistoriesModel:Decodable, Encodable {
     public let rcTransHistories: RCTransHistories
@@ -240,11 +353,6 @@ public struct RCTransHistories:Decodable, Encodable {
     public let current_page: Int
     public let data: [RCTransDatum]
     public let first_page_url: String
-//    public let from: Int
-//    public let last_page: Int
-//    public let last_page_url: String
-//    public let path: String
-//    public let per_page: Int
     public let total: Int
 
 }
@@ -254,13 +362,14 @@ public struct RCTransDatum :Decodable, Encodable{
     public let id: Int
     public let partner_id: Int
     public let rc_count: Int
-//    public let object_type: String
-//    public let type: String
+    public let object_type: String
+    public let type: String
 //    public let source: String
     public let description: String
     public let book_name: String
     public let book_url: String
     public let rc_url: String
+    public let rc_enddate: String
     public let createdAt: String
     public let rcCount: Int?
 
@@ -280,7 +389,7 @@ class RCTransactionViewModel: ObservableObject{
        @Published var rcSources = [RCTransSource]()
        @Published var totalRC = Int()
        @Published var totalPage = Int()
-       @Published var currentPage = 1
+       @Published var currentPage = 0
 //    var filterData = false
 //    var bookType = ""
     
@@ -299,7 +408,7 @@ class RCTransactionViewModel: ObservableObject{
                     if page == 1 {
                         self.datas = results.rcTransHistories.data
                         self.rcSources = results.rcSources
-                                   
+                        print(self.datas)
                     } else {
                         self.datas.append(contentsOf: results.rcTransHistories.data)
                         
@@ -357,9 +466,9 @@ class RCTransactionService{
             completion(.success(response))
             
         }.resume()
-            
-            
-        }
+        
+    }
+    
 }
 
 

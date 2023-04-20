@@ -46,13 +46,14 @@ struct ImageAutoSlider: View {
                                     .resizable()
                                     .frame(width: UIScreen.main.bounds.width)
                             } placeholder: {
-                                Image("logo_gray")
-                                    .resizable()
-                                    .frame(width: UIScreen.main.bounds.width)
+//                                Image("logo_gray")
+//                                    .resizable()
+//                                    .frame(width: UIScreen.main.bounds.width)
+                                Color.clear
                             }
                             .offset(x: CGFloat(index - currentIndex) * UIScreen.main.bounds.width, y: 0)
                             .animation(.linear(duration: animationDuration))
-                        }
+                        }.background(Color.clear)
                     }
                 }
 //                .frame(width: UIScreen.main.bounds.width)
@@ -70,8 +71,8 @@ struct ImageAutoSlider: View {
     }
 }
 
-//struct ImageAutoSlider_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ImageAutoSlider()
-//    }
-//}
+struct ImageAutoSlider_Previews: PreviewProvider {
+    static var previews: some View {
+        DashboardView()
+    }
+}

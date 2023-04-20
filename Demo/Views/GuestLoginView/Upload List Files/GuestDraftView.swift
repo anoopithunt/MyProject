@@ -70,7 +70,7 @@ struct GuestDraftView: View {
                                 
                                 VStack{
                                     
-                                    AsyncImage(url: URL(string: item.url)){img in
+                                    AsyncImage(url: URL(string: "item.url")){img in
                                         
                                         NavigationLink(destination: AlibraryWebView().navigationTitle("")
                                             .navigationBarHidden(true)
@@ -90,7 +90,7 @@ struct GuestDraftView: View {
                                         .foregroundColor(.black)
                                         .frame(height: 0.7)
                                     HStack{
-                                        Text(item.title).foregroundColor(Color("default_")).lineLimit(2)
+                                        Text(item.title ?? "").foregroundColor(Color("default_")).lineLimit(2)
                                        
                                         Spacer()
                                         
@@ -119,7 +119,7 @@ struct GuestDraftView: View {
 
 struct TextFieldClearButton: ViewModifier {
     @Binding var fieldText: String
-
+    @State var btncolor: Color = .gray
     func body(content: Content) -> some View {
         content
             .overlay {
@@ -129,7 +129,7 @@ struct TextFieldClearButton: ViewModifier {
                         Button {
                             fieldText = ""
                         } label: {
-                            Image(systemName: "multiply").font(.title).padding(.trailing, 4)
+                            Image(systemName: "multiply").font(.title).padding(.trailing, 4).foregroundColor(btncolor)
                         }
                         .foregroundColor(.gray)
                         .padding(.trailing, 4)
@@ -138,8 +138,7 @@ struct TextFieldClearButton: ViewModifier {
                 else {
                     HStack {
                         Spacer()
-                        Image("magnifying_glass_right").resizable().frame(width: 25, height: 25).shadow(color: .black, radius: 1).padding(.trailing)
-                        
+                        Image("magnifying_glass_right").resizable().frame(width: 25, height: 25).shadow(color: .black, radius: 1.2).padding(.trailing)
                     }
                 }
             }
@@ -177,7 +176,6 @@ public struct GuestDraftModel:Decodable {
 public struct GuestDraftBookDetails:Decodable {
     public let current_page: Int
     public let data: [GuestDraftDatum]
-    public let to: Int
     public let total: Int
 
 }
@@ -187,7 +185,7 @@ public struct GuestDraftDatum:Decodable {
     public let id: Int
     public let html_url: String
     public let tot_pages: Int
-    public let title: String
+    public let title: String?
     public let url: String
     public let book_media: GuestDraftBookMedia
 
@@ -197,7 +195,7 @@ public struct GuestDraftDatum:Decodable {
 public struct GuestDraftBookMedia:Decodable {
     public let id: Int
     public let book_id: Int
-    public let url: String
+    public let url: String?
     public let created_by: Int
 
 }

@@ -15,10 +15,10 @@ struct GuestStackBookListView: View {
   @State var id: Int// = 891
     @State var title: String = ""
     var body: some View {
-        ZStack{
-            Image("u").resizable().ignoresSafeArea(.keyboard)
+       
             NavHeaderClosure(title: title){
-                
+                ZStack{
+                    Image("u").resizable().ignoresSafeArea(.keyboard)
                 ScrollView{
                     VStack{
                         TextField("search stacks", text: $searchText).font(.title)
@@ -52,8 +52,8 @@ struct GuestStackBookListView: View {
                         list.getStackBookListData(id: id)
                     }
                 }
-            } .overlay(starOverlay, alignment: .topTrailing)
-        }
+            }
+        }.overlay(starOverlay, alignment: .topTrailing)
         
     }
     private var starOverlay: some View {

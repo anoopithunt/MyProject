@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct MagazineBannerView: View {
-    @StateObject var list1 = MagazineBannerVM()
+    @StateObject var list = MagazineBannerVM()
     var body: some View {
         VStack{
-            ImageAutoSlider(imageUrls: list1.images, autoScrollInterval:2, animationDuration: 0.8).frame(height: 122)
+            ImageAutoSlider(imageUrls: list.images, autoScrollInterval:2, animationDuration: 0.8).frame(height: 122)
         
         }
        
@@ -43,7 +43,7 @@ class MagazineBannerVM: ObservableObject{
     @Published var datas = [MagzineBanner]()
     @Published var images = [String]()
 //    var currentIndex = 0
-    let url = "https://www.alibrary.in/api/web-home"
+    let url = "https://www.alibrary.in/api/webhome"
 
     init() {
         getData()

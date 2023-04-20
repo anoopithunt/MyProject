@@ -11,6 +11,7 @@ struct SideMenuViews: View {
     
     @State var showMenu: Bool
     @Binding var selected: SelectedScreen
+    @StateObject private var loginVM = GetAuthenticationViewModel()
     @State var shown = false
     @State var selectedItem = 1
     @Environment(\.dismiss) var dismiss
@@ -21,19 +22,25 @@ struct SideMenuViews: View {
        HStack(spacing:0) {
            ScrollView{
                VStack(alignment: .leading) {
-                   NavigationLink(destination: LoginPageView()
-                    .navigationTitle("")
-                    .navigationBarHidden(true)
-                    .navigationBarBackButtonHidden(true), label: {
-                        Text("LOGIN").foregroundColor(.white)
-                        .font(.title)
-                        .frame(width: UIScreen.main.bounds.width*0.67, height: 55, alignment: .center)
-                        .background(.black)
-                        .cornerRadius(32)
-                        .padding(.horizontal)
-                        .padding(.top,122)
-                        
-                    })
+                   if !loginVM.isAuthenticated{
+                       
+                       NavigationLink(destination: LoginPageView()
+                        .navigationTitle("")
+                        .navigationBarHidden(true)
+                        .navigationBarBackButtonHidden(true), label: {
+                            Text("LOGIN")
+                                .foregroundColor(.white)
+                                .font(.title)
+                                .frame(width: UIScreen.main.bounds.width*0.67, height: 55, alignment: .center)
+                                .background(.black)
+                                .cornerRadius(32)
+                                .padding(.horizontal)
+                                .padding(.top,122)
+                            
+                        })
+                   } else{
+                       Text("You Are Logeed In.")
+                   }
                    Button(action: {
                        selected = .home
                        showMenu = false
@@ -89,27 +96,27 @@ struct SideMenuViews: View {
                        }.padding(.vertical,5)
                        
                    })
-                   //                    Button(action: {
-    //                        selected = .alert
-    //                        showMenu = false
-    //
-    //
-    //                    }, label: {
-    //
-    //
-    //                        HStack{
-    //                            Image(systemName: "person.crop.square.fill")
-    //                                .font(.title2)
-    //                                .foregroundColor(.gray)
-    //                                .padding(.leading)
-    //                            Text("My Profile")
-    //                                .foregroundColor(.black)
-    //                                .font(.title2)
-    //                                .padding(.leading,5)
-    //                            Spacer()
-    //                        }.padding(.vertical)
-    //
-    //                    })
+                   Button(action: {
+                            selected = .alert
+                            showMenu = false
+    
+    
+                        }, label: {
+    
+    
+                            HStack{
+                                Image(systemName: "person.crop.square.fill")
+                                    .font(.title2)
+                                    .foregroundColor(.gray)
+                                    .padding(.leading)
+                                Text("My Profile")
+                                    .foregroundColor(.black)
+                                    .font(.title2)
+                                    .padding(.leading,5)
+                                Spacer()
+                            }.padding(.vertical)
+    
+                        })
                    Group{
                        HStack {
                            Image(systemName: "doc.fill")
@@ -141,47 +148,47 @@ struct SideMenuViews: View {
                                 }.padding(.vertical,5)
                             })
     //
-    //                        HStack{
-    //                            Image(systemName: "book.fill")
-    //                                .font(.title2)
-    //                                .foregroundColor(.gray)
-    //                                .padding(.leading)
-    //                            Text("Reported Books")
-    //                                .font(.title2)
-    //                                .padding(.leading, 5)
-    //                            Spacer()
-    //                        }.padding(.vertical)
-    //                        HStack{
-    //                            Image(systemName: "rectangle.split.2x2.fill")
-    //                                .font(.title2)
-    //                                .foregroundColor(.gray)
-    //                                .padding(.leading)
-    //                            Text("Assign Books")
-    //                                .font(.title2)
-    //                                .padding(.leading,5)
-    //                            Spacer()
-    //                        }.padding(.vertical)
-//
-    //                        HStack{
-    //                            Image(systemName: "indianrupeesign.square.fill")
-    //                                .font(.title2)
-    //                                .foregroundColor(.gray)
-    //                                .padding(.leading)
-    //                            Text("Invite & Earn")
-    //                                .font(.title2)
-    //                                .padding(.leading, 5)
-    //                            Spacer()
-    //                        }.padding(.vertical)
-    //                        HStack{
-    //                            Image(systemName: "rectangle.split.1x2")
-    //                                .font(.title2)
-    //                                .foregroundColor(.gray)
-    //                                .padding(.leading)
-    //                            Text("Stories")
-    //                                .font(.title2)
-    //                                .padding(.leading,5)
-    //                            Spacer()
-    //                        }.padding(.vertical)
+                            HStack{
+                                Image(systemName: "book.fill")
+                                    .font(.title2)
+                                    .foregroundColor(.gray)
+                                    .padding(.leading)
+                                Text("Reported Books")
+                                    .font(.title2)
+                                    .padding(.leading, 5)
+                                Spacer()
+                            }.padding(.vertical)
+                            HStack{
+                                Image(systemName: "rectangle.split.2x2.fill")
+                                    .font(.title2)
+                                    .foregroundColor(.gray)
+                                    .padding(.leading)
+                                Text("Assign Books")
+                                    .font(.title2)
+                                    .padding(.leading,5)
+                                Spacer()
+                            }.padding(.vertical)
+
+                            HStack{
+                                Image(systemName: "indianrupeesign.square.fill")
+                                    .font(.title2)
+                                    .foregroundColor(.gray)
+                                    .padding(.leading)
+                                Text("Invite & Earn")
+                                    .font(.title2)
+                                    .padding(.leading, 5)
+                                Spacer()
+                            }.padding(.vertical)
+                            HStack{
+                                Image(systemName: "rectangle.split.1x2")
+                                    .font(.title2)
+                                    .foregroundColor(.gray)
+                                    .padding(.leading)
+                                Text("Stories")
+                                    .font(.title2)
+                                    .padding(.leading,5)
+                                Spacer()
+                            }.padding(.vertical)
                     Divider()
                            .frame( height: 1)
                            .background(Color.gray)
@@ -407,7 +414,7 @@ struct HomePageSlide: View {
     
     
     @State private var dragAmount = CGSize.zero
-
+    @StateObject private var loginVM = GetAuthenticationViewModel()
     @State private var selected: SelectedScreen = .home
   @State private var showMenu: Bool = false
   
@@ -503,6 +510,7 @@ struct HomePageSlide: View {
             .background(Color.orange)
             switch selected {
             case .home:
+                
                 ProfileView()
                 
                 Spacer()
@@ -512,7 +520,14 @@ struct HomePageSlide: View {
                 StacksView()
                 
             case .plans:
-                DashboardView()
+//                DashboardView(
+                if loginVM.isAuthenticated {
+                        DashboardView()
+                        
+                    } else {
+                        HomeView()
+                        
+                    }
             case .screen2:
                 
               EmptyView()

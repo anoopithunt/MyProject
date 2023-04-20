@@ -70,22 +70,29 @@ struct DashboardView: View {
 
     var body: some View {
         
-        NavigationView {
-            ZStack{
-                VStack{
-                    Color.white.frame(height: 0.1)
+//        NavigationView {
+        ZStack{
+            Image("u")
+                .resizable()
+            VStack(spacing:0){
+                Color.white.frame(height: 0.1)
                     
-                    HStack{
-                        Text(accountListVM.rem_plan_days)
-                            .font(.system(size: 24, weight: .bold))
-                            .foregroundColor(.white)
-                            Spacer()
-                        }.padding(.leading)
-                        .frame(width: UIScreen.main.bounds.width,height: 35)
-                        .background(Color.cyan)//
+                HStack{
+                    Text(accountListVM.rem_plan_days)
+                        .font(.system(size: 24, weight: .bold))
+                        .foregroundColor(.white)
+                    Spacer()
+                    
+                }
+                .padding(.leading)
+                .frame(width: UIScreen.main.bounds.width,height: 35)
+                .background(Color.cyan)//
 //                        CustomNavBarView()
-                        ScrollView(showsIndicators: false){
+               
+                ScrollView(showsIndicators: false){
+                    
                     HStack {
+                        
                         NavigationLink(destination: StacksView()
                             .navigationTitle("")
                             .navigationBarHidden(true)
@@ -93,7 +100,7 @@ struct DashboardView: View {
                                 DashboardTileView(tileName: "Stack" , tileCount: "\(accountListVM.ownStacks)", iconTileImage: "stack_gray", mainTileImage: "stack_prime")
                                 
                             }
-                        Spacer()
+                    Spacer()
                             .frame(width:20)
                         
                         NavigationLink(destination: GuestUploadListView()
@@ -172,21 +179,18 @@ struct DashboardView: View {
                                     
                                 })
                             }
-                    //                Spacer().frame(height: 22)
+                                    Spacer().frame(height: 22)
                 }
-                .background(Image("u"))
-                        Spacer()
-                        MagazineBannerView()
                         
             }.onAppear{
                 accountListVM.getDashBoardData()
-            } 
-//                }
+            }
+                VStack{
+                    Spacer()
+                    MagazineBannerView()
+                }
                 
-                
-        }
-    }
-        
+        } 
     }
 }
 

@@ -2,7 +2,7 @@
 //  HomePublisherView.swift
 //  Demo
 //
-//  Created by Sandeep Kesarwani on 22/12/22.
+//  Created by Anup Kumar Mishra on 22/12/22.
 //
 import Marquee
 import SwiftUI
@@ -12,6 +12,7 @@ import UIKit
 
 
 private var colors:[Color] = [.gray, .red, .green, .orange, .purple]
+var colorlist:[String] = ["#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0","#b9245c","#61be6d","#7789ff","#a453a0","#ea4951","#8557a0"]
 
 
 
@@ -54,12 +55,12 @@ struct HomePublisherView: View {
                 
             Spacer()
             Text(fullName).font(.title)
-                .frame(width: 160)
+//                .frame(width: 160)
                 .padding(.leading).lineLimit(1).fixedSize()
-            Text(address).font(.title2)
+            Text(address).font(.system(size: 19))
         }.foregroundColor(.white)
             .padding(.bottom)
-            .frame(width: 175, height: 235)
+            .frame( height: 235)
             .background(Color(.purple)).opacity(0.7)
             .cornerRadius(8)
     }
@@ -75,35 +76,54 @@ struct HomePublisherView_Previews: PreviewProvider {
 
 
 
-
-
 struct ServerResponse: Decodable {
     let userslist: [PublisherUsersList]
+    public let colorlists: [String: String]
 }
 
-struct PublisherUsersList: Decodable, Identifiable {
+struct PublisherUsersList: Decodable {
     let id: Int
     let totalBooks: Int
     let totalfollowers: Int
-    let fullAddress: String?
-    let partnerMedia: [PartnerMedia]
+    let totalBookViews: TotalBookView?
+    let full_name: String?
+    let full_address: String?
+    let partner_media: [PartnerMedia]
     
-    enum CodingKeys: String, CodingKey {
-        case id, totalBooks,totalfollowers
-        case partnerMedia = "partner_media"
-        case fullAddress = "full_address"
-    }
+}
+public enum TotalBookView: Decodable {
+    case integer(Int)
+    case string(String)
+    
+    
+    public var stringValue: String {
+            switch self {
+            case .integer(let intValue):
+                return String(intValue)
+            case .string(let stringValue):
+                return stringValue
+            }
+        }
+    
+
+    public init(from decoder: Decoder) throws {
+           if let intValue = try? decoder.singleValueContainer().decode(Int.self) {
+               self = .integer(intValue)
+               print(intValue)
+           } else if let stringValue = try? decoder.singleValueContainer().decode(String.self) {
+               self = .string(stringValue)
+               print(stringValue)
+           } else {
+               throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Invalid TotalBookViews value"))
+           }
+       }
 }
 
-struct PartnerMedia: Decodable, Identifiable {
+struct PartnerMedia: Decodable{
     let id: Int
-    let logourl: String
+    let url: String
     let partner_media_type: PartnerMediaType
-    enum CodingKeys: String, CodingKey {
-        case id , partner_media_type
-        case logourl = "url"
-       
-    }
+   
 }
 
 public struct PartnerMediaType: Decodable  {
@@ -116,55 +136,90 @@ public struct PartnerMediaType: Decodable  {
 
 struct HomePublisher: View{
     @StateObject var list = PublisherModelVM()
-    @State private var size = CGSize.zero
+    let columns = [GridItem(.flexible()),GridItem(.flexible())]
+    var i: Int = 0
     var body: some View{
-        
-        
-        
-            
-            ScrollView(.horizontal) {
-                HStack{
-                   ForEach(list.datas, id: \.id){ item in
-                       //                    if item.partner_media_type.type == "Logo"{
-                       //                        AsyncImage(url: URL(string: item.logourl)){ image in
-                       //                            image
-                       //                                .resizable()
-                       //                                .frame(width: 235, height: 125).cornerRadius(8)
-                       //
-                       //                        } placeholder: {
-                       //                            Image("logo_gray") .resizable()
-                       //                                .frame(width: 235, height: 125).cornerRadius(8)
-                       //                        }
-                       //                    Text(item.logourl)
-                       //                    }
-                       if item.partner_media_type.type == "Logo" {
-                           AsyncImage(url: URL(string: item.logourl)
-                                      , content: {
-                               image in image.resizable().frame(width:UIScreen.main.bounds.width, height: 100)
-                           }, placeholder: {
-                               Image("logo_gray").resizable().frame(width:UIScreen.main.bounds.width, height: 235)
-                           })
-                       }
-                     
-                       
-                       
-                   }
-    //               ForEach(list.datas1, id: \.id){
-    //                   item in
-    //                   Text(item.fullAddress ?? "Hello")
-    //                   Text("\(item.partnerMedia.endIndex)")
-    //               }
-                }.marquee(duration: 8, autoreverse: false)
+        ScrollView {
+            LazyVGrid(columns: columns, spacing: 10) {
+                ForEach(Array(list.datas.enumerated()), id: \.1.id) { (index, userlist) in
+                    VStack {
+                        HStack{
+                            if let totalBookViews = userlist.totalBookViews {
+                                
+                                switch totalBookViews {
+                                case .integer(let intValue):
+                                    Image(systemName: "eye")
+                                        .font(.system(size: 15))
+                                    Text(String(intValue))
+                                        .font(.system(size: 15))
+                                case .string(let stringValue):
+                                    Image(systemName: "eye")
+                                        .font(.system(size: 15))
+                                    Text(stringValue)
+                                        .font(.system(size: 15))
+                                }
+                            }
+                            Spacer()
+                            
+                            Image("pdf_white").resizable().frame(width: 20, height: 22)
+                            Text("\(userlist.totalBooks)").font(.system(size: 15))
+                        }
+                        .foregroundColor(.white)
+                        //.padding()
+                        
+                        
+                        ForEach(userlist.partner_media, id: \.id) { item in
+                            if item.partner_media_type.type == "Logo" {
+                                AsyncImage(url: URL(string: item.url)) { image in
+                                    image
+                                        .resizable()
+                                        .frame(height: 125)
+                                } placeholder: {
+                                    Image("logo_gray").resizable().frame(height: 125)
+                                }
+                            }
+                        }
+                        Spacer()
+                        Text(userlist.full_name ?? "").font(.title)
+//                            .frame(width: 160)
+                            .padding(.leading).lineLimit(1)
+                            .foregroundColor(.white)//.fixedSize()
+                        Text(userlist.full_address ?? "")
+                            .font(.title2).foregroundColor(.white)
+                    }
+                    .padding()
+                    .background(Color(hex: colorlist[index % colorlist.count]))
+                    .cornerRadius(8)
+                }
             }
-       
+        }
+        
+    }
+
+}
+
+
+extension Color {
+    init(hex: String) {
+        var hexValue = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        
+        if hexValue.hasPrefix("#") {
+            hexValue.remove(at: hexValue.startIndex)
+        }
+        var rgbValue: UInt64 = 0
+        Scanner(string: hexValue).scanHexInt64(&rgbValue)
+        let red = Double((rgbValue & 0xFF0000) >> 16) / 255.0
+        let green = Double((rgbValue & 0x00FF00) >> 8) / 255.0
+        let blue = Double(rgbValue & 0x0000FF) / 255.0
+        self.init(red: red, green: green, blue: blue)
     }
 }
 
+
 class PublisherModelVM: ObservableObject {
-    @Published var datas = [PartnerMedia]()
-    @Published var datas1 = [PublisherUsersList]()
-    @Published var logo = [String]()
+    @Published var datas = [PublisherUsersList]()
     let url = "https://alibrary.in/api/publisherList"
+    @Published var colorlists = [String: String]()
     
     init() {
         getData(url: url)
@@ -176,17 +231,10 @@ class PublisherModelVM: ObservableObject {
             if let data = data {
                 do {
                     let results = try JSONDecoder().decode(ServerResponse.self, from: data)
-                   
                     DispatchQueue.main.async {
-                        
-                        for user in results.userslist {
-                            
-                            self.datas.append(contentsOf: user.partnerMedia)
-                        
-                            
-                        }
-                        self.datas1 = results.userslist
-                       
+                        self.datas = results.userslist
+                        self.colorlists = results.colorlists
+                      
                     }
                 }
                 catch {
@@ -195,10 +243,4 @@ class PublisherModelVM: ObservableObject {
             }
         }.resume()
     }
-    
 }
-
-
-
-
-

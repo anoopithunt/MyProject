@@ -11,122 +11,132 @@ struct LoginPageView: View {
 //    @Environment(\.dismiss) var dismiss
     @State var isTapped = false
     @State private var showingModal = false
-
     @State var isSecuredField: Bool = true
     @State var isAuthenticated: Bool = false
     @StateObject private var loginVM = GetAuthenticationViewModel()
-    @StateObject private var accountListVM = AuthenticationPlanListService()
-
     @Namespace var animation
     var body: some View {
         NavigationView{
             ZStack(alignment: .center) {
-                    Image("bg_black")
+                Image("bg_black")
                     .resizable()
-
-                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height).ignoresSafeArea()
-
+                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+                    .ignoresSafeArea()
                 VStack(alignment: .center) {
-                Image("alib_black_logo")
-                    .resizable()
-                    .frame(width: UIScreen.main.bounds.width*0.6, height: UIScreen.main.bounds.height*0.18, alignment: .center)
-                    .padding(.top)
-//                Divider()
+                    Image("alib_black_logo")
+                        .resizable()
+                        .frame(width: UIScreen.main.bounds.width*0.6, height: UIScreen.main.bounds.height*0.18, alignment: .center)
+                        .padding(.top)
+                    //                Divider()
                     CustomFloatingTextField(placeHolder: "UserName or Email id", leadingImage: "person.crop.rectangle.fill",text: $loginVM.username).padding()
                     
                     PasswordField(placeHolder: "Password", text: $loginVM.password).padding()
-             
-                   
-                
-                HStack(alignment: .top, spacing: 10) {
                     
-                    Image(systemName: isTapped ? "checkmark.square.fill": "square")
-                        .font(.title).onTapGesture {
-                            isTapped.toggle()
-                        }
-                        .foregroundColor(.white)
-                        .animation(.easeInOut, value:  true)
+                    
+                    
+                    HStack(alignment: .top, spacing: 10) {
+                        
+                        Image(systemName: isTapped ? "checkmark.square.fill": "square")
+                            .font(.title).onTapGesture {
+                                isTapped.toggle()
+                            }
+                            .foregroundColor(.white)
+                            .animation(.easeInOut, value:  true)
                         
                         
-                       
-                    Text("Remember Me")
-                        .foregroundColor(Color.white)
-                        .padding(.leading, 5.0)
-                    Spacer()
-
-                    
-                    ZStack {
-                        VStack(spacing: 20) {
-                                    Button( action: {
-                                        self.showingModal = true}) {
+                        
+                        Text("Remember Me")
+                            .foregroundColor(Color.white)
+                            .padding(.leading, 5.0)
+                        Spacer()
+                        
+                        ZStack {
+                            VStack(spacing: 20) {
+                                Button( action: {
+                                    self.showingModal = true}) {
                                         Text("Forgot Password ?")
                                             .foregroundColor(Color.white)
                                     }
+                            }
                         }
-                        
                     }
+                    .padding(.horizontal,5)
+                    .padding(.vertical,22)
                     
-                }
-                
-                .padding(.horizontal,5)
-                .padding(.vertical,22)
-    
-//                NavigationLink(destination: ContentView().navigationBarBackButtonHidden(false).navigationBarHidden(true)) {
-// ButtonView(btnName: "Login")
-//  sumitsglobal@gmail.com   password
-//                }
-                    
+                    //                NavigationLink(destination: ContentView().navigationBarBackButtonHidden(false).navigationBarHidden(true)) {
+                    // ButtonView(btnName: "Login")
+                    //  sumitsglobal@gmail.com   password
+                    //                }
                     Button(action: {
                         loginVM.login()
                     }, label: {
                         ButtonView(btnName: "Login")
                     })
-                .navigationBarBackButtonHidden(true)
-                    NavigationLink(destination: DashboardView()
-//                                   PDFKitViews(id: 17)
-                        .navigationTitle("")
-                        .navigationBarHidden(true)
-                        .navigationBarBackButtonHidden(true), isActive: $loginVM.isAuthenticated){
-                        EmptyView().navigationTitle("")
-                                .navigationBarBackButtonHidden(true).navigationBarHidden(true)
-                    }.navigationTitle("")
-                        .navigationBarBackButtonHidden(true)
-                        .navigationBarHidden(true)
+                    .navigationBarBackButtonHidden(true)
+//                    NavigationLink(destination: GuestLoginSidemenuView()
+//                                   //                                   PDFKitViews(id: 17)
+//                        .navigationTitle("")
+//                        .navigationBarHidden(true)
+//                        .navigationBarBackButtonHidden(true), isActive: $loginVM.isAuthenticated){
+//                            EmptyView().navigationTitle("")
+//                                .navigationBarBackButtonHidden(true).navigationBarHidden(true)
+//                        }.navigationTitle("")
+//                        .navigationBarBackButtonHidden(true)
+//                        .navigationBarHidden(true)
+                    
+                    NavigationLink(destination: destinationView(), isActive: $loginVM.isAuthenticated) {
+                                     EmptyView()
+                                 }
+                                 .hidden()
+                    
                     HStack(alignment: .center, spacing: 9){
-                    Text("If you are Guest,please")
+                        Text("If you are Guest,please")
                         
-                        .foregroundColor(.white)
-//                        .padding()
-                   
-                   
-                    NavigationLink(destination: EmptyView()){
-                        
-                        Text("Click here to Registration")
+                            .foregroundColor(.white)
+                        //                        .padding()
+                        NavigationLink(destination: EmptyView()){
                             
-                            .foregroundColor(.orange)
-                     
+                            Text("Click here to Registration")
+                                .foregroundColor(.orange)
+                        }
+                        .navigationBarHidden(true)
+                        .padding(.horizontal,1)
                     }
-                    .navigationBarHidden(true)
-                 .padding(.horizontal,1)
-                                   
-                    }
-                .frame(width: UIScreen.main.bounds.width, alignment: .center)
-            
-                .font(.custom("regular", size: 17))
-                
-                .padding(.top,35)
-            }
-                .frame(width: UIScreen.main.bounds.width-45, alignment: .center)
-            .padding(.horizontal)
-
-            
+                    .frame(width: UIScreen.main.bounds.width, alignment: .center)
+                    .font(.custom("regular", size: 17))
+                    .padding(.top,35)
                 }
+                .frame(width: UIScreen.main.bounds.width-45, alignment: .center)
+                .padding(.horizontal)
+            }
         }
         .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .center)
         .navigationViewStyle(StackNavigationViewStyle())
-       .padding()
+        .padding()
+        //       .alert(isPresented: $loginVM.loginAlert) {
+        //            Alert(title: Text("Login Error"),
+        //            message: Text("Please check username and password."),
+        //            dismissButton: .default(Text("Okay"))
+        //         )
+        //       }
         
     }
+    
+    
+    @ViewBuilder
+       private func destinationView() -> some View {
+           if loginVM.name == "Guest" {
+               GuestLoginSidemenuView()
+                   .navigationTitle("")
+                   .navigationBarHidden(true)
+                   .navigationBarBackButtonHidden(true)
+           } else {
+               UserGuideView()
+                   .navigationTitle("")
+                   .navigationBarHidden(true)
+                   .navigationBarBackButtonHidden(true)
+           }
+       }
 }
 
 struct LoginPageView_Previews: PreviewProvider {
@@ -229,14 +239,7 @@ struct PasswordFloatingField: View{
     
     var body: some View {
         ZStack(alignment: .leading) {
-          
-            
-            
-            
-                
-                
-                
-                ZStack {
+            ZStack {
                     if !isEditing{
                         TextField("", text: $text,onEditingChanged: {(edit) in
                             isEditing = edit

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 enum AuthenticationError: Error {
     case invalidCredentials
     case custom(errorMessage: String)
@@ -20,37 +21,43 @@ enum NetworkError: Error {
 struct LoginRequestBody: Codable {
     let username: String
     let password: String
-//    let agent: Agent
 }
 
-struct Agent: Codable{
-    let full_name: String
-}
+
+
 
 // Login dashBoard Model Authentication Model
 struct LoginRequestBodyAuth: Codable {
     let email: String
     let password: String
     let logout_consent:String
-//    let agent: Agent?
 }
 
 struct LoginAuthResponse: Codable {
     let access_token: String?
     let email: String?
     let message: String?
-//    let agent: Agent?
-    let name: String?
+    let agent: Agent?
 }
 
-// Get  Authentication ViewModel Here Written
+struct Agent: Codable{
+    let full_name: String
+    let partner_role: AuthPartnerRole?
+}
 
+struct AuthPartnerRole: Codable{
+    let name: String
+}
+
+
+
+// Get  Authentication ViewModel Here Written
 
 
 class AuthenticationService {
     
     func getDashBoardData(token: String, completion: @escaping (Result<DashBoardModel, NetworkError>) -> Void) {
-            
+        
         guard let url = URL(string: ApiUtils.loginDashboardApi!) else {
             completion(.failure(.invalidURL))
             return
@@ -58,7 +65,6 @@ class AuthenticationService {
         
         var request = URLRequest(url: url)
         request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             
             guard let data = data, error == nil else {
@@ -73,12 +79,16 @@ class AuthenticationService {
             
             completion(.success(response))
             
-            
+          
             
         }.resume()
-            
-            
-        }
+        
+        
+    }
+}
+
+
+
 //    func login(username: String, password: String,completion: @escaping (Result<String, AuthenticationError>) -> Void) {
 //
 //        guard let url = URL(string: APILoginUtility.loginAuthurl) else {
@@ -118,6 +128,6 @@ class AuthenticationService {
 //        }.resume()
 //
 //    }
-
-
-}
+//
+//
+//}

@@ -16,14 +16,14 @@ struct ToastView: View {
            HStack{
                Image("ic_launcher")
                    .resizable()
-                   .frame(width: 50, height: 50)
+                   .frame(width: 35, height: 35)
                    .cornerRadius(8)
                Text(message).font(.system(size: 18, weight: .medium)).lineLimit(2)
                     .foregroundColor(.black)
            }.padding(8)
                 .background(Color.white).cornerRadius(10)
             
-        }.shadow(color: .gray, radius: 0.7).padding()
+        }.shadow(color: .gray, radius: 0.3).padding(.horizontal)
 
     }
 }

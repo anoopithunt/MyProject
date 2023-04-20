@@ -13,13 +13,12 @@ struct LibraryView: View {
     var titleHeader: String = ""
     var title: String = ""
     var body: some View {
-        ZStack{
-            Image("u").resizable().ignoresSafeArea()
+        
             
             VStack(spacing:22){
-                NavigationView{
-                    NavHeaderClosure(title: title, content: {
-                        
+                    NavHeaderClosure(title: title) {
+                        ZStack{
+                            Image("u").resizable().ignoresSafeArea()
                         VStack{
                             NavigationLink(destination: {
                                 GuestUserUploadView()
@@ -46,10 +45,10 @@ struct LibraryView: View {
                             
                         }
                         
-                    })
-                    Spacer()
+                    }
+//                    Spacer()
                 }
-            }
+//            }
         }
     }
 }

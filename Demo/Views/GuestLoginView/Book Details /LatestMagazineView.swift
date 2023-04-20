@@ -205,6 +205,7 @@ struct LatestMagazineView_Previews: PreviewProvider {
     static var previews: some View {
 //        LatestMagazineView()
         LatestMagazineView(id: 11)
+//        LatestMagazineView1()
       
     }
 }
@@ -243,7 +244,7 @@ class PublicProfilePublisherViewModel: ObservableObject{
                         
                         if img.partnerMediatype == "Logo"{
                             self.logo = img.url
-                            print(self.currentPage + self.datas.count)
+                           
                                            
                         }
                                            
@@ -257,10 +258,9 @@ class PublicProfilePublisherViewModel: ObservableObject{
                     if self.filterData {
                         self.datas.removeAll()
                     }
-                    
                     self.currentPage += 1
                     self.datas.append(contentsOf: results.books.data)
-                    
+                    print(self.currentPage)
                     self.filterData = false
                 }
             case .failure(let error):
@@ -269,16 +269,16 @@ class PublicProfilePublisherViewModel: ObservableObject{
         }
     }
     
-    func loadMoreContentIfNeeded(currentItem item: PublicProfilePublisherDatum?) {
-        guard let item = item else {
-            getBookData()
-            return
-        }
-        let thresholdIndex = datas.index(datas.endIndex, offsetBy: -5)
-        if datas.firstIndex(where: { $0.id == item.id }) == thresholdIndex {
-            getBookData()
-        }
-    }
+//    func loadMoreContentIfNeeded(currentItem item: PublicProfilePublisherDatum?) {
+//        guard let item = item else {
+//            getBookData()
+//            return
+//        }
+//        let thresholdIndex = datas.index(datas.endIndex, offsetBy: -5)
+//        if datas.firstIndex(where: { $0.id == item.id }) == thresholdIndex {
+//            getBookData()
+//        }
+//    }
     
 }
 
@@ -291,7 +291,7 @@ class PublicProfilePublisherViewModel: ObservableObject{
 class AuthenticationPublicProfilePublisherService {
     func getBookData(token: String,currentPage:Int,type: String,id: Int, completion: @escaping (Result<PublicProfilePublisherModel, NetworkError>) -> Void) {
         
-//
+        //
         guard let url = URL(string: "\(APILoginUtility.publicProfileApi)id=\(id)&bookSearch=&page=\(currentPage)&type=\(type)") else {
             completion(.failure(.invalidURL))
             return
@@ -356,11 +356,10 @@ public struct PublicProfilePublisherModel :Decodable{
     public let books: PublicProfilePublisherBooks
 //    public let stackDetails: [Any?]
     public let uploadType: [PublicProfilePublisherUploadType]
-//    public let teachCount: String
-//    public let stuCount: String
+    public let teachCount: String?
+    public let stuCount: String?
     public let followers: Int?  //Followers
-//    public let loginUser: PublicProfilePublisherLoginUser
-////    public let bookSearch: NSNull
+    public let loginUser: PublicProfilePublisherLoginUser
 //    public let type: String
 //    public let data: Int
 
@@ -387,25 +386,12 @@ public struct PublicProfilePublisherBooks:Decodable {
 // MARK: - PublicProfilePublisherDatum
 public struct PublicProfilePublisherDatum:Decodable {
     public let id: Int
-//    public let upload_type_id: Int
-//    public let name: String
-//    public let pdf_url: String
-//    public let html_url: String
-//    public let tot_pages: Int
-//
     public let title: String
-//    public let long_desc: String
-//    public let meta_keyword: String
-//    public let author_name: String
-//    public let isbn_no: String
     public let is_free: Int?
     public let tot_likes: String?
-    public let tot_view: Int?
-    public let publish_date: String
-    public let validity_date: String
     public let published: String
     public let book_media: PublicProfilePublisherBookMedia
-//    public let book_partner_link: PublicProfilePublisherBookPartnerLink
+    public let book_partner_link: PublicProfilePublisherBookPartnerLink
  
 }
 
@@ -413,7 +399,7 @@ public struct PublicProfilePublisherDatum:Decodable {
 public struct PublicProfilePublisherBookMedia:Decodable {
     public let id: Int
     public let url: String
-    public let created_by: Int
+//    public let created_by: Int
 }
 
 // MARK: - PublicProfilePublisherBookPartnerLink
@@ -612,12 +598,12 @@ class PublicProfilePublisherViewModel1: ObservableObject{
 
 struct LatestMagazineView1: View {
     let columns = [GridItem(.flexible()),GridItem(.flexible())]
-    @StateObject var list = PublicProfilePublisherViewModel1()
+    @StateObject var list = PublicProfilePublisherViewModel()
     @State var selectedIndex = 0
     let options = ["All", "Prime", "Free", "Paid"]
     @State var value = ""
     var placeholder = "All"
-    @State var id: Int// = 128
+    @State var id: Int = 296
     var body: some View {
         
         VStack(spacing:0){
@@ -684,22 +670,22 @@ struct LatestMagazineView1: View {
                             img in
                             img .resizable()
                                 .frame(height: 255)
-                            
+
                         }placeholder: {
                             Image("logo_gray")
                                 .resizable()
                                 .frame(height: 255)
-                            
+
                         }
                         Text(item.title)
                             .lineLimit(2)
                             .font(.system(size: 22,weight: .regular))
-                        
+
                     }.padding(8)
                         .background(Color.white)
                         .cornerRadius(4)
                         .shadow(radius: 1)
-                    
+
                 }.padding(2)
                 if list.currentPage < list.totalPage{
                     ProgressView()
@@ -709,7 +695,7 @@ struct LatestMagazineView1: View {
                             list.getBookData()
                         }
                 }
-                
+
             }
             
         }

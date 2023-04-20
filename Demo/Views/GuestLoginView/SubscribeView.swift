@@ -8,12 +8,16 @@
 import SwiftUI
 
 struct SubscribeView: View {
+    @Environment(\.dismiss) var dismiss
     @StateObject var list = GuestSubscribeViewModel()
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
     @State private var selectedOption = 0
+    
+    @FocusState private var isTextFieldFocused: Bool
+    
     let options = ["All Books", "Paid Books", "Prime Books"]
     @State var value = ""
     var placeholder = "All Books"
@@ -27,7 +31,8 @@ struct SubscribeView: View {
                 VStack(spacing:0){
                     HStack(spacing: 12) {
                         Button(action: {
-                            //                        dismiss()
+                            
+                                                    dismiss()
                             print("close")
                         }, label: {
                             Image(systemName: "arrow.backward")
@@ -107,27 +112,11 @@ struct SubscribeView: View {
                             .frame(height: 35).background(Color.white)
                         
                             .cornerRadius(10)
-                        
+                            .focused($isTextFieldFocused)
+                            .showClearButton($searchText)
                             .padding(.horizontal,11)
                         
-                            .overlay{
-                                
-                                HStack{
-                                    
-                                    Spacer()
-                                    
-                                    Image(systemName: "magnifyingglass")
-                                    
-                                        .font(.system(size: 26, weight: .heavy))
-                                    
-                                        .foregroundColor(.gray.opacity(0.7))
-                                    
-                                        .padding(.trailing,18)
-                                    
-                                }
-                                .frame(height: 24)
-                                
-                            }
+                        
                         
                     }
                     
@@ -139,8 +128,7 @@ struct SubscribeView: View {
                         
                         LazyVGrid(columns: columns, spacing: 10){
                             
-                            ForEach(list.datas , id: \.id){
-                                item in
+                            ForEach(list.datas.filter { searchText.isEmpty ? true : $0.book_detail.title.localizedCaseInsensitiveContains(searchText) }, id: \.id){ item in
                                 VStack(alignment: .leading){
                                     
                                     AsyncImage(url: URL(string: item.book_media.url!)){
@@ -153,13 +141,13 @@ struct SubscribeView: View {
                                         }, label: {
                                             img.resizable()
                                             
-                                                .frame( height: 225)
+                                                .frame( height: 235)
                                         })
                                         
                                     }placeholder: {
                                         Image("logo_gray")
                                             .resizable()
-                                            .frame( height: 225)
+                                            .frame( height: 235)
                                     }
                                     Text(item.book_detail.title).foregroundColor(Color("default_"))
                                         .font(.system(size: 16, weight: .medium))
@@ -187,13 +175,6 @@ struct SubscribeView: View {
                     
                 }
             }
-            
-            
-            .overlay(alignment: .topTrailing){
-               
-                
-            }
-            
             .onAppear{
                 list.getSubscribeData(booktype: "all")
                 

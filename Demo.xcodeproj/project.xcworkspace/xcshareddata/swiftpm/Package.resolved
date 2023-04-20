@@ -1,21 +1,12 @@
 {
   "pins" : [
     {
-      "identity" : "abseil-cpp-binary",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/google/abseil-cpp-binary.git",
-      "state" : {
-        "revision" : "a5f16ba68913840ee5df91b8dc06f5cc063579de",
-        "version" : "1.2021110200.0"
-      }
-    },
-    {
       "identity" : "alamofire",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Alamofire/Alamofire.git",
       "state" : {
-        "revision" : "78424be314842833c04bc3bef5b72e85fff99204",
-        "version" : "5.6.4"
+        "revision" : "bc268c28fb170f494de9e9927c371b8342979ece",
+        "version" : "5.7.1"
       }
     },
     {
@@ -32,71 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/elai950/AlertToast.git",
       "state" : {
-        "branch" : "master",
-        "revision" : "638f38f9daf08e17b7caea22d2fcb9c0a418d1b6"
-      }
-    },
-    {
-      "identity" : "beautyalert",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/ChaminLee/BeautyAlert",
-      "state" : {
-        "revision" : "ee0f84d9e79b1086f443fb7bb39d7afb4f928581",
-        "version" : "0.1.3"
-      }
-    },
-    {
-      "identity" : "firebase-ios-sdk",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/firebase/firebase-ios-sdk.git",
-      "state" : {
-        "branch" : "master",
-        "revision" : "7c8becdbba9da94e742d369fdf814fb3ec1051c9"
-      }
-    },
-    {
-      "identity" : "googleappmeasurement",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/google/GoogleAppMeasurement.git",
-      "state" : {
-        "revision" : "274428b83e063cd518b998555be0ec18abcbe9de",
-        "version" : "10.8.0"
-      }
-    },
-    {
-      "identity" : "googledatatransport",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/google/GoogleDataTransport.git",
-      "state" : {
-        "revision" : "cc7265b8e3906304e6e81f32c1662a94bbae2357",
-        "version" : "9.2.2"
-      }
-    },
-    {
-      "identity" : "googleutilities",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/google/GoogleUtilities.git",
-      "state" : {
-        "revision" : "871d43135925cde39ef7421d8723ce47edfdcc39",
-        "version" : "7.11.1"
-      }
-    },
-    {
-      "identity" : "grpc-binary",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/google/grpc-binary.git",
-      "state" : {
-        "revision" : "df37f6af8a273bc687e3166843ed86007de57d78",
-        "version" : "1.44.0"
-      }
-    },
-    {
-      "identity" : "gtm-session-fetcher",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/google/gtm-session-fetcher.git",
-      "state" : {
-        "revision" : "96d7cc73a71ce950723aa3c50ce4fb275ae180b8",
-        "version" : "3.1.0"
+        "revision" : "b39252eacd159904afd7d718bba0afabb87f2f2f",
+        "version" : "1.3.9"
       }
     },
     {
@@ -118,30 +46,12 @@
       }
     },
     {
-      "identity" : "leveldb",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/firebase/leveldb.git",
-      "state" : {
-        "revision" : "0706abcc6b0bd9cedfbb015ba840e4a780b5159b",
-        "version" : "1.22.2"
-      }
-    },
-    {
       "identity" : "marquee",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SwiftUIKit/Marquee.git",
       "state" : {
-        "branch" : "master",
-        "revision" : "69d7b7c6c34ed41d9299cfa8406f91f529c4fef3"
-      }
-    },
-    {
-      "identity" : "nanopb",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/firebase/nanopb.git",
-      "state" : {
-        "revision" : "819d0a2173aff699fb8c364b6fb906f7cdb1a692",
-        "version" : "2.30909.0"
+        "revision" : "69d7b7c6c34ed41d9299cfa8406f91f529c4fef3",
+        "version" : "0.3.0"
       }
     },
     {
@@ -154,21 +64,21 @@
       }
     },
     {
-      "identity" : "promises",
+      "identity" : "pure-swift-ui",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/google/promises.git",
+      "location" : "https://github.com/CodeSlicing/pure-swift-ui.git",
       "state" : {
-        "revision" : "ec957ccddbcc710ccc64c9dcbd4c7006fcf8b73a",
-        "version" : "2.2.0"
+        "revision" : "f3cf6c8e49b19ce5076d06ad0ace841ef8f78092",
+        "version" : "3.1.0"
       }
     },
     {
-      "identity" : "pspdfkit-sp",
+      "identity" : "pure-swift-ui-design",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/PSPDFKit/PSPDFKit-SP",
+      "location" : "https://github.com/CodeSlicing/pure-swift-ui-design.git",
       "state" : {
-        "revision" : "d77f7a93006e8db41dea72b1c7c20d1f72c37fea",
-        "version" : "11.5.2"
+        "revision" : "40489273ee4703032c7d4d185ac25743f604e158",
+        "version" : "1.0.0"
       }
     },
     {
@@ -176,8 +86,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/NuPlay/RichText.git",
       "state" : {
-        "revision" : "b104bcf390c645dba74597d69f34205c57638ee8",
-        "version" : "2.2.0"
+        "revision" : "6e14ec7130bf82284c83c1b248954a87b72378d6",
+        "version" : "2.2.1"
       }
     },
     {
@@ -185,8 +95,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImage.git",
       "state" : {
-        "revision" : "fb50c1d20f24db5322b2f8f379de3618f75fe08e",
-        "version" : "5.15.5"
+        "revision" : "c51ba84499268ea3020e6aee9e229c0f56b9d924",
+        "version" : "5.16.0"
       }
     },
     {
@@ -199,30 +109,21 @@
       }
     },
     {
-      "identity" : "swift-protobuf",
+      "identity" : "xcdyoutubekit",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-protobuf.git",
+      "location" : "https://github.com/0xced/XCDYouTubeKit.git",
       "state" : {
-        "revision" : "0af9125c4eae12a4973fb66574c53a54962a9e1e",
-        "version" : "1.21.0"
+        "revision" : "23f765941b36d6d28215ab81a37af1039d29138b",
+        "version" : "2.15.2"
       }
     },
     {
-      "identity" : "swiftyjson",
+      "identity" : "youtubeplayerkit",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/SwiftyJSON/SwiftyJSON",
+      "location" : "https://github.com/SvenTiigi/YouTubePlayerKit.git",
       "state" : {
-        "branch" : "master",
-        "revision" : "af1f7a2007d607fbe735c445f19080df4260fe8e"
-      }
-    },
-    {
-      "identity" : "waterfallgrid",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/paololeonardi/WaterfallGrid.git",
-      "state" : {
-        "revision" : "944aa82832ed5a9eaaf50862cdd53e3c10ab55eb",
-        "version" : "1.0.1"
+        "revision" : "b2cf1e0c0b081594a51b229347d7c3b7d3aca5a1",
+        "version" : "1.5.0"
       }
     }
   ],

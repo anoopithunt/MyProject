@@ -64,7 +64,6 @@ struct NavHeaderClosure<Content: View>: View {
                 HStack(spacing: 25) {
                     Button(action: {
                         dismiss()
-                        print("close")
                     }, label: {
                         Image(systemName: "arrow.backward")
                             .font(.system(size: 22, weight: .heavy))

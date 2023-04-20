@@ -66,9 +66,10 @@ struct PurchagedBooksView: View {
     private var column = [GridItem(.flexible()), GridItem(.flexible())]
     @StateObject private var list = PurchasedBooksViewModel()
     var body: some View {
+        NavigationView{
         ZStack{
             Image("u").resizable().foregroundColor(.white).ignoresSafeArea()
-            NavigationView{
+           
                 VStack{
                     HStack(spacing: 20){
                         
@@ -76,13 +77,18 @@ struct PurchagedBooksView: View {
                             dismiss()
                             
                         }, label: {
-                            Image(systemName: "arrow.left").font(.system(size: 25))
+                            Image(systemName: "arrow.left")
+                                .font(.system(size: 25))
                         })
                         
                         
-                        Text("**Purchaged Collections**").font(.system(size: 25))
+                        Text("**Purchaged Collections**")
+                            .font(.system(size: 25))
                         Spacer()
-                    }.padding(.horizontal).frame(height: 75).background(Color("orange")).foregroundColor(.white)
+                    }.padding(.horizontal)
+                        .frame(height: 75)
+                        .background(Color("orange"))
+                        .foregroundColor(.white)
                     ScrollView {
                         LazyVGrid(columns: column, spacing: 10) {
                             ForEach(list.datas, id: \.id){ item in

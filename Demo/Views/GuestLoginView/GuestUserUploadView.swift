@@ -28,7 +28,7 @@ struct GuestUserUploadView: View {
                                 }placeholder: {
                                     Image("logo_gray").resizable().frame(height: 235).cornerRadius(6)
                                 }
-                                Text(item.name).foregroundColor(Color("default_"))
+                                Text(item.name).foregroundColor(Color("default_")).lineLimit(1)
                                 Text("By: \(item.author_name)").foregroundColor(Color("maroon"))
                                 Text("Published: \(item.published)").foregroundColor(Color("default_"))
                                 Spacer()
@@ -43,7 +43,7 @@ struct GuestUserUploadView: View {
                     }
                     
                 }.refreshable(action: {
-                  //Refresh Action for recall the API
+                    list.getGuestUserUploadBookData() // Call a function in your view model to refresh the data
                 })
             }.onAppear{
                 list.getGuestUserUploadBookData()
@@ -142,7 +142,7 @@ public struct GuestUserUploadModel:Decodable {
 
 // MARK: - GuestUserUploadBookDetails
 public struct GuestUserUploadBookDetails:Decodable {
-    public let current_page: Int
+//    public let current_page: Int
     public let data: [GuestUserUploadDatum]
 //    public let path: String
     public let total: Int
@@ -152,12 +152,8 @@ public struct GuestUserUploadBookDetails:Decodable {
 // MARK: - GuestUserUploadDatum
 public struct GuestUserUploadDatum:Decodable {
     public let id: Int
-//    public let upload_type_id: Int
     public let name: String
-//    public let tot_pages: Int
     public let title: String
-//    public let long_desc: String
-//    public let meta_keyword: String
     public let author_name: String
 //    public let isbn_no: String
 //    public let validity_date: String

@@ -13,10 +13,11 @@ struct UserGuidePdfView: View {
     
     
     var body: some View {
-        ZStack{
-            Image("u").resizable().ignoresSafeArea()
+        
             VStack{
                 NavHeaderClosure(title: title){
+                    ZStack{
+                        Image("u").resizable().ignoresSafeArea()
                     VStack{
                         Spacer()
                         PDFViewWrapper(url: (URL(string: pdfurl))!, password: "").frame(width: UIScreen.main.bounds.width,height: UIScreen.main.bounds.height/1.2)

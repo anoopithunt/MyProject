@@ -25,7 +25,9 @@ struct BookQRCodeView: View {
                     Button(action: {
                         shareButton()
                     }, label: {
-                        Image(systemName: "bonjour").foregroundColor(.black).font(.system(size: 35))
+                        Image(systemName: "bonjour")
+                            .foregroundColor(.black)
+                            .font(.system(size: 35))
                         
                         
                     })
@@ -44,7 +46,9 @@ struct BookQRCodeView: View {
                         Button(action: {
 //                            open = false
                         }, label: {
-                            Text("Download").font(.system(size: 24, weight: .bold)).frame(width: UIScreen.main.bounds.width/2)
+                            Text("Download")
+                                .font(.system(size: 24, weight: .bold))
+                                .frame(width: UIScreen.main.bounds.width/2)
                                 .padding(.vertical,20)
                                 .padding(.horizontal)
                                 .foregroundColor(.white)
