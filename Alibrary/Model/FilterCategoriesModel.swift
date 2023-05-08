@@ -17,10 +17,6 @@ public struct PageBooks:Decodable {
 public struct PageCategoryBooks:Decodable{
     public let data: [PageDatum]
     public let last_page: Int
-//    public let current_page: Int
-//    public let next_page_url: String?
-//    public let path: String
-//    public let per_page: Int
 
 }
 
@@ -46,7 +42,7 @@ public struct PagebookMedia: Decodable,Identifiable{
 class ExploreCategoriesViewModel: ObservableObject{
     @Published var data = [PageDatum]()
     @Published var count = 1
-    @Published var per_page:Int = 1
+//    @Published var per_page:Int = 1
    
     var id: Int
     var totalPage: Int = 1
@@ -95,7 +91,7 @@ class ExploreCategoriesViewModel: ObservableObject{
 
 struct PageApi_Previews: PreviewProvider {
     static var previews: some View {
-        SearchViewTile1()
+        CategoriesView(sentid: "2")
      
             
     }

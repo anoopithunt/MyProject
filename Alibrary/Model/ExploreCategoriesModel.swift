@@ -19,7 +19,7 @@ public struct Bookcategory: Decodable, Hashable {
     public let desc_by: String
     public let url: String
     public let banner: String
-
+    
 }
 
 public struct ExploreModel: Decodable {

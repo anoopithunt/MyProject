@@ -19,7 +19,7 @@ struct WelcomeView: View {
                 
             VStack(alignment: .center) {
                 Spacer()
-                    Image("alib_black_logo")
+                    Image("background")
                         .resizable()
                         .frame(width: UIScreen.main.bounds.width/1.7, height: 235)
                     LinearProgressView().frame(height: 25)

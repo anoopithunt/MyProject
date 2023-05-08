@@ -78,3 +78,34 @@ class ApiServices: ObservableObject{
 
 }
 
+
+
+class PublisherViewModel: ObservableObject {
+    
+    @Published var datas = [PublisherUserslist]()
+   
+    
+    private let httpUtility: HttpUtility1
+    
+    init(_httpUtility: HttpUtility1) {
+        httpUtility = _httpUtility
+        
+    }
+    
+    func getData()
+    {
+        let apiUrl = "https://alibrary.in/api/publisherList"
+        let request = URLRequest(url: URL(string: apiUrl)!)
+        
+        httpUtility.getApiData(requestUrl: URL(string: "\(request)")!, resultType: PublisherModel.self) { (result, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                // Handle error
+            } else if let result = result {
+                DispatchQueue.main.async {
+                    self.datas = result.userslist
+                  
+                }
+            }
+        }    }
+}

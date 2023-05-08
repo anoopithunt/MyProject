@@ -29,9 +29,9 @@ struct APILoginUtility
     
     
     static let loginAuthurl = "https://www.alibrary.in/api/auth/login"
-   
+    
     static let loginDashboardApi: String? = "https://www.alibrary.in/api/guest/guestDashboard"
-   
+    
     static let loginUserPlan: String? = "https://www.alibrary.in/api/userplans"
     static let userProfileGuest: String? = "https://www.alibrary.in/api/guest/userProfileGuest"
     static let userAccountSettingAPi: String? = "https://www.alibrary.in/api/student/userAccSetting"
@@ -50,5 +50,35 @@ struct APILoginUtility
     static let guestReportedBookListApi: String = baseURL + "guest/book-reports"
     static let preViewBooksApi: String = baseURL + "previewbook"  //https://alibrary.in/api/previewbook?id=17
     static let guestLibraryApi: String = baseURL + "guest/selectLibrary" //https://www.alibrary.in/api/guest/selectLibrary
+    
+    // MARK: Student Login Api
+    
+    static let studentDashBoardApi = baseURL + "student/dashboard"
+    static let schoolLibraryApi = baseURL + "student/school-libraries" //https://alibrary.in/api/student/school-libraries
+    static let studentUploadApi = baseURL + "student/school-pdfs" //https://alibrary.in/api/
+    static let studentStackApi = baseURL + "student/school-stacks" //https://alibrary.in/api/
+    static let studentCourseApi = baseURL + "student/getcourseSubjects" //https://www.alibrary.in/api/student/getcourseSubjects
+    static let studentHomeworkApi = baseURL + "student/homeworkSubject" //https://alibrary.in/api/student/homeworkSubject
+    static let studentTeachersListApi = baseURL + "teacher-lists" //https://www.alibrary.in/api/teacher-lists
+    static let studentBookbundleApi = baseURL + "student/own-bundle" //https://www.alibrary.in/api/student/own-bundle
+    static let studentBookbundleDetailApi = baseURL + "student/bundle-book-list?id=" //https://alibrary.in/api/student/bundle-book-list?id=554
+    static let studentStoriesApi = baseURL + "student/view-blogs" //https://www.alibrary.in/api/student/view-blogs
+    static let studentExamTestApi = baseURL + "student/getsubjects" //https://alibrary.in/api/student/getsubjects
+    
+    
+    
+    
+    // MARK: Publisher Login API
+    
+    
+    static let publisherDashboardApi = baseURL + "publisher/dashboard"//https://www.alibrary.in/api/publisher/dashboard
+    static let publisherMyEarningApi = baseURL + "publisher/my-earnings"
+            //https://www.alibrary.in/api/publisher/my-earnings
+    static let publisherIssueBooksApi = baseURL + "publisher/publisher-book"
+            //"https://alibrary.in/api/publisher/publisher-book?book_type=\(self.bookType)&page=\(self.currentPage)"
+   static let publisherRCEarningApi = baseURL + "publisher/mRC-earned"
+            //""https://alibrary.in/api/publisher/mRC-earned?month=\(self.sel_month)&year=\(self.sel_year)&page=\(self.currentPage)""
+    static let bookRequestApi = baseURL + "guest/view-bookrequest"
+            //""https://alibrary.in/api/publisher/mRC-earned?month=\(self.sel_month)&year=\(self.sel_year)&page=\(self.currentPage)""
     
 }

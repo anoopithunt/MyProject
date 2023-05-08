@@ -16,19 +16,12 @@ struct ExploreCategoriesView: View {
     @State var isLinkActive = false
     var body: some View {
         
-//      NavigationView {
+      NavigationView {
            
                 ZStack {
                     Image("u").resizable().frame(width: UIScreen.main.bounds.width).ignoresSafeArea()
                
                     VStack {
-//                        Spacer(minLength: 32)
-//                        HStack(spacing: 25){
-//                            Image(systemName: "arrow.left").font(.system(size: 28))
-//                            
-//                            Text("Explore Category").font(.system(size: 28))
-//                            Spacer()
-//                        }.padding(.horizontal).frame(height: 75).background(Color("orange")).foregroundColor(.white)
                         ScrollView(.vertical,showsIndicators: false){
                             VStack {
                         HStack{
@@ -64,7 +57,7 @@ struct ExploreCategoriesView: View {
                     }
             
                 }
-//        }
+        }
      
         }
     }
@@ -75,8 +68,6 @@ struct ExploreCategoriesView: View {
 class CategoriesVM: ObservableObject {
     @Published var datas = [Bookcategory]()
     let url = "https://alibrary.in/api/explore_categories"
-
-
     init() {
         getData(url: url)
     }

@@ -90,6 +90,7 @@
 		D0399E1828B8AD8B003FAB4D /* SlideMenuViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0399E1728B8AD8B003FAB4D /* SlideMenuViews.swift */; };
 		D0399E1A28B8B402003FAB4D /* SlideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0399E1928B8B402003FAB4D /* SlideMenu.swift */; };
 		D03D45FE28AB803C00FE87DD /* PdfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03D45FD28AB803C00FE87DD /* PdfView.swift */; };
+		D03D74E32A08D8FD009F89A3 /* HTTPLoginUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03D74E22A08D8FD009F89A3 /* HTTPLoginUtility.swift */; };
 		D03E205629374C5800CBC6A4 /* RichText in Frameworks */ = {isa = PBXBuildFile; productRef = D03E205529374C5800CBC6A4 /* RichText */; };
 		D03F64DC28D8772B003F93C2 /* BooksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03F64DB28D8772B003F93C2 /* BooksView.swift */; };
 		D03F64DE28D8780E003F93C2 /* PopularBooksVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03F64DD28D8780E003F93C2 /* PopularBooksVM.swift */; };
@@ -167,6 +168,9 @@
 		D0609DC628853E800098A195 /* Modal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0609DC528853E800098A195 /* Modal.swift */; };
 		D0609DCA28855BAE0098A195 /* DownloadWithCombine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0609DC928855BAE0098A195 /* DownloadWithCombine.swift */; };
 		D06638F4286EE3020055ED7D /* PopUpForForgetPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06638F3286EE3020055ED7D /* PopUpForForgetPassword.swift */; };
+		D06A612C2A610FD2002D868E /* StudentDashBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06A612B2A610FD2002D868E /* StudentDashBoardView.swift */; };
+		D06A612E2A6111FD002D868E /* StudentAuthenticationListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06A612D2A6111FD002D868E /* StudentAuthenticationListService.swift */; };
+		D06A61302A611296002D868E /* StudentDashBoardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06A612F2A611296002D868E /* StudentDashBoardModel.swift */; };
 		D072A1D0289D2C72007A240B /* PostExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = D072A1CF289D2C72007A240B /* PostExample.swift */; };
 		D0734CE8291102E200537592 /* AboutUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0734CE7291102E200537592 /* AboutUsView.swift */; };
 		D076764029E534B300B57FE7 /* NavHeaderClosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = D076763F29E534B300B57FE7 /* NavHeaderClosure.swift */; };
@@ -191,6 +195,30 @@
 		D0884BCD2923AABD005F3733 /* Marquee in Frameworks */ = {isa = PBXBuildFile; productRef = D0884BCC2923AABD005F3733 /* Marquee */; };
 		D088993828D1D1E700CA658E /* BookDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D088993728D1D1E700CA658E /* BookDetailsModel.swift */; };
 		D088993A28D1D21F00CA658E /* HomePageCorouselViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D088993928D1D21F00CA658E /* HomePageCorouselViewModel.swift */; };
+		D0929C692AE4F2B400FBB4F7 /* BookSuggestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0929C682AE4F2B400FBB4F7 /* BookSuggestionView.swift */; };
+		D0929C6C2AE4F2E800FBB4F7 /* PublisherBookSuggestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0929C6B2AE4F2E800FBB4F7 /* PublisherBookSuggestionViewModel.swift */; };
+		D0929C6F2AE4F31D00FBB4F7 /* BookSuggestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0929C6E2AE4F31D00FBB4F7 /* BookSuggestionModel.swift */; };
+		D0929C742AE4F52100FBB4F7 /* PublisherBookRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0929C732AE4F52100FBB4F7 /* PublisherBookRequestView.swift */; };
+		D0963A912AC0094F001DFDFD /* PublisherDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0963A902AC0094F001DFDFD /* PublisherDashboardView.swift */; };
+		D0963A932AC00971001DFDFD /* PublisherDashboardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0963A922AC00971001DFDFD /* PublisherDashboardModel.swift */; };
+		D0963A952AC00993001DFDFD /* PublisherDashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0963A942AC00993001DFDFD /* PublisherDashboardViewModel.swift */; };
+		D0963A9C2AC00B9D001DFDFD /* PublisherAnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0963A9B2AC00B9D001DFDFD /* PublisherAnalyticsView.swift */; };
+		D0963AA02AC00E70001DFDFD /* PublisherTotalBooksUploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0963A9F2AC00E70001DFDFD /* PublisherTotalBooksUploadView.swift */; };
+		D0963AA42AC00FC1001DFDFD /* PublisherTotalBooksUploadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0963AA32AC00FC1001DFDFD /* PublisherTotalBooksUploadModel.swift */; };
+		D0963AA72AC0100F001DFDFD /* PublisherTotalUploadBookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0963AA62AC0100F001DFDFD /* PublisherTotalUploadBookViewModel.swift */; };
+		D0963AAD2AC01128001DFDFD /* PublisherTotIssueBooksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0963AAC2AC01128001DFDFD /* PublisherTotIssueBooksView.swift */; };
+		D0963AAF2AC0114B001DFDFD /* PublisherTotIssueBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0963AAE2AC0114B001DFDFD /* PublisherTotIssueBookModel.swift */; };
+		D0963AB12AC01171001DFDFD /* PublisherIssueBookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0963AB02AC01171001DFDFD /* PublisherIssueBookViewModel.swift */; };
+		D0963AB72AC0135E001DFDFD /* PublisherPrimeIssueBooksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0963AB62AC0135E001DFDFD /* PublisherPrimeIssueBooksView.swift */; };
+		D0963ABA2AC0164E001DFDFD /* PublisherPaidIssueBooksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0963AB92AC0164E001DFDFD /* PublisherPaidIssueBooksView.swift */; };
+		D0963ABD2AC01A23001DFDFD /* PublisherFreeIssueBooksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0963ABC2AC01A23001DFDFD /* PublisherFreeIssueBooksView.swift */; };
+		D0963AC52AC02513001DFDFD /* PublisherMyEarningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0963AC42AC02513001DFDFD /* PublisherMyEarningView.swift */; };
+		D0963AC72AC0253C001DFDFD /* PublisherMyEarningViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0963AC62AC0253C001DFDFD /* PublisherMyEarningViewModel.swift */; };
+		D0963AC92AC02569001DFDFD /* PublisherMyEarningModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0963AC82AC02569001DFDFD /* PublisherMyEarningModel.swift */; };
+		D0963ACF2AC0261B001DFDFD /* PublisherRCEarningsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0963ACE2AC0261B001DFDFD /* PublisherRCEarningsView.swift */; };
+		D0963AD12AC02635001DFDFD /* PublisherRCEarningsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0963AD02AC02635001DFDFD /* PublisherRCEarningsViewModel.swift */; };
+		D0963AD32AC0265E001DFDFD /* PublisherRCEarningModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0963AD22AC0265E001DFDFD /* PublisherRCEarningModel.swift */; };
+		D0963AD72AC026C7001DFDFD /* PublisherTotalEarningsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0963AD62AC026C7001DFDFD /* PublisherTotalEarningsView.swift */; };
 		D0E059B6287EF78C0035DD63 /* MenuContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E059B5287EF78C0035DD63 /* MenuContent.swift */; };
 		D0FDC66B2954841600044E7D /* Marquees+ Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FDC66A2954841600044E7D /* Marquees+ Extension.swift */; };
 		D0FEA7D829504955005054A4 /* HTTPUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FEA7D729504955005054A4 /* HTTPUtility.swift */; };
@@ -324,6 +352,7 @@
 		D0399E1928B8B402003FAB4D /* SlideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideMenu.swift; sourceTree = "<group>"; };
 		D03A7D0828911DDE002C73F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D03D45FD28AB803C00FE87DD /* PdfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfView.swift; sourceTree = "<group>"; };
+		D03D74E22A08D8FD009F89A3 /* HTTPLoginUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPLoginUtility.swift; sourceTree = "<group>"; };
 		D03F64DB28D8772B003F93C2 /* BooksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksView.swift; sourceTree = "<group>"; };
 		D03F64DD28D8780E003F93C2 /* PopularBooksVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularBooksVM.swift; sourceTree = "<group>"; };
 		D03F64DF28D87A0B003F93C2 /* PopularBooksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularBooksView.swift; sourceTree = "<group>"; };
@@ -398,6 +427,9 @@
 		D0609DC528853E800098A195 /* Modal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modal.swift; sourceTree = "<group>"; };
 		D0609DC928855BAE0098A195 /* DownloadWithCombine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadWithCombine.swift; sourceTree = "<group>"; };
 		D06638F3286EE3020055ED7D /* PopUpForForgetPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpForForgetPassword.swift; sourceTree = "<group>"; };
+		D06A612B2A610FD2002D868E /* StudentDashBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentDashBoardView.swift; sourceTree = "<group>"; };
+		D06A612D2A6111FD002D868E /* StudentAuthenticationListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentAuthenticationListService.swift; sourceTree = "<group>"; };
+		D06A612F2A611296002D868E /* StudentDashBoardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentDashBoardModel.swift; sourceTree = "<group>"; };
 		D06AF102289BE4DC0031CF8F /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D072A1CF289D2C72007A240B /* PostExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostExample.swift; sourceTree = "<group>"; };
 		D0734CE7291102E200537592 /* AboutUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsView.swift; sourceTree = "<group>"; };
@@ -422,6 +454,30 @@
 		D087B83A28901F1F00210209 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		D088993728D1D1E700CA658E /* BookDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsModel.swift; sourceTree = "<group>"; };
 		D088993928D1D21F00CA658E /* HomePageCorouselViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageCorouselViewModel.swift; sourceTree = "<group>"; };
+		D0929C682AE4F2B400FBB4F7 /* BookSuggestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSuggestionView.swift; sourceTree = "<group>"; };
+		D0929C6B2AE4F2E800FBB4F7 /* PublisherBookSuggestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherBookSuggestionViewModel.swift; sourceTree = "<group>"; };
+		D0929C6E2AE4F31D00FBB4F7 /* BookSuggestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSuggestionModel.swift; sourceTree = "<group>"; };
+		D0929C732AE4F52100FBB4F7 /* PublisherBookRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherBookRequestView.swift; sourceTree = "<group>"; };
+		D0963A902AC0094F001DFDFD /* PublisherDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherDashboardView.swift; sourceTree = "<group>"; };
+		D0963A922AC00971001DFDFD /* PublisherDashboardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherDashboardModel.swift; sourceTree = "<group>"; };
+		D0963A942AC00993001DFDFD /* PublisherDashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherDashboardViewModel.swift; sourceTree = "<group>"; };
+		D0963A9B2AC00B9D001DFDFD /* PublisherAnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherAnalyticsView.swift; sourceTree = "<group>"; };
+		D0963A9F2AC00E70001DFDFD /* PublisherTotalBooksUploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherTotalBooksUploadView.swift; sourceTree = "<group>"; };
+		D0963AA32AC00FC1001DFDFD /* PublisherTotalBooksUploadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherTotalBooksUploadModel.swift; sourceTree = "<group>"; };
+		D0963AA62AC0100F001DFDFD /* PublisherTotalUploadBookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherTotalUploadBookViewModel.swift; sourceTree = "<group>"; };
+		D0963AAC2AC01128001DFDFD /* PublisherTotIssueBooksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherTotIssueBooksView.swift; sourceTree = "<group>"; };
+		D0963AAE2AC0114B001DFDFD /* PublisherTotIssueBookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherTotIssueBookModel.swift; sourceTree = "<group>"; };
+		D0963AB02AC01171001DFDFD /* PublisherIssueBookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherIssueBookViewModel.swift; sourceTree = "<group>"; };
+		D0963AB62AC0135E001DFDFD /* PublisherPrimeIssueBooksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherPrimeIssueBooksView.swift; sourceTree = "<group>"; };
+		D0963AB92AC0164E001DFDFD /* PublisherPaidIssueBooksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherPaidIssueBooksView.swift; sourceTree = "<group>"; };
+		D0963ABC2AC01A23001DFDFD /* PublisherFreeIssueBooksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherFreeIssueBooksView.swift; sourceTree = "<group>"; };
+		D0963AC42AC02513001DFDFD /* PublisherMyEarningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherMyEarningView.swift; sourceTree = "<group>"; };
+		D0963AC62AC0253C001DFDFD /* PublisherMyEarningViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherMyEarningViewModel.swift; sourceTree = "<group>"; };
+		D0963AC82AC02569001DFDFD /* PublisherMyEarningModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherMyEarningModel.swift; sourceTree = "<group>"; };
+		D0963ACE2AC0261B001DFDFD /* PublisherRCEarningsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherRCEarningsView.swift; sourceTree = "<group>"; };
+		D0963AD02AC02635001DFDFD /* PublisherRCEarningsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherRCEarningsViewModel.swift; sourceTree = "<group>"; };
+		D0963AD22AC0265E001DFDFD /* PublisherRCEarningModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherRCEarningModel.swift; sourceTree = "<group>"; };
+		D0963AD62AC026C7001DFDFD /* PublisherTotalEarningsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherTotalEarningsView.swift; sourceTree = "<group>"; };
 		D0E059B5287EF78C0035DD63 /* MenuContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuContent.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		D0F1436E28979C8600FFB2DD /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
 		D0F1437128979C8600FFB2DD /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
@@ -755,6 +811,8 @@
 		D032492B286AE9E90095268F /* Alibrary */ = {
 			isa = PBXGroup;
 			children = (
+				D0963A8E2AC0090F001DFDFD /* Publisher Views */,
+				D0840D442A5FD67D000BACC2 /* Student Views */,
 				D051AD46295D7B4500B8285E /* Extension+ String */,
 				D032492C286AE9E90095268F /* AlibraryApp.swift */,
 				D03A7D0828911DDE002C73F2 /* Info.plist */,
@@ -1163,6 +1221,16 @@
 			path = "My Profile";
 			sourceTree = "<group>";
 		};
+		D06A612A2A610FA4002D868E /* Student DashBoard Views */ = {
+			isa = PBXGroup;
+			children = (
+				D06A612B2A610FD2002D868E /* StudentDashBoardView.swift */,
+				D06A612D2A6111FD002D868E /* StudentAuthenticationListService.swift */,
+				D06A612F2A611296002D868E /* StudentDashBoardModel.swift */,
+			);
+			path = "Student DashBoard Views";
+			sourceTree = "<group>";
+		};
 		D0734CE62911028E00537592 /* HomeAlertViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -1194,6 +1262,326 @@
 			name = "Book Details Entites";
 			sourceTree = "<group>";
 		};
+		D0840D442A5FD67D000BACC2 /* Student Views */ = {
+			isa = PBXGroup;
+			children = (
+				D06A612A2A610FA4002D868E /* Student DashBoard Views */,
+			);
+			path = "Student Views";
+			sourceTree = "<group>";
+		};
+		D0929C662AE4F26500FBB4F7 /* Publisher BookRequest */ = {
+			isa = PBXGroup;
+			children = (
+				D0929C712AE4F4E400FBB4F7 /* Publisher BookRequest */,
+				D0929C702AE4F4AE00FBB4F7 /* Books Suggestion */,
+			);
+			name = "Publisher BookRequest";
+			sourceTree = "<group>";
+		};
+		D0929C672AE4F29E00FBB4F7 /* Book Suggestion Views */ = {
+			isa = PBXGroup;
+			children = (
+				D0929C682AE4F2B400FBB4F7 /* BookSuggestionView.swift */,
+			);
+			path = "Book Suggestion Views";
+			sourceTree = "<group>";
+		};
+		D0929C6A2AE4F2D600FBB4F7 /* PublisherBook Suggestion ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D0929C6B2AE4F2E800FBB4F7 /* PublisherBookSuggestionViewModel.swift */,
+			);
+			path = "PublisherBook Suggestion ViewModel";
+			sourceTree = "<group>";
+		};
+		D0929C6D2AE4F30D00FBB4F7 /* Book Suggestion Model */ = {
+			isa = PBXGroup;
+			children = (
+				D0929C6E2AE4F31D00FBB4F7 /* BookSuggestionModel.swift */,
+			);
+			name = "Book Suggestion Model";
+			path = ..;
+			sourceTree = "<group>";
+		};
+		D0929C702AE4F4AE00FBB4F7 /* Books Suggestion */ = {
+			isa = PBXGroup;
+			children = (
+				D0929C672AE4F29E00FBB4F7 /* Book Suggestion Views */,
+				D0929C6A2AE4F2D600FBB4F7 /* PublisherBook Suggestion ViewModel */,
+				D0929C6D2AE4F30D00FBB4F7 /* Book Suggestion Model */,
+			);
+			path = "Books Suggestion";
+			sourceTree = "<group>";
+		};
+		D0929C712AE4F4E400FBB4F7 /* Publisher BookRequest */ = {
+			isa = PBXGroup;
+			children = (
+				D0929C722AE4F51100FBB4F7 /* Publisher BookRequest View */,
+			);
+			path = "Publisher BookRequest";
+			sourceTree = "<group>";
+		};
+		D0929C722AE4F51100FBB4F7 /* Publisher BookRequest View */ = {
+			isa = PBXGroup;
+			children = (
+				D0929C732AE4F52100FBB4F7 /* PublisherBookRequestView.swift */,
+			);
+			path = "Publisher BookRequest View";
+			sourceTree = "<group>";
+		};
+		D0963A8E2AC0090F001DFDFD /* Publisher Views */ = {
+			isa = PBXGroup;
+			children = (
+				D0929C662AE4F26500FBB4F7 /* Publisher BookRequest */,
+				D0963AC02AC023E8001DFDFD /* Publisher MyEarning */,
+				D0963ABB2AC019EA001DFDFD /* Publisher Free Issue Books */,
+				D0963AB82AC015D4001DFDFD /* Publisher Paid Issue Books */,
+				D0963AB22AC0127F001DFDFD /* Publisher Prime Issue Books */,
+				D0963AA82AC010BA001DFDFD /* Publisher Total Issue Books */,
+				D0963A962AC00AF5001DFDFD /* Publisher Analytics  */,
+				D0963A8F2AC0092F001DFDFD /* Publisher Dashboard */,
+			);
+			path = "Publisher Views";
+			sourceTree = "<group>";
+		};
+		D0963A8F2AC0092F001DFDFD /* Publisher Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				D0963A992AC00B69001DFDFD /* Publisher Dashboard Views */,
+				D0963A982AC00B40001DFDFD /* Publisher Dashboard View Model */,
+				D0963A972AC00B28001DFDFD /* Dashboard Model */,
+			);
+			name = "Publisher Dashboard";
+			sourceTree = "<group>";
+		};
+		D0963A962AC00AF5001DFDFD /* Publisher Analytics  */ = {
+			isa = PBXGroup;
+			children = (
+				D0963A9E2AC00E57001DFDFD /* Publisher Total Books Upload  */,
+				D0963A9A2AC00B88001DFDFD /* Publisher Analytics View */,
+			);
+			name = "Publisher Analytics ";
+			sourceTree = "<group>";
+		};
+		D0963A972AC00B28001DFDFD /* Dashboard Model */ = {
+			isa = PBXGroup;
+			children = (
+				D0963A922AC00971001DFDFD /* PublisherDashboardModel.swift */,
+			);
+			path = "Dashboard Model";
+			sourceTree = "<group>";
+		};
+		D0963A982AC00B40001DFDFD /* Publisher Dashboard View Model */ = {
+			isa = PBXGroup;
+			children = (
+				D0963A942AC00993001DFDFD /* PublisherDashboardViewModel.swift */,
+			);
+			path = "Publisher Dashboard View Model";
+			sourceTree = "<group>";
+		};
+		D0963A992AC00B69001DFDFD /* Publisher Dashboard Views */ = {
+			isa = PBXGroup;
+			children = (
+				D0963A902AC0094F001DFDFD /* PublisherDashboardView.swift */,
+			);
+			path = "Publisher Dashboard Views";
+			sourceTree = "<group>";
+		};
+		D0963A9A2AC00B88001DFDFD /* Publisher Analytics View */ = {
+			isa = PBXGroup;
+			children = (
+				D0963A9B2AC00B9D001DFDFD /* PublisherAnalyticsView.swift */,
+			);
+			name = "Publisher Analytics View";
+			sourceTree = "<group>";
+		};
+		D0963A9E2AC00E57001DFDFD /* Publisher Total Books Upload  */ = {
+			isa = PBXGroup;
+			children = (
+				D0963AA52AC00FF3001DFDFD /* Publisher Total Upload Book ViewModel */,
+				D0963AA22AC00EFD001DFDFD /* Publisher Total Books Upload View */,
+				D0963AA12AC00E8E001DFDFD /* Publisher Total Books Upload model */,
+			);
+			name = "Publisher Total Books Upload ";
+			sourceTree = "<group>";
+		};
+		D0963AA12AC00E8E001DFDFD /* Publisher Total Books Upload model */ = {
+			isa = PBXGroup;
+			children = (
+				D0963AA32AC00FC1001DFDFD /* PublisherTotalBooksUploadModel.swift */,
+			);
+			name = "Publisher Total Books Upload model";
+			sourceTree = "<group>";
+		};
+		D0963AA22AC00EFD001DFDFD /* Publisher Total Books Upload View */ = {
+			isa = PBXGroup;
+			children = (
+				D0963A9F2AC00E70001DFDFD /* PublisherTotalBooksUploadView.swift */,
+			);
+			name = "Publisher Total Books Upload View";
+			sourceTree = "<group>";
+		};
+		D0963AA52AC00FF3001DFDFD /* Publisher Total Upload Book ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D0963AA62AC0100F001DFDFD /* PublisherTotalUploadBookViewModel.swift */,
+			);
+			name = "Publisher Total Upload Book ViewModel";
+			sourceTree = "<group>";
+		};
+		D0963AA82AC010BA001DFDFD /* Publisher Total Issue Books */ = {
+			isa = PBXGroup;
+			children = (
+				D0963AAB2AC010FA001DFDFD /* Publisher Total Issue Books View Model */,
+				D0963AAA2AC010E5001DFDFD /* Publisher Total Issue Books Model */,
+				D0963AA92AC010D1001DFDFD /* Publisher Total Issue Books View */,
+			);
+			path = "Publisher Total Issue Books";
+			sourceTree = "<group>";
+		};
+		D0963AA92AC010D1001DFDFD /* Publisher Total Issue Books View */ = {
+			isa = PBXGroup;
+			children = (
+				D0963AAC2AC01128001DFDFD /* PublisherTotIssueBooksView.swift */,
+			);
+			path = "Publisher Total Issue Books View";
+			sourceTree = "<group>";
+		};
+		D0963AAA2AC010E5001DFDFD /* Publisher Total Issue Books Model */ = {
+			isa = PBXGroup;
+			children = (
+				D0963AAE2AC0114B001DFDFD /* PublisherTotIssueBookModel.swift */,
+			);
+			path = "Publisher Total Issue Books Model";
+			sourceTree = "<group>";
+		};
+		D0963AAB2AC010FA001DFDFD /* Publisher Total Issue Books View Model */ = {
+			isa = PBXGroup;
+			children = (
+				D0963AB02AC01171001DFDFD /* PublisherIssueBookViewModel.swift */,
+			);
+			path = "Publisher Total Issue Books View Model";
+			sourceTree = "<group>";
+		};
+		D0963AB22AC0127F001DFDFD /* Publisher Prime Issue Books */ = {
+			isa = PBXGroup;
+			children = (
+				D0963AB32AC01295001DFDFD /* Publisher Prime Issue Books View */,
+			);
+			name = "Publisher Prime Issue Books";
+			sourceTree = "<group>";
+		};
+		D0963AB32AC01295001DFDFD /* Publisher Prime Issue Books View */ = {
+			isa = PBXGroup;
+			children = (
+				D0963AB62AC0135E001DFDFD /* PublisherPrimeIssueBooksView.swift */,
+			);
+			name = "Publisher Prime Issue Books View";
+			sourceTree = "<group>";
+		};
+		D0963AB82AC015D4001DFDFD /* Publisher Paid Issue Books */ = {
+			isa = PBXGroup;
+			children = (
+				D0963AB92AC0164E001DFDFD /* PublisherPaidIssueBooksView.swift */,
+			);
+			name = "Publisher Paid Issue Books";
+			sourceTree = "<group>";
+		};
+		D0963ABB2AC019EA001DFDFD /* Publisher Free Issue Books */ = {
+			isa = PBXGroup;
+			children = (
+				D0963ABC2AC01A23001DFDFD /* PublisherFreeIssueBooksView.swift */,
+			);
+			name = "Publisher Free Issue Books";
+			sourceTree = "<group>";
+		};
+		D0963AC02AC023E8001DFDFD /* Publisher MyEarning */ = {
+			isa = PBXGroup;
+			children = (
+				D0963AD52AC026A8001DFDFD /* Publisher Total Earnings  */,
+				D0963AD42AC0268B001DFDFD /* My Earnings */,
+				D0963ACA2AC025B7001DFDFD /* Publisher RCEarnings  */,
+			);
+			name = "Publisher MyEarning";
+			sourceTree = "<group>";
+		};
+		D0963AC12AC0249E001DFDFD /* Publisher MyEarning View */ = {
+			isa = PBXGroup;
+			children = (
+				D0963AC42AC02513001DFDFD /* PublisherMyEarningView.swift */,
+			);
+			path = "Publisher MyEarning View";
+			sourceTree = "<group>";
+		};
+		D0963AC22AC024AF001DFDFD /* Publisher MyEarning Model */ = {
+			isa = PBXGroup;
+			children = (
+				D0963AC82AC02569001DFDFD /* PublisherMyEarningModel.swift */,
+			);
+			path = "Publisher MyEarning Model";
+			sourceTree = "<group>";
+		};
+		D0963AC32AC024E3001DFDFD /* Publisher MyEarning View Model */ = {
+			isa = PBXGroup;
+			children = (
+				D0963AC62AC0253C001DFDFD /* PublisherMyEarningViewModel.swift */,
+			);
+			path = "Publisher MyEarning View Model";
+			sourceTree = "<group>";
+		};
+		D0963ACA2AC025B7001DFDFD /* Publisher RCEarnings  */ = {
+			isa = PBXGroup;
+			children = (
+				D0963ACD2AC025FD001DFDFD /* Publisher RCEarnings ViewModel */,
+				D0963ACC2AC025ED001DFDFD /* Publisher RCEarnings Model */,
+				D0963ACB2AC025DF001DFDFD /* Publisher RCEarnings View */,
+			);
+			path = "Publisher RCEarnings ";
+			sourceTree = "<group>";
+		};
+		D0963ACB2AC025DF001DFDFD /* Publisher RCEarnings View */ = {
+			isa = PBXGroup;
+			children = (
+				D0963ACE2AC0261B001DFDFD /* PublisherRCEarningsView.swift */,
+			);
+			path = "Publisher RCEarnings View";
+			sourceTree = "<group>";
+		};
+		D0963ACC2AC025ED001DFDFD /* Publisher RCEarnings Model */ = {
+			isa = PBXGroup;
+			children = (
+				D0963AD22AC0265E001DFDFD /* PublisherRCEarningModel.swift */,
+			);
+			path = "Publisher RCEarnings Model";
+			sourceTree = "<group>";
+		};
+		D0963ACD2AC025FD001DFDFD /* Publisher RCEarnings ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D0963AD02AC02635001DFDFD /* PublisherRCEarningsViewModel.swift */,
+			);
+			path = "Publisher RCEarnings ViewModel";
+			sourceTree = "<group>";
+		};
+		D0963AD42AC0268B001DFDFD /* My Earnings */ = {
+			isa = PBXGroup;
+			children = (
+				D0963AC12AC0249E001DFDFD /* Publisher MyEarning View */,
+				D0963AC22AC024AF001DFDFD /* Publisher MyEarning Model */,
+				D0963AC32AC024E3001DFDFD /* Publisher MyEarning View Model */,
+			);
+			path = "My Earnings";
+			sourceTree = "<group>";
+		};
+		D0963AD52AC026A8001DFDFD /* Publisher Total Earnings  */ = {
+			isa = PBXGroup;
+			children = (
+				D0963AD62AC026C7001DFDFD /* PublisherTotalEarningsView.swift */,
+			);
+			path = "Publisher Total Earnings ";
+			sourceTree = "<group>";
+		};
 		D0F1437028979C8600FFB2DD /* Example */ = {
 			isa = PBXGroup;
 			children = (
@@ -1211,6 +1599,7 @@
 				D0FEA7D729504955005054A4 /* HTTPUtility.swift */,
 				D0FEA7D92950496F005054A4 /* APIUtility.swift */,
 				D05417D9295C6E0C00E3ABB2 /* GetAuthenticationViewModel.swift */,
+				D03D74E22A08D8FD009F89A3 /* HTTPLoginUtility.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1370,6 +1759,8 @@
 				D00E7781287EC9710019B26D /* InputFieldView.swift in Sources */,
 				D01D37AC29EFE473008998CF /* AuthenticationGuestStackBookListService.swift in Sources */,
 				D026DA1F28FFCDD300445EEA /* ExploreCategoriesView.swift in Sources */,
+				D0929C742AE4F52100FBB4F7 /* PublisherBookRequestView.swift in Sources */,
+				D0963AA72AC0100F001DFDFD /* PublisherTotalUploadBookViewModel.swift in Sources */,
 				D03F64DC28D8772B003F93C2 /* BooksView.swift in Sources */,
 				D04D9B0B29D404D600AB6237 /* ThumbView.swift in Sources */,
 				D0258B94287ADFCE00E6D4FE /* PreviewModel.swift in Sources */,
@@ -1381,6 +1772,7 @@
 				D03F64E828D896B7003F93C2 /* PublisherBannerVM.swift in Sources */,
 				D026DA2128FFCE1C00445EEA /* CategoriesView.swift in Sources */,
 				D0399E1A28B8B402003FAB4D /* SlideMenu.swift in Sources */,
+				D0929C6C2AE4F2E800FBB4F7 /* PublisherBookSuggestionViewModel.swift in Sources */,
 				D07E845A28DEFD2600749727 /* HomePublisherModel.swift in Sources */,
 				D0470F8E299CB49A001B7008 /* StacksViewAlertView.swift in Sources */,
 				D058C96628B4BDCE00BDBEF1 /* MyProfileView.swift in Sources */,
@@ -1388,9 +1780,12 @@
 				D0396C1C291114AB0063F97D /* AdolescenceView.swift in Sources */,
 				D05BD09328D4958D006BFF0B /* MagzineBannerModel.swift in Sources */,
 				D045C26929C1A15E00414D97 /* GuestUploadListDashboardService.swift in Sources */,
+				D0963AC92AC02569001DFDFD /* PublisherMyEarningModel.swift in Sources */,
 				D07E845C28DEFD7700749727 /* HomePublisherVM.swift in Sources */,
+				D0963AC52AC02513001DFDFD /* PublisherMyEarningView.swift in Sources */,
 				D05BD09728D49697006BFF0B /* MagazineBannerView.swift in Sources */,
 				D087B837288FFCCF00210209 /* PublisherList.swift in Sources */,
+				D0963A912AC0094F001DFDFD /* PublisherDashboardView.swift in Sources */,
 				D00DDD9C293A21F900D41B5D /* SearchBooksTemplateView.swift in Sources */,
 				D01D378A29EFDDC0008998CF /* SelfLibraryView.swift in Sources */,
 				D0470F9A299CB71C001B7008 /* StackBookListAuthenticationService.swift in Sources */,
@@ -1401,11 +1796,13 @@
 				D0609DCA28855BAE0098A195 /* DownloadWithCombine.swift in Sources */,
 				D04D9B1429D4066D00AB6237 /* SearchContentView.swift in Sources */,
 				D01B9DA4288BD16000F3B88F /* PublisherView.swift in Sources */,
+				D03D74E32A08D8FD009F89A3 /* HTTPLoginUtility.swift in Sources */,
 				D07B403F29DACE50001C64CA /* SearchFieldClearButton.swift in Sources */,
 				D056E621291919E200D7FD3F /* MagazinesTemplateView.swift in Sources */,
 				D0399E1828B8AD8B003FAB4D /* SlideMenuViews.swift in Sources */,
 				D017687328D4AC6E004DF939 /* BooksDetailsModel.swift in Sources */,
 				D0472EA329545DF200E84B1E /* SearchViewTile.swift in Sources */,
+				D0963ABD2AC01A23001DFDFD /* PublisherFreeIssueBooksView.swift in Sources */,
 				D04D9AFD29D402D700AB6237 /* PreviewBooksViewModel.swift in Sources */,
 				D01D377C29EFDB19008998CF /* LibrariesView.swift in Sources */,
 				D04B34832967F95600781E9F /* CopyRightView.swift in Sources */,
@@ -1421,10 +1818,12 @@
 				D01D37A429EFE3D2008998CF /* GuestStackBookListView.swift in Sources */,
 				D0470F81299CB230001B7008 /* StacksModel.swift in Sources */,
 				D046568E2935E2C100956818 /* ShowBooksDetailsPopUpView.swift in Sources */,
+				D0963AD32AC0265E001DFDFD /* PublisherRCEarningModel.swift in Sources */,
 				D01D379E29EFE2A0008998CF /* GuestUserStackViewModel.swift in Sources */,
 				D0470F85299CB2E0001B7008 /* StacksAuthenticationService.swift in Sources */,
 				D0FEA7D829504955005054A4 /* HTTPUtility.swift in Sources */,
 				D05BD09528D495ED006BFF0B /* MagazineBannerVM.swift in Sources */,
+				D0963ABA2AC0164E001DFDFD /* PublisherPaidIssueBooksView.swift in Sources */,
 				D0609DC628853E800098A195 /* Modal.swift in Sources */,
 				D046BB792924EA48003A9EEB /* SchoolPlanViewModel.swift in Sources */,
 				D051AD48295D7B8F00B8285E /* UnderLineTextField.swift in Sources */,
@@ -1439,6 +1838,8 @@
 				D04D9B1229D405F900AB6237 /* LatestMagazineView.swift in Sources */,
 				D03F64E028D87A0B003F93C2 /* PopularBooksView.swift in Sources */,
 				D0396C1E291114E80063F97D /* ColorList.swift in Sources */,
+				D0963AAD2AC01128001DFDFD /* PublisherTotIssueBooksView.swift in Sources */,
+				D0963AA02AC00E70001DFDFD /* PublisherTotalBooksUploadView.swift in Sources */,
 				D07E846028DF089300749727 /* MainBannerView.swift in Sources */,
 				D00DDD9E293A22A200D41B5D /* SearchBookModel.swift in Sources */,
 				D07E845828DEFBD000749727 /* HomePublisherView.swift in Sources */,
@@ -1455,12 +1856,16 @@
 				D046BB852924FD2C003A9EEB /* ReadCreditsView.swift in Sources */,
 				D05724342873FEDA008AC07B /* CorouserView.swift in Sources */,
 				D0260BE02872E12600DA77D1 /* CustomNavBarView.swift in Sources */,
+				D06A61302A611296002D868E /* StudentDashBoardModel.swift in Sources */,
 				D06638F4286EE3020055ED7D /* PopUpForForgetPassword.swift in Sources */,
 				D07B404129DACF19001C64CA /* TextFieldClearButton.swift in Sources */,
+				D0963ACF2AC0261B001DFDFD /* PublisherRCEarningsView.swift in Sources */,
 				D0396C2429111CF30063F97D /* DMCAView.swift in Sources */,
 				D01D37AA29EFE451008998CF /* GuestStackBookListViewModel.swift in Sources */,
 				D0472EA729545EA600E84B1E /* SearchBookCollectionModel.swift in Sources */,
 				D07B403D29DACDCD001C64CA /* AuthenticationPublicProfilePublisherService.swift in Sources */,
+				D0963AC72AC0253C001DFDFD /* PublisherMyEarningViewModel.swift in Sources */,
+				D0963A9C2AC00B9D001DFDFD /* PublisherAnalyticsView.swift in Sources */,
 				D046BB772924E9D5003A9EEB /* PlanModel.swift in Sources */,
 				D046BB7D2924F9D4003A9EEB /* PublisherPlansView.swift in Sources */,
 				D0472E9F29545CD900E84B1E /* SearchBooksCollectionView.swift in Sources */,
@@ -1472,7 +1877,9 @@
 				D045C26B29C1A22500414D97 /* GuestUploadListTileView.swift in Sources */,
 				D01D378029EFDB93008998CF /* GuestLibraryModelService.swift in Sources */,
 				D046BB7F2924FA15003A9EEB /* PublisherPlanViewModel.swift in Sources */,
+				D0963A932AC00971001DFDFD /* PublisherDashboardModel.swift in Sources */,
 				D046BB7B2924EAC0003A9EEB /* SchoolsPlansView.swift in Sources */,
+				D0929C692AE4F2B400FBB4F7 /* BookSuggestionView.swift in Sources */,
 				D046BB872924FD49003A9EEB /* ReadCreditsViewModel.swift in Sources */,
 				D087B839288FFCE300210209 /* PublisherModel.swift in Sources */,
 				D01B9DA6288C16E800F3B88F /* Tabview.swift in Sources */,
@@ -1487,15 +1894,18 @@
 				D088993828D1D1E700CA658E /* BookDetailsModel.swift in Sources */,
 				D0181E4C288A95110073AC49 /* SwipeView.swift in Sources */,
 				D046BB812924FC0B003A9EEB /* GuestPlanView.swift in Sources */,
+				D0963AA42AC00FC1001DFDFD /* PublisherTotalBooksUploadModel.swift in Sources */,
 				D0472E9D29545A9500E84B1E /* SearchBooksCollectionTileView.swift in Sources */,
 				D01D378429EFDCA9008998CF /* LibrariesViewTile.swift in Sources */,
 				D02196072876AAB300F7E0FB /* PopupView.swift in Sources */,
 				D012D1F5287816EC000A2BBC /* DonateView.swift in Sources */,
+				D0963A952AC00993001DFDFD /* PublisherDashboardViewModel.swift in Sources */,
 				D031D8AF287977190019D4E3 /* CardsView.swift in Sources */,
 				D049A9EE291BB1D300971AA7 /* CustomFloatingTextField.swift in Sources */,
 				D014455028758BB300F92C7B /* ButtonView.swift in Sources */,
 				D0470F92299CB554001B7008 /* RadioButton.swift in Sources */,
 				D088993A28D1D21F00CA658E /* HomePageCorouselViewModel.swift in Sources */,
+				D0963AAF2AC0114B001DFDFD /* PublisherTotIssueBookModel.swift in Sources */,
 				D01D37A229EFE2EB008998CF /* GuestUserStackModel.swift in Sources */,
 				D04D9B0529D4040600AB6237 /* BookThumbnailView.swift in Sources */,
 				D03F64E228D87C55003F93C2 /* FreshPublicationsView.swift in Sources */,
@@ -1503,12 +1913,16 @@
 				D0470F88299CB343001B7008 /* StacksViewModel.swift in Sources */,
 				D04D9B0229D4034E00AB6237 /* PDFViewWrapper.swift in Sources */,
 				D02320972894089E00C42ED6 /* JsonEx.swift in Sources */,
+				D0929C6F2AE4F31D00FBB4F7 /* BookSuggestionModel.swift in Sources */,
 				D0470F98299CB6C0001B7008 /* StackBookListModel.swift in Sources */,
 				D03F64EA28D89706003F93C2 /* PublisherBannersView.swift in Sources */,
+				D06A612E2A6111FD002D868E /* StudentAuthenticationListService.swift in Sources */,
 				D015D6402881473000AE3A82 /* DashboardTileView.swift in Sources */,
+				D06A612C2A610FD2002D868E /* StudentDashBoardView.swift in Sources */,
 				D017687728D4AD2B004DF939 /* PrimeBooksView.swift in Sources */,
 				D0346E7F291A52CB0066F8B9 /* CodeScannerView.swift in Sources */,
 				D026DA2528FFCEB500445EEA /* FilterCategoriesModel.swift in Sources */,
+				D0963AB12AC01171001DFDFD /* PublisherIssueBookViewModel.swift in Sources */,
 				D0470F90299CB4F3001B7008 /* CustomTextField.swift in Sources */,
 				D03F64E428D87C78003F93C2 /* FreshPublicationsVM.swift in Sources */,
 				D046BB832924FC32003A9EEB /* GuestPlanViewModel.swift in Sources */,
@@ -1527,9 +1941,11 @@
 				D01D378229EFDC25008998CF /* GuestLibraryModel.swift in Sources */,
 				D0472EA529545E6700E84B1E /* SearchBookCollectionViewModel.swift in Sources */,
 				D056E61F291918B600D7FD3F /* SearchBar.swift in Sources */,
+				D0963AD12AC02635001DFDFD /* PublisherRCEarningsViewModel.swift in Sources */,
 				D0470F8C299CB451001B7008 /* StacksView.swift in Sources */,
 				D045C26529C19E9C00414D97 /* UploadListDashboardModel.swift in Sources */,
 				D02230A728927C0E006BEF49 /* ApiServicess.swift in Sources */,
+				D0963AB72AC0135E001DFDFD /* PublisherPrimeIssueBooksView.swift in Sources */,
 				D04B34872967FA8C00781E9F /* WebContainer.swift in Sources */,
 				D0260BDB2872CD4800DA77D1 /* HomePage.swift in Sources */,
 				D0768D4329E7F11F00077914 /* ImageAutoSlider.swift in Sources */,
@@ -1537,6 +1953,7 @@
 				D01D379629EFE0EA008998CF /* AuthenticationGuestUserUploadService.swift in Sources */,
 				D087B83B28901F1F00210209 /* SearchBarView.swift in Sources */,
 				D0470F9C299CB74E001B7008 /* StacksBooksListViewModel.swift in Sources */,
+				D0963AD72AC026C7001DFDFD /* PublisherTotalEarningsView.swift in Sources */,
 				D07B403929DACD4E001C64CA /* PublicProfilePublisherViewModel.swift in Sources */,
 				D02230A928928499006BEF49 /* ApiServices.swift in Sources */,
 				D01594DA288680DE00D24CB3 /* LoginPageView.swift in Sources */,
