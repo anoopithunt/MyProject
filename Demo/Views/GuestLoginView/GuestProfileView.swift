@@ -2,7 +2,7 @@
 //  GuestProfileView.swift
 //  Demo
 //
-//  Created by Sandeep Kesarwani on 26/12/22.
+//  Created by Anup Kumar Mishra on 26/12/22.
 //
 
 import SwiftUI
@@ -111,12 +111,14 @@ public struct UserProfileModel: Decodable {
 public struct PartnerDetailModel: Decodable {
     public let url: String?
     public let banner_url: String?
+    public let school_logo: String?
     public let full_name: String?
     public let full_address: String?
     public let role: String?
     public let email: String?
     public let mobile: String?
     public let address_id: Int?
+    public let `class`: String?
     public let section: String?
     public let username: String?
 
@@ -129,10 +131,13 @@ class UserProfileViewModel: ObservableObject{
     @Published var username = String()
     @Published var full_name = String()
     @Published var email = String()
+    @Published var `class` = String()
+    @Published var section = String()
     @Published var mobile = String()
     @Published var address = String()
     @Published var mainImage = String()
     @Published var logo = String()
+    @Published var school_logo = String()
   
     
     func getProfileData() {
@@ -147,12 +152,15 @@ class UserProfileViewModel: ObservableObject{
                 case .success(let accounts):
                     DispatchQueue.main.async {
                         self.mobile = accounts.partnerDetail.mobile ?? ""
+                        self.class = accounts.partnerDetail.class ?? ""
+                        self.section = accounts.partnerDetail.section ?? ""
                         self.username = accounts.partnerDetail.username ?? ""
                         self.address = accounts.partnerDetail.full_address ?? ""
                         self.mainImage = accounts.partnerDetail.banner_url ?? ""
                         self.logo = accounts.partnerDetail.url!
                         self.email = accounts.partnerDetail.email ?? ""
                         self.full_name = accounts.partnerDetail.full_name  ?? ""
+                        self.school_logo = accounts.partnerDetail.school_logo  ?? ""
                         print(accounts)
 
                     }

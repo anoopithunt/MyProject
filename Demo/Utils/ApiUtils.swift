@@ -2,7 +2,7 @@
 //  ApiUtils.swift
 //  Demo
 //
-//  Created by Sandeep Kesarwani on 15/12/22.
+//  Created by Anup Kumar Mishra on 15/12/22.
 //
 
 import Foundation
@@ -63,6 +63,16 @@ struct APILoginUtility
     static let studentLibraryApi: String = baseURL + "student/select-library" //https://www.alibrary.in/api/student/select-library
     static let guestLibraryApi: String = baseURL + "guest/selectLibrary" //https://www.alibrary.in/api/guest/selectLibrary
     static let guestBookRequestListApi: String = baseURL + "guest/show-linkbookrequest?id=" //https://www.alibrary.in/api/guest/selectLibrary
+    
+    // MARK: Student Login API
+    static let studentDashBoardApi = baseURL + "student/dashboard"
+    static let schoolLibraryApi = baseURL + "student/school-libraries" //https://alibrary.in/api/student/school-libraries
+    static let studentUploadApi = baseURL + "student/school-pdfs" //https://alibrary.in/api/
+    static let studentStackApi = baseURL + "student/school-stacks" //https://alibrary.in/api/
+    static let studentCourseApi = baseURL + "student/getcourseSubjects" //https://www.alibrary.in/api/student/getcourseSubjects
+    static let studentHomeworkApi = baseURL + "student/homeworkSubject" //https://alibrary.in/api/student/homeworkSubject
+    static let studentBookbundleApi = baseURL + "teacher-lists" //https://www.alibrary.in/api/teacher-lists
+    
     
     
 }

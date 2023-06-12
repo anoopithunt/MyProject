@@ -2,7 +2,7 @@
 //  MagazineBannerView.swift
 //  Demo
 //
-//  Created by Sandeep Kesarwani on 28/03/23.
+//  Created by Anup Kumar Mishra on 28/03/23.
 //
 
 import SwiftUI

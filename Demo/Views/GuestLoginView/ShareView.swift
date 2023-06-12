@@ -2,7 +2,7 @@
 //  ShareView.swift
 //  Demo
 //
-//  Created by Sandeep Kesarwani on 13/02/23.
+//  Created by Anup Kumar Mishra on 13/02/23.
 //
 
 import SwiftUI

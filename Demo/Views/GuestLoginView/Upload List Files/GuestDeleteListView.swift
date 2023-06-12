@@ -2,7 +2,7 @@
 //  GuestDeleteListView.swift
 //  Demo
 //
-//  Created by Sandeep Kesarwani on 01/03/23.
+//  Created by Anup Kumar Mishra on 01/03/23.
 //
 
 import SwiftUI

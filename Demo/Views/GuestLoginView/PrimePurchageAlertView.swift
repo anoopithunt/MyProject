@@ -2,7 +2,7 @@
 //  PrimePurchageAlertView.swift
 //  Demo
 //
-//  Created by Sandeep Kesarwani on 28/12/22.
+//  Created by Anup Kumar Mishra on 28/12/22.
 //
 
 import SwiftUI

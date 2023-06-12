@@ -2,7 +2,7 @@
 //  AppInfo.swift
 //  Demo
 //
-//  Created by Sandeep Kesarwani on 05/06/23.
+//  Created by Anup Kumar Mishra on 05/06/23.
 //
 
 import Foundation

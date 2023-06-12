@@ -2,7 +2,7 @@
 //  NotificationsView.swift
 //  Demo
 //
-//  Created by Sandeep Kesarwani on 09/12/22.
+//  Created by Anup Kumar Mishra on 09/12/22.
 //
 
 import SwiftUI

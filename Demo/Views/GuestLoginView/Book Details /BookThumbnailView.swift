@@ -2,7 +2,7 @@
 //  BookThumbnailView.swift
 //  Demo
 //
-//  Created by Sandeep Kesarwani on 22/03/23.
+//  Created by Anup Kumar Mishra on 22/03/23.
 //
 
 import SwiftUI

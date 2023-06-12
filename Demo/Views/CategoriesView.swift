@@ -2,7 +2,7 @@
 //  CategoriesView.swift
 //  Demo
 //
-//  Created by Sandeep Kesarwani on 21/12/22.
+//  Created by Anup Kumar Mishra on 21/12/22.
 //
 //
 import SwiftUI

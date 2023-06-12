@@ -2,7 +2,7 @@
 //  ImageSliderViews.swift
 //  Demo
 //
-//  Created by Sandeep Kesarwani on 03/12/22.
+//  Created by Anup Kumar Mishra on 03/12/22.
 //
 
 import SwiftUI

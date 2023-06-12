@@ -2,7 +2,7 @@
 //  PagerTabStripView.swift
 //  Demo
 //
-//  Created by Sandeep Kesarwani on 11/04/23.
+//  Created by Anup Kumar Mishra on 11/04/23.
 //
 
 import SwiftUI

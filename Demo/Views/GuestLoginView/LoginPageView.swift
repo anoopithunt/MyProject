@@ -2,7 +2,7 @@
 //  LoginPageView.swift
 //  Demo
 //
-//  Created by Sandeep Kesarwani on 29/12/22.
+//  Created by Anup Kumar Mishra on 29/12/22.
 //
 
 import SwiftUI
@@ -73,6 +73,7 @@ struct LoginPageView: View {
                         ButtonView(btnName: "Login")
                     })
                     .navigationBarBackButtonHidden(true)
+                    
 //                    NavigationLink(destination: GuestLoginSidemenuView()
 //                                   //                                   PDFKitViews(id: 17)
 //                        .navigationTitle("")
@@ -131,7 +132,7 @@ struct LoginPageView: View {
                    .navigationBarHidden(true)
                    .navigationBarBackButtonHidden(true)
            } else {
-               UserGuideView()
+               StudentLoginSidemenuView()
                    .navigationTitle("")
                    .navigationBarHidden(true)
                    .navigationBarBackButtonHidden(true)

@@ -2,7 +2,7 @@
 //  ReadCreditView.swift
 //  Demo
 //
-//  Created by Sandeep Kesarwani on 12/12/22.
+//  Created by Anup Kumar Mishra on 12/12/22.
 //
 
 import SwiftUI

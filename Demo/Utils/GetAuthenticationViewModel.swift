@@ -2,7 +2,7 @@
     //  GetAuthenticationViewModel.swift
     //  Demo
     //
-    //  Created by Sandeep Kesarwani on 27/12/22.
+    //  Created by Anup Kumar Mishra on 27/12/22.
     //
 
     import Foundation
@@ -99,8 +99,8 @@
 class GetAuthenticationViewModel: ObservableObject {
     @Published var isAuthenticated: Bool = false
     @Published var name: String = ""
-    var username: String = "8299544315"
-    var password: String = "12345678"
+    var username: String = "rohit@gmail.com"
+    var password: String = "password"
     @Published var loginAlert = false
     
     func login() {

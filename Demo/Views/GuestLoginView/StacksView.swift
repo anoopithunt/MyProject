@@ -2,7 +2,7 @@
 //  StacksView.swift
 //  Demo
 //
-//  Created by Sandeep Kesarwani on 05/12/22.
+//  Created by Anup Kumar Mishra on 05/12/22.
 //
 
 import SwiftUI
@@ -28,15 +28,12 @@ struct StacksView: View {
                             dismiss()
                         },
                                label: {
-                            
                             Image(systemName: "arrow.backward")
-                            
                                 .font(.system(size:22, weight:.heavy))
-                            
                                 .foregroundColor(.white)
+                            
                         })
                         Text("Stacks")
-                        
                             .font(.system(size: 22, weight: .heavy))
                             .foregroundColor(.white)
                         
@@ -51,43 +48,54 @@ struct StacksView: View {
                         
                     }.padding(9)
                       .frame(width: UIScreen.main.bounds.width, height: 65)
-                        .background(Color("orange"))
+                      .background(Color("orange"))
                     
                     ScrollView{
                         LazyVGrid(columns: columns, spacing: 10) {
                             ForEach(list.datas, id: \.id){ item in
                                 VStack(alignment: .center, spacing: 8){
-                                    NavigationLink(destination:{ StackBookListView(id: item.stack_detail.id, name: item.stack_detail.name).navigationTitle("")
+                                    
+                                    NavigationLink(destination:{ StackBookListView(id: item.stack_detail.id, name: item.stack_detail.name)
+                                            .navigationTitle("")
                                             .navigationBarHidden(true)
                                             .navigationBarBackButtonHidden(true)
                                         
                                     }, label: {
-                                      ZStack{
-                                          ForEach(item.stack_book_link.indices.reversed(), id: \.self) { index in
-                                             
-                                              AsyncImage(url: URL(string: item.stack_book_link[index].book_url)){ img in
-                                                  img.resizable().frame(width: 125, height: 155)
-                                                      .rotationEffect(Angle(degrees: Double(rotate[ index])))
-                                                      .shadow(radius: 5)
-                                              }placeholder: {
-                                                  VStack{
-                                                      Image("add_plus")//.resizable()
-                                                  }.background(Color("gray")).frame(width: 145, height: 155)
-                                                //.frame(width: 145, height: 155)
-                                                 .rotationEffect(Angle(degrees: Double(rotate[ index])))
-                                                      .shadow(radius: 0.3)
-                                              }
-
-                                          }
-                                      }.frame(width: 140,height: 165,alignment: .center) .padding(12)
-                                  })
-                                   
-                      
+                                        ZStack{
+                                            ForEach(item.stack_book_link.indices.reversed(), id: \.self) { index in
+                                                
+                                                AsyncImage(url: URL(string: item.stack_book_link[index].book_url)){
+                                                    img in
+                                                    img
+                                                        .resizable()
+                                                        .frame(width: 125, height: 155)
+                                                        .rotationEffect(Angle(degrees: Double(rotate[ index])))
+                                                        .shadow(radius: 5)
+                                                }placeholder: {
+                                                    VStack{
+                                                        Image("add_plus")//.resizable()
+                                                    }.background(Color("gray")).frame(width: 145, height: 155)
+                                                    //.frame(width: 145, height: 155)
+                                                        .rotationEffect(Angle(degrees: Double(rotate[ index])))
+                                                        .shadow(radius: 0.3)
+                                                }
+                                                
+                                                
+                                            }
+                                            
+                                        }.frame(width: 140,height: 165,alignment: .center)
+                                            .padding(12)
+                                        
+                                    })
                                     HStack{
-                                        Text(item.stack_detail.name).font(.system(size: 22)).padding(.leading,4).foregroundColor(Color("default_"))
+                                        Text(item.stack_detail.name).font(
+                                            .system(size: 22))
+                                        .padding(.leading,4)
+                                        .foregroundColor(Color("default_"))
+                                        
                                         Spacer()
+                                        
                                     }
-                                    
                                     HStack(spacing: 6){
                                         Text("\(item.stack_book_link_count)")
                                             .foregroundColor(.gray)
@@ -100,6 +108,7 @@ struct StacksView: View {
                                             .frame(width: 25, height: 20)
                                             .foregroundColor(.gray)
                                         Spacer()
+                                        
                                         Menu {
                                             Button {
                                                 
@@ -129,7 +138,7 @@ struct StacksView: View {
                     Spacer()
                 }
                 if shown{
-//                    StacksViewAlertView(rcShow: $shown)
+                    StacksViewAlertView(rcShow: $shown)
                 }
             }
            
@@ -307,11 +316,12 @@ struct StacksViewTile: View{
                 }
             }.padding(.bottom).padding(.leading,4)
            
-        }.background(Color("gray")).cornerRadius(12).frame(width: UIScreen.main.bounds.width/2.2).shadow(color: .gray.opacity(0.5),radius: 1).padding(.horizontal)
+        }.background(Color("gray")).cornerRadius(12).frame(width: UIScreen.main.bounds.width/2.2)
+            .shadow(color: .gray.opacity(0.5),radius: 1)
+            .padding(.horizontal)
     }
 }
-
-//import Foundation
+ // MARK: Stack Model
 public struct StacksModel:Decodable {
     public let studentStacks: StudentStacks
 }

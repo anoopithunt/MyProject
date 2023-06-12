@@ -2,7 +2,7 @@
 //  LectureVideoView.swift
 //  Demo
 //
-//  Created by Sandeep Kesarwani on 29/04/23.
+//  Created by Anup Kumar Mishra on 29/04/23.
 //
 
 import SwiftUI

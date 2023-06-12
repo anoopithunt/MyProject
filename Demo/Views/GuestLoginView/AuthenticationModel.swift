@@ -2,7 +2,7 @@
 //  AuthenticationModel.swift
 //  Demo
 //
-//  Created by Sandeep Kesarwani on 26/12/22.
+//  Created by Anup Kumar Mishra on 26/12/22.
 //
 
 import Foundation

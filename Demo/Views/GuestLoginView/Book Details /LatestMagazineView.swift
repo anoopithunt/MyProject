@@ -2,7 +2,7 @@
 //  LatestMagazineView.swift
 //  Demo
 //
-//  Created by Sandeep Kesarwani on 24/03/23.
+//  Created by Anup Kumar Mishra on 24/03/23.
 //
 
 import SwiftUI

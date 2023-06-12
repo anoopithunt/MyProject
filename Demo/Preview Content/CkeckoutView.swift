@@ -2,7 +2,7 @@
 //  CkeckoutView.swift
 //  Demo
 //
-//  Created by Sandeep Kesarwani on 06/08/22.
+//  Created by Anup Kumar Mishra on 06/08/22.
 //
 
 import SwiftUI

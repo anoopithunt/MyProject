@@ -2,7 +2,7 @@
 //  GuestLoginSidemenuView.swift
 //  Demo
 //
-//  Created by Sandeep Kesarwani on 26/04/23.
+//  Created by Anup Kumar Mishra on 26/04/23.
 //
 
 import SwiftUI

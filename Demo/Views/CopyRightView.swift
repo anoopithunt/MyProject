@@ -2,7 +2,7 @@
 //  CopyRightView.swift
 //  Demo
 //
-//  Created by Sandeep Kesarwani on 05/01/23.
+//  Created by Anup Kumar Mishra on 05/01/23.
 //
 
 import SwiftUI

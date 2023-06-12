@@ -1,7 +1,7 @@
 //
 //  VideoPlayerView.swift
 //  Demo
-//  Created by Sandeep Kesarwani on 08/08/22.
+//  Created by Anup Kumar Mishra on 08/08/22.
 //
 
 import SwiftUI

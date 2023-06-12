@@ -2,7 +2,7 @@
 //  LectureAudioView.swift
 //  Demo
 //
-//  Created by Sandeep Kesarwani on 12/05/23.
+//  Created by Anup Kumar Mishra on 12/05/23.
 //
 
 import SwiftUI
