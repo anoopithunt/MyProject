@@ -113,21 +113,24 @@ struct DeviceInfo {
 struct DeviceInfoView: View {
     
     var body: some View {
-        VStack {
-            Text("Device Information..")
-                .font(.largeTitle)
-            Divider()
-            Text("Device Name **\(DeviceInfo.name)**")
-            Text("System Name **\(DeviceInfo.systemName)**")
-            Text("Model **\(DeviceInfo.model)**")
-            Group{
-                Text("System Version **\(DeviceInfo.systemVersion)**")
-                Text("Battery Charging State **\(DeviceInfo.batteryState)**")
-                Text("Battery Monitoring Enabled? **\(DeviceInfo.isBatteryMonitoringEnabled.description)**")
-                Text("Battery Monitoring Enabled (After change)? **\(DeviceInfo.setBatteryMonitoring(to: true).description)**")
-                Text("Battery Charge Level **\(DeviceInfo.batteryLevel)**")
-                Text("IP Address  **\(UIDevice.current.getIP() ?? "")**")
-            }.font(.system(size: 22))
+        ZStack{
+            Color(.yellow).ignoresSafeArea()
+            VStack {
+                Text("Device Information..")
+                    .font(.system(size: 32, weight: .bold)).foregroundColor(.cgDarkGray)
+                Divider()
+                Text("Device Name **\(DeviceInfo.name)**").font(.system(size: 22, weight: .bold)).foregroundColor(.cgMagenta)
+                Text("System Name **\(DeviceInfo.systemName)**").font(.system(size: 18, weight: .bold)).foregroundColor(.cgOrange)
+                Text("Model **\(DeviceInfo.model)**").font(.system(size: 18, weight: .bold)).foregroundColor(.cgGreen)
+                Group{
+                    Text("System Version **\(DeviceInfo.systemVersion)**").font(.system(size: 18, weight: .bold)).foregroundColor(.cgYellow)
+                    Text("Battery Charging State **\(DeviceInfo.batteryState)**")
+                    Text("Battery Monitoring Enabled? **\(DeviceInfo.isBatteryMonitoringEnabled.description)**")
+                    Text("Battery Monitoring Enabled (After change)? **\(DeviceInfo.setBatteryMonitoring(to: true).description)**")
+                    Text("Battery Charge Level **\(DeviceInfo.batteryLevel)**")
+                    Text("IP Address  **\(UIDevice.current.getIP() ?? "")**").font(.system(size: 22, weight: .bold)).foregroundColor(.cgLightGray)
+                }.font(.system(size: 22))
+            }
         }
     }
 }

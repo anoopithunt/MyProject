@@ -14,12 +14,13 @@ struct StudentCourseView: View {
     private var columns = [GridItem(.flexible()), GridItem(.flexible())]
     @Environment(\.dismiss) var dismiss
     var body: some View {
-        ZStack{
-            Image("u").resizable()
-            Color.blue.opacity(0.4).ignoresSafeArea()
-            
-            VStack(alignment:.leading){
-                  
+        NavigationView{
+            ZStack{
+                Image("u").resizable()
+                Color.blue.opacity(0.4).ignoresSafeArea()
+                
+                VStack(alignment:.leading){
+                    
                     AsyncImage(url: URL(string: "\(profile.mainImage)")){
                         img in
                         img.resizable()
@@ -31,65 +32,67 @@ struct StudentCourseView: View {
                     }.onAppear{
                         profile.getProfileData()
                     }
-                HStack{
-                    Text("Online Courses").font(.system(size: 22,weight: .bold))
-               
-                    Spacer()
-                    Button(action: {
+                    HStack{
+                        Text("Online Courses").font(.system(size: 22,weight: .bold))
                         
-                    }, label: {
-                        
-                        Text("Teachers").foregroundColor(.black).font(.system(size: 22,weight: .bold)).padding() .overlay(RoundedRectangle(cornerRadius: 11)
-                            .stroke(Color.cgBlue, lineWidth:2))
-                    })
-                     
-                    
-                }.padding(.horizontal)
-                
-                Text(profile.class + " " + profile.section).padding(.leading)
-                ScrollView(showsIndicators: false){
-                    LazyVGrid(columns: columns, spacing: 10) {
-                        
-                        ForEach(list.datas, id: \.id){ item in
-                            AsyncImage(url: URL(string: item.subject_detail.cover_page)){
-                                img in
-                                img.resizable().frame( height: 145, alignment: .center)
-                            }placeholder: {
-                                Image("logo_gray")
-                                    .resizable()
-                                    .frame( height: 145, alignment: .center)
+                        Spacer()
+                        NavigationLink(destination:   TeachersListView()
+                            .navigationTitle("")
+                            .navigationBarHidden(true)
+                            .navigationBarBackButtonHidden(true)) {
+                                
+                                Text("Teachers").foregroundColor(.black).font(.system(size: 22,weight: .bold)).padding() .overlay(RoundedRectangle(cornerRadius: 11)
+                                    .stroke(Color.cgBlue, lineWidth:2))
                             }
-                            
-                        }
-                    }.padding(6)
-                    Spacer()
-                }
-                }
-            VStack{
-                HStack{
-                    Button(action: {
-                        dismiss()
-                    }, label: {
-                        Image(systemName: "chevron.left").foregroundColor(.white).font(.system(size: 32,weight: .bold))
-                    })
-                  
-                    Spacer()
-                }
-                HStack{
-                    AsyncImage(url: URL(string: profile.school_logo)){ image in
-                        image.resizable().frame(width: 90, height: 90).cornerRadius(111).overlay(RoundedRectangle(cornerRadius: 111)
-                            .stroke(Color.white, lineWidth: 3))
                         
-                    }placeholder: {
-                        Image("logo_gray").resizable().frame(width: 90, height: 90).cornerRadius(111).overlay(RoundedRectangle(cornerRadius: 111)
-                            .stroke(Color.white, lineWidth: 2))
+                        
+                    }.padding(.horizontal)
+                    
+                    Text(profile.class + " " + profile.section).padding(.leading)
+                    ScrollView(showsIndicators: false){
+                        LazyVGrid(columns: columns, spacing: 10) {
+                            
+                            ForEach(list.datas, id: \.id){ item in
+                                AsyncImage(url: URL(string: item.subject_detail.cover_page)){
+                                    img in
+                                    img.resizable().frame( height: 145, alignment: .center)
+                                }placeholder: {
+                                    Image("logo_gray")
+                                        .resizable()
+                                        .frame( height: 145, alignment: .center)
+                                }
+                                
+                            }
+                        }.padding(6)
+                        Spacer()
+                    }
+                }
+                VStack{
+                    HStack{
+                        Button(action: {
+                            dismiss()
+                        }, label: {
+                            Image(systemName: "chevron.left").foregroundColor(.white).font(.system(size: 32,weight: .bold))
+                        })
+                        
+                        Spacer()
+                    }
+                    HStack{
+                        AsyncImage(url: URL(string: profile.school_logo)){ image in
+                            image.resizable().frame(width: 90, height: 90).cornerRadius(111).overlay(RoundedRectangle(cornerRadius: 111)
+                                .stroke(Color.white, lineWidth: 3))
+                            
+                        }placeholder: {
+                            Image("logo_gray").resizable().frame(width: 90, height: 90).cornerRadius(111).overlay(RoundedRectangle(cornerRadius: 111)
+                                .stroke(Color.white, lineWidth: 2))
+                        }
+                        
+                        Spacer()
                     }
                     
                     Spacer()
-                }
-            
-                Spacer()
-            }.padding(.leading)
+                }.padding(.leading)
+            }
         }.onAppear{
             list.getCourseData()
         }

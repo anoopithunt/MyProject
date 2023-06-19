@@ -71,7 +71,9 @@ struct APILoginUtility
     static let studentStackApi = baseURL + "student/school-stacks" //https://alibrary.in/api/
     static let studentCourseApi = baseURL + "student/getcourseSubjects" //https://www.alibrary.in/api/student/getcourseSubjects
     static let studentHomeworkApi = baseURL + "student/homeworkSubject" //https://alibrary.in/api/student/homeworkSubject
-    static let studentBookbundleApi = baseURL + "teacher-lists" //https://www.alibrary.in/api/teacher-lists
+    static let studentTeachersListApi = baseURL + "teacher-lists" //https://www.alibrary.in/api/teacher-lists
+    static let studentBookbundleApi = baseURL + "student/own-bundle" //https://www.alibrary.in/api/student/own-bundle
+    static let studentStoriesApi = baseURL + "student/view-blogs" //https://www.alibrary.in/api/student/view-blogs
     
     
     
