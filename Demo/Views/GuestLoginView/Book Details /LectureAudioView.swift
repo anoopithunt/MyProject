@@ -35,8 +35,8 @@ struct LectureAudioView: View {
                     .font(.system(size: 17,weight: .regular))
                 Text("Like 0")
                     .font(.system(size: 18,weight: .regular))
-                MusicBarView(animating: $isComplete)
-                    .frame(50)//.padding(.bottom,4)
+//                MusicBarView(animating: $isComplete)
+                    .frame(width: 50, height: 50)//.padding(.bottom,4)
                 HStack{
                 
                   Button(action: {
@@ -71,7 +71,7 @@ struct LectureAudioView: View {
                     
                 }
             }.padding(8).frame(width: 235)
-                .background(Color.orange.backgroundColor(.green))
+                .background(Color.orange.background(Color.green))
                 .cornerRadius(12)
                 .shadow(radius:  32)
             
@@ -86,7 +86,6 @@ struct LectureAudioView: View {
     }
     
 }
-
 
 
 struct LectureAudioView_Previews: PreviewProvider {
@@ -300,7 +299,7 @@ public struct ShowBookAudioPartnerDetails:Decodable {
 
 }
 
-//MARK: - View Model
+//MARK: - BookShowListAudioViewModel
 
 class BookShowListAudioViewModel: ObservableObject{
    
@@ -355,78 +354,4 @@ class BookShowListAudioViewModel: ObservableObject{
       
 }
 
-
-import PureSwiftUI
-
-private let numBars = 5
-private let spacerWidthRatio: CGFloat = 0.2
-private let barWidthScaleFactor = 1 / (numBars.asCGFloat + (numBars - 1).asCGFloat * spacerWidthRatio)
-
-struct MusicBarView: View {
-    
-    @Binding var animating:Bool //= false
-    
-    var body: some View {
-        VStack{
-            GeometryReader { (geo: GeometryProxy) in
-                let barWidth = geo.widthScaled(barWidthScaleFactor)
-                let spacerWidth = barWidth * spacerWidthRatio
-                HStack(spacing: spacerWidth) {
-                    ForEach(0..<numBars) { index in
-                        Bar(minHeightFraction: 0.1, maxHeightFraction: 1, completion: animating ? 1 : 0)
-                            .fillColor(.green)
-                            .width(barWidth)
-                            .animation(animating ? createAnimation() :  nil)
-                    }
-                    
-                }
-            }
-            .onAppear {
-                animating = true
-            }
-            
-        }
-    }
-    
-    private func createAnimation() -> Animation {
-        Animation
-            .easeInOut(duration: 0.8 + Double.random(in: -0.3...0.3))
-            .repeatForever(autoreverses: true)
-            .delay(Double.random(in: 0...4))
-    }
-}
-
-private struct Bar: Shape {
-    
-    private let minHeightFraction: CGFloat
-    private let maxHeightFraction: CGFloat
-    var animatableData: CGFloat
-    
-    init(minHeightFraction: CGFloat, maxHeightFraction: CGFloat, completion: CGFloat) {
-        self.minHeightFraction = minHeightFraction
-        self.maxHeightFraction = maxHeightFraction
-        self.animatableData = completion
-    }
-    
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        
-        let heightFraction = minHeightFraction.to(maxHeightFraction, animatableData)
-        
-        path.rect(rect.scaled(.size(0.6, heightFraction), at: rect.bottomLeading, anchor: .center))
-        
-        return path
-    }
-}
-
-
-struct LectureExView: View {
-    @State var play: Bool = true
-    var body: some View {
-        MusicBarView(animating: $play)
-            .frame(50)
-//            .greedyFrame()
-//            .ignoresSafeArea()
-    }
-   
-}
+ 

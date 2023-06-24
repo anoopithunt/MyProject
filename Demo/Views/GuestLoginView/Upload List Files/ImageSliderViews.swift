@@ -138,15 +138,30 @@ public struct SliderModel: Decodable {
 // MARK: - BookDetail
 public struct SliderBookDetail: Decodable {
     public let id: Int
-    public let title: String
+    public let name: String
+    public let book_media: Book_media
+    public let book_category_link: HomeBookCategoryLink
+}
+
+public struct Book_media: Decodable{
+    public let id: Int
     public let url: String
+}
+
+public struct HomeBookCategoryLink: Decodable{
+    public let id: Int
+    public let sub_category: HomeSubCategory
+}
+public struct HomeSubCategory: Decodable{
+    public let id: Int
+    public let category_name: String
 }
 
 class SliderViewModel: ObservableObject {
     @Published var datas = [SliderBookDetail]()
     @Published var images = [String]()
     var currentIndex = 0
-    let url = "https://www.alibrary.in/api/web-home"
+    let url = "https://www.alibrary.in/api/webhome"
     let timer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
 
     init() {
@@ -164,7 +179,7 @@ class SliderViewModel: ObservableObject {
                     let results = try JSONDecoder().decode(SliderModel.self, from: data)
                     DispatchQueue.main.async {
                         self.datas = results.bookDetails
-                        self.images = self.datas.map { $0.url }
+                        self.images = self.datas.map { $0.book_media.url }
                         completion(.success(()))
                     }
                 } catch {
@@ -176,7 +191,7 @@ class SliderViewModel: ObservableObject {
 
     func startTimer() {
         currentIndex = 0 // Set currentIndex to 0 before starting the timer
-        timer.upstream.connect()
+//        timer.upstream.connect()
     }
 
     @objc func updateCurrentIndex() {
@@ -190,10 +205,10 @@ class SliderViewModel: ObservableObject {
 
 
 class SliderViewModel1: ObservableObject {
-    @Published var datas = [SliderBookDetail]()
+//    @Published var datas = [SliderBookDetail]()
     @Published var images = [String]()
     var currentIndex = 0
-    let url = "https://www.alibrary.in/api/web-home"
+    let url = "https://www.alibrary.in/api/webhome"
 //    let timer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
 
     init() {
@@ -209,9 +224,10 @@ class SliderViewModel1: ObservableObject {
                    
                     DispatchQueue.main.async {
                         
-                        self.datas = results.bookDetails
-                        for img in self.datas{
-                            self.images.append(img.url)
+//                        self.datas = results.bookDetails
+                        for img in  results.bookDetails{
+                            self.images.append(img.book_media.url)
+                            print(self.images)
                         }
                        
                     }
@@ -236,16 +252,16 @@ struct SliderExView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack(spacing: 0) {
                         ForEach(list.datas, id: \.id) { item in
-                            AsyncImage(url: URL(string: item.url)) { image in
-                                image.resizable().frame(width: UIScreen.main.bounds.width, height: 215)
+                            AsyncImage(url: URL(string: item.book_media.url)) { image in
+                                image.resizable().frame(width: UIScreen.main.bounds.width, height: 275)
                             } placeholder: {
-                                Image("logo_gray").resizable().frame(width: UIScreen.main.bounds.width, height: 215)
+                                Image("logo_gray").resizable().frame(width: UIScreen.main.bounds.width, height: 245)
                             }
                         }
                         .frame(width: UIScreen.main.bounds.width)
                         .id(UUID())
                         .offset(x: CGFloat(list.currentIndex) * -UIScreen.main.bounds.width, y: 0)
-                        .animation(.linear)
+                        .animation(.linear, value: 0)
                     }
                 }
             }

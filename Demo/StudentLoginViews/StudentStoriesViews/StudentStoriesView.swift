@@ -2,7 +2,7 @@
 //  StudentStoriesView.swift
 //  Demo
 //
-//  Created by Sandeep Kesarwani on 22/06/23.
+//  Created by Anup Kumar Mishra on 22/06/23.
 //
 
 import SwiftUI
@@ -25,14 +25,17 @@ struct StudentStoriesView: View {
                                         img.resizable().frame(height: 195)
                                     }placeholder: {
                                         Image("logo_gray").resizable()
-                                            .frame(height: 185)
+                                            .frame(height: 195)
                                     }
-                                    LinearGradient(colors: [.clear,.clear, .black.opacity(0.7)],startPoint: .top, endPoint: .bottom).frame(height: 185).padding(0)
+                                    LinearGradient(colors: [.clear,.clear, .black.opacity(0.7)],startPoint: .top, endPoint: .bottom).frame(height: 195).padding(0)
                                     VStack(alignment: .leading, spacing: 0){
                                         
                                         Spacer()
-                                        Text(item.subcategory_name ?? "").font(.system(size: 22, weight: .bold))
-                                            .foregroundColor(.white).underlineTextField().foregroundColor(Color.orange).padding(0)
+                                        Text(item.subcategory_name)
+                                            .font(.system(size: 22, weight: .bold))
+                                            .foregroundColor(.white)
+                                            .padding(0)
+                                        Rectangle().fill(Color.red).frame(height:2)
                                         Text(item.name ?? "").font(.system(size: 22, weight: .bold))
                                             .foregroundColor(.white).lineLimit(2).padding(0)
                                             .foregroundColor(Color.orange)
@@ -49,13 +52,13 @@ struct StudentStoriesView: View {
  
                                         }
                                         VStack(alignment: .leading){
-                                            Text(item.createdBy.name ?? "")
+                                            Text(item.createdBy.name)
                                             Text(item.published ?? "")
                                         }
                                         Spacer()
                                     
                                     }.padding(.leading, 4).background(Color.white)
-                            }.cornerRadius(12).shadow(2)
+                            }.cornerRadius(12).shadow(radius:2)
                         }
                     }
                 }

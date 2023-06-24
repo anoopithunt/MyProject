@@ -36,6 +36,8 @@ struct LoginRequestBodyAuth: Codable {
 struct LoginAuthResponse: Codable {
     let access_token: String?
     let email: String?
+    let username: String?
+    let role: String 
     let message: String?
     let agent: Agent?
 }

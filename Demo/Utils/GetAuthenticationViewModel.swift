@@ -99,21 +99,30 @@
 class GetAuthenticationViewModel: ObservableObject {
     @Published var isAuthenticated: Bool = false
     @Published var name: String = ""
-    var username: String = "rohit@gmail.com"
-    var password: String = "password"
+    @Published var role: String = ""
+    @Published var email: String = ""
+    @Published var username: String = "industryadmin"
+    @Published var useremail: String = ""
+    @Published var password: String = "11111111"
     @Published var loginAlert = false
-    
+    static let shared = GetAuthenticationViewModel()
     func login() {
         let defaults = UserDefaults.standard
         
         AuthService().login(username: username, password: password) { result in
             switch result {
-            case .success((let token, let name)):
+                
+            case .success((let token, let role, let username, let email)):
                 defaults.setValue(token, forKey: "access_token")
                 DispatchQueue.main.async {
                     self.isAuthenticated = true
-                    self.name = name
-                    print(self.name)
+//                    self.name = name
+                    self.username = username
+                    self.password = self.password
+                    self.role = role
+                    self.useremail = token
+                    self.email = email
+                    print(self.role)
                 }
             case .failure(let error):
                 self.loginAlert = true
@@ -136,7 +145,7 @@ class GetAuthenticationViewModel: ObservableObject {
 
 
 class AuthService {
-    func login(username: String, password: String, completion: @escaping (Result<(String, String), AuthenticationError>) -> Void) {
+    func login(username: String, password: String, completion: @escaping (Result<(String, String, String,String), AuthenticationError>) -> Void) {
         guard let url = URL(string: APILoginUtility.loginAuthurl) else {
             completion(.failure(.custom(errorMessage: "URL is not correct")))
             return
@@ -165,7 +174,7 @@ class AuthService {
                 return
             }
             
-            completion(.success((token, loginResponse.agent?.partner_role?.name ?? "")))
+            completion(.success((token, loginResponse.role, loginResponse.username ?? "", loginResponse.email ?? "")))
         }.resume()
     }
 }

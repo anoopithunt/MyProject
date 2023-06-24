@@ -263,7 +263,7 @@ struct PDFKitViews: View {
 struct PDFKitViews_Previews: PreviewProvider {
     static var previews: some View {
 //        PDFKitViews1(id: 17)
-        PDFKitViews(id: 22)
+        PDFKitViews(id: 4224)
 //        PDFKitViews2(id: 17)
     }
 }
@@ -280,20 +280,20 @@ public struct PreviewBooksModel: Decodable {
 // MARK: - Book
 public struct PreviewModel: Decodable {
     public let id: Int
-    public let name: String
-    public let tot_pages: Int
-    public let title: String
-    public let author_name: String
-    public let tot_likes: String?
-    public let tot_view: Int?
-    public let validity_date: String
+//    public let name: String
+    public let tot_pages: Int?
+    public let title: String?
+//    public let author_name: String
+//    public let tot_likes: String?
+//    public let tot_view: Int?
+//    public let validity_date: String
     public let pdf_path: String
-    public let published: String
-    public let published_date: String
+//    public let published: String
+//    public let published_date: String
     public let partner_id: Int
-    public let url: String
-    public let protectedpdf: String
-    public let demo: String
+//    public let url: String
+//    public let protectedpdf: String
+//    public let demo: String
     public let thumbnail: String
 
 }
@@ -325,8 +325,8 @@ class PreviewBooksViewModel: ObservableObject{
                         self.path = results.book.pdf_path
                         self.id = results.book.id
                         self.partner_id = results.book.partner_id
-                        self.bookName = results.book.title
-                        self.totatPages = results.book.tot_pages
+                        self.bookName = results.book.title ?? ""
+                        self.totatPages = results.book.tot_pages ?? 0
                         self.thumbnail = results.book.thumbnail
                         self.pageUrl = "\(results.book.pdf_path)/\(self.currentPage).pdf"
                         if self.totatPages % 2 == 0 {

@@ -13,13 +13,19 @@ struct GifImageView: View {
     var body: some View {
         VStack{
             if buttonIsClicked{
-                GifImage("sound").frame(width: 55, height: 55)
+//                GifImage("sound").frame(width: 55, height: 55)
+                Image(systemName: "wifi")
+                    .font(.system(size: 34,weight: .bold))
+                    .hoverEffect(.highlight)
             }
             else{
-                GifImage("music").frame(width: 55, height: 55)
+               
+                Image(systemName: "wifi.slash")
+                    .font(.system(size: 34,weight: .bold))
+                    .hoverEffect(.highlight)
             }
             
-            Button("Click to animate") {
+            Button("Click to animation") {
                 buttonIsClicked.toggle()
             }.foregroundColor(.black)
                 .font(.system(size: 32, weight: .heavy))

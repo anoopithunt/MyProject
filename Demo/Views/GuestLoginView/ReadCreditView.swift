@@ -327,7 +327,7 @@ struct BuyPurchaseAlert: View{
                     .padding()
             }.background(Color.white)
                 .cornerRadius(4)
-                .shadow(2)
+                .shadow(radius: 2)
                 .padding()
         }
     }

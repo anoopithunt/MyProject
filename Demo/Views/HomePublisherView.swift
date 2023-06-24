@@ -173,7 +173,7 @@ struct HomePublisher: View{
                                 AsyncImage(url: URL(string: item.url)) { image in
                                     image
                                         .resizable()
-                                        .frame(height: 125)
+                                        .frame(width: 95,height: 95)
                                 } placeholder: {
                                     Image("logo_gray").resizable().frame(height: 125)
                                 }

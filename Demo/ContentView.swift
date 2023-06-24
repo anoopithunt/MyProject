@@ -22,7 +22,7 @@ struct MyPagerView: View {
     
     var body: some View {
         VStack{
-            Spacer().frame(height: 80)
+//            Spacer().frame(height: 80)
 //        PagerTabStripView() {
 //            AccountView()
 //                .frame(width: UIScreen.main.bounds.width)

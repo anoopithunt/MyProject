@@ -73,9 +73,26 @@ struct APILoginUtility
     static let studentHomeworkApi = baseURL + "student/homeworkSubject" //https://alibrary.in/api/student/homeworkSubject
     static let studentTeachersListApi = baseURL + "teacher-lists" //https://www.alibrary.in/api/teacher-lists
     static let studentBookbundleApi = baseURL + "student/own-bundle" //https://www.alibrary.in/api/student/own-bundle
+    static let studentBookbundleDetailApi = baseURL + "student/bundle-book-list?id=" //https://alibrary.in/api/student/bundle-book-list?id=554
     static let studentStoriesApi = baseURL + "student/view-blogs" //https://www.alibrary.in/api/student/view-blogs
+    static let studentExamTestApi = baseURL + "student/getsubjects" //https://alibrary.in/api/student/getsubjects
     
     
+    
+    
+    // MARK: Publisher Login API
+    
+    
+    static let publisherMyEarningApi = baseURL + "publisher/my-earnings"
+            //https://www.alibrary.in/api/publisher/my-earnings
+    static let publisherIssueBooksApi = baseURL + "publisher/publisher-book"
+            //"https://alibrary.in/api/publisher/publisher-book?book_type=\(self.bookType)&page=\(self.currentPage)"
+   static let publisherRCEarningApi = baseURL + "publisher/mRC-earned"
+            //""https://alibrary.in/api/publisher/mRC-earned?month=\(self.sel_month)&year=\(self.sel_year)&page=\(self.currentPage)""
+   static let publisherMonthlyMagazineUploadApi = baseURL + "publisher/tot-magazine-upload"
+            //""https://alibrary.in/api/publisher/mRC-earned?month=\(self.sel_month)&year=\(self.sel_year)&page=\(self.currentPage)""
+    static let publisherMonthlyBooksReadApi = baseURL + "publisher/tot-book-read"
+            //""https://alibrary.in/api/publisher/mRC-earned?month=\(self.sel_month)&year=\(self.sel_year)&page=\(self.currentPage)""
     
 }
 
@@ -87,11 +104,11 @@ struct APILoginUtility
 //
 //protocol EndPointType {
 //    var path: String { get }
-////    var baseURL: String { get }
+//    var baseURL: String { get }
 //    var url: URL? { get }
-////    var method: HTTPMethods { get }
-////    var body: Encodable? { get }
-////    var headers: [String: String]? { get }
+//    var method: HTTPMethods { get }
+//    var body: Encodable? { get }
+//    var headers: [String: String]? { get }
 //}
 //
 //enum EndPoint {

@@ -167,12 +167,12 @@ public struct StudentUserSchoolStack:Decodable {
     public let data: [StudentUserStackDatum]
 //    public let first_page_url: String
 //    public let from: Int
-//    public let last_page: Int
+    public let last_page: Int
 //    public let last_page_url: String
 //    public let path: String
 //    public let per_page: Int
 //    public let to: Int
-    public let total: Int
+//    public let total: Int
 
     
 }
@@ -206,7 +206,7 @@ public struct StudentUserStackPartnerDetail:Decodable {
 // MARK: - StudentUserStackBookLink
 public struct StudentUserStackBookLink:Decodable {
     public let id: Int
-    public let stack_id: Int
+//    public let stack_id: Int
     public let book_url: String
     public let book_media: StudentUserStackBookMedia
 
@@ -233,8 +233,8 @@ public struct StudentUserStackDetail:Decodable {
 // MARK: - StudentUserStackStudentDetail
 public struct StudentUserStackStudentDetail:Decodable {
     public let id: Int
-    public let admission_no: String
-    public let roll_no: String
+    public let admission_no: String?
+    public let roll_no: String?
     public let role_id: Int
     public let school_id: Int
     public let school_class_link_id: Int
@@ -270,8 +270,13 @@ class  StudentUserStackViewModel: ObservableObject {
             switch result {
             case .success(let results):
                 DispatchQueue.main.async {
-                    self.datas = results.schoolStack.data
-                    self.totalPage = results.schoolStack.total
+                    if !results.schoolStack.data.isEmpty {
+                        self.datas = results.schoolStack.data
+                    } else {
+                        
+                        print("This Empty")
+                    }
+                    self.totalPage = results.schoolStack.last_page
                     print(results)
 
                 }

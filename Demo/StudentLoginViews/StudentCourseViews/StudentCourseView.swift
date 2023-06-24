@@ -42,7 +42,7 @@ struct StudentCourseView: View {
                             .navigationBarBackButtonHidden(true)) {
                                 
                                 Text("Teachers").foregroundColor(.black).font(.system(size: 22,weight: .bold)).padding() .overlay(RoundedRectangle(cornerRadius: 11)
-                                    .stroke(Color.cgBlue, lineWidth:2))
+                                    .stroke(Color.blue, lineWidth:2))
                             }
                         
                         
@@ -53,17 +53,23 @@ struct StudentCourseView: View {
                         LazyVGrid(columns: columns, spacing: 10) {
                             
                             ForEach(list.datas, id: \.id){ item in
-                                AsyncImage(url: URL(string: item.subject_detail.cover_page)){
-                                    img in
-                                    img.resizable().frame( height: 145, alignment: .center)
-                                }placeholder: {
-                                    Image("logo_gray")
-                                        .resizable()
-                                        .frame( height: 145, alignment: .center)
-                                }
-                                
+                                NavigationLink(destination: {
+                                    
+                                }, label: {
+                                    AsyncImage(url: URL(string: item.subject_detail.cover_page)){
+                                        img in
+                                        img
+                                            .resizable()
+                                            .frame( height: 145, alignment: .center)
+                                    }placeholder: {
+                                        Image("logo_gray")
+                                            .resizable()
+                                            .frame( height: 145, alignment: .center)
+                                    }
+                                })
                             }
                         }.padding(6)
+                        
                         Spacer()
                     }
                 }

@@ -84,10 +84,10 @@ struct NavHeaderClosure<Content: View>: View {
                 content()
                 
                 Spacer()
-            }
+            }.edgesIgnoringSafeArea(.bottom)
             // Use navigationBarBackButtonHidden modifier to show custom back button
             .navigationBarBackButtonHidden(true)
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

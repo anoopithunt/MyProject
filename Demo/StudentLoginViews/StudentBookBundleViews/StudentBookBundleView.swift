@@ -18,25 +18,35 @@ struct StudentBookBundleView: View {
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())]){
                         VStack{
                             ForEach(list.datas, id: \.id){ item in
-                                ZStack{
-                                    ForEach(0..<min(item.stack_book_links.count, 3) , id: \.self){ index in
-                                        AsyncImage(url: URL(string: item.stack_book_links[index].book_media.url)){
-                                            img in
-                                            img.resizable().frame(width: 115, height: 145)
-                                                .offset(x: index == 1 ?  20 : index == 2 ? 30 : 0, y: index == 1 ? 12 :  index == 2 ? 22 : 0)
-                                                .shadow(radius: 5)
-                                                .padding(.trailing , index == 1 ? 21 : 22 )
-                                        }
-                                    placeholder: {
-                                        Image("logo_gray")
-                                            .resizable().frame(width: 115, height: 145)
-                                            .offset(x: index == 1 ?  20 : index == 2 ? 30 : 0, y: index == 1 ? 12 :  index == 2 ? 22 : 0)
-                                            .shadow(radius: 5).padding()
-                                    }
-                                    }
-                                }.frame(maxHeight: 244).padding()
+                                NavigationLink(destination: StudentBookBundleDetailViews(bundle_id: item.id)
+                                    .navigationTitle("")
+                                    .navigationBarHidden(true)
+                                    .navigationBarBackButtonHidden(true)){
+                                
+                                        ZStack{
+                                            ForEach(0..<min(item.stack_book_links.count, 3) , id: \.self){ index in
+                                                AsyncImage(url: URL(string: item.stack_book_links[index].book_media.url)){
+                                                    img in
+                                                    img.resizable()
+                                                        .frame(width: 115, height: 145)
+                                                        .offset(x: index == 1 ?  20 : index == 2 ? 30 : 0, y: index == 1 ? 12 :  index == 2 ? 22 : 0)
+                                                        .shadow(radius: 5)
+                                                        .padding(.trailing , index == 1 ? 21 : 22 )
+                                                }
+                                            placeholder: {
+                                                Image("logo_gray")
+                                                    .resizable()
+                                                    .frame(width: 115, height: 145)
+                                                    .offset(x: index == 1 ?  20 : index == 2 ? 30 : 0, y: index == 1 ? 12 :  index == 2 ? 22 : 0)
+                                                    .shadow(radius: 5)
+                                                    .padding()
+                                            }
+                                            }
+                                        }.frame(maxHeight: 244)
+                                            .padding()
+                            }
                                 Rectangle()
-                                    .fillColor(.white)
+                                    .fill(Color.white)
                                     .frame(height: 2)
                                 Text(item.name)
                                     .foregroundColor(.gray)
@@ -200,11 +210,8 @@ public struct StudentBookBundlePartnerStacklink: Decodable {
 }
 
 // MARK: - StudentBookBundleStackBookLink
-public struct StudentBookBundleStackBookLink: Decodable,Equatable {
-//    public static func == (lhs: StudentBookBundleStackBookLink, rhs: StudentBookBundleStackBookLink) -> Bool {
-//        return true
-//    }
-    
+public struct StudentBookBundleStackBookLink: Decodable {
+ 
     public let id: Int
 //    public let stack_id: Int
 //    public let stack_book: StudentBookBundleStackBook

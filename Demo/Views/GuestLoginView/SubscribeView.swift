@@ -29,10 +29,10 @@ struct SubscribeView: View {
                 Image("u").resizable().ignoresSafeArea()
                 
                 VStack(spacing:0){
-                    HStack(spacing: 12) {
+                    HStack(spacing: 0) {
                         Button(action: {
                             
-                                                    dismiss()
+                            dismiss()
                             print("close")
                         }, label: {
                             Image(systemName: "arrow.backward")
@@ -41,7 +41,7 @@ struct SubscribeView: View {
                         })
                         
                         Text("Subscriptions")
-                            .font(.system(size: 24, weight: .semibold))
+                            .font(.system(size: 24, weight: .medium))
                             .foregroundColor(.white)
                         
                         Spacer()
@@ -140,8 +140,7 @@ struct SubscribeView: View {
                                             
                                         }, label: {
                                             img.resizable()
-                                            
-                                                .frame( height: 235)
+                                                .frame( height: 235).padding(6)
                                         })
                                         
                                     }placeholder: {

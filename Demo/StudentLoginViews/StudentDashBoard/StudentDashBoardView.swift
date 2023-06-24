@@ -111,10 +111,10 @@ struct StudentDashBoardView: View {
                                     dashBoardTile(iconTileImage: "coureses_gray", tileCount: "\(accountListVM.studentCoursesCount)", mainTileImage: "course", tileName: "Courses")
                                 }.background(Color("default_"))
                                 .cornerRadius(12)
-                            
-                            
-                            dashBoardTile(iconTileImage: "test_correct_gray", tileCount: "\(accountListVM.studentTestsCount)", mainTileImage: "test", tileName: "Exam/Test")
-                            
+                            NavigationLink(destination:{ StudentExamTestView().navigationBarBackButtonHidden()}, label: {
+                                
+                                dashBoardTile(iconTileImage: "test_correct_gray", tileCount: "\(accountListVM.studentTestsCount)", mainTileImage: "test", tileName: "Exam/Test")
+                            })
                             NavigationLink(destination: StudentAssignmentView()
                                 .navigationTitle("")
                                 .navigationBarHidden(true)

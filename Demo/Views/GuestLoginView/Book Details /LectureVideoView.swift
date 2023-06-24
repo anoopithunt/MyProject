@@ -18,15 +18,26 @@ struct LectureVideoView: View {
    
     var body: some View {
         VStack{
-            
-            if let videoURL = URL(string: "https://www.youtube.com/watch?v=EwLl3-S5zLo") {
-            VideoPlayer(player: AVPlayer(url: videoURL))
-            .frame(maxWidth: .infinity, alignment: .center)
-            .frame(height: 432)
-            Spacer()
-        }
+            if let videoURL = URL(string: "https://storage.googleapis.com/pdffilesalib/alibschool/courses/L.K.G/English/English%20L.K.G/Chapter%202/video/20230513142731_3.mp4") {
+                VideoPlayer(player: AVPlayer(url: videoURL))
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .frame(height: 252)
+                
+               
+            }
+            ScrollView(showsIndicators: false){
+                ForEach(0..<6){
+                    _ in
+                    HStack{
+                        Image("logo_gray").resizable()
+                            .frame(width:125,height: 123)
+                        Spacer()
+                        Text("Lecture Name").font(.system(size: 28,weight: .bold)).foregroundColor(.black)
+                    }.background(Color.white).cornerRadius(12).shadow(radius:2).padding(16)
+                }
+            }
         }.onAppear{
-//            list.getBookShowListData()
+            list.getBookShowListData()
         }
         
     }

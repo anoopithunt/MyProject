@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
-
+var passwrd = ""
 struct LoginPageView: View {
 //    @Environment(\.dismiss) var dismiss
     @State var isTapped = false
+    @State var pass = ""
     @State private var showingModal = false
     @State var isSecuredField: Bool = true
     @State var isAuthenticated: Bool = false
@@ -68,6 +69,8 @@ struct LoginPageView: View {
                     //  sumitsglobal@gmail.com   password
                     //                }
                     Button(action: {
+                        passwrd =  loginVM.password
+                        
                         loginVM.login()
                     }, label: {
                         ButtonView(btnName: "Login")
@@ -126,16 +129,39 @@ struct LoginPageView: View {
     
     @ViewBuilder
        private func destinationView() -> some View {
-           if loginVM.name == "Guest" {
+           if loginVM.role == "Guest" {
                GuestLoginSidemenuView()
                    .navigationTitle("")
                    .navigationBarHidden(true)
                    .navigationBarBackButtonHidden(true)
-           } else {
-               StudentLoginSidemenuView()
+           } else if loginVM.role == "Student" {
+
+                   StudentLoginSidemenuView()
                    .navigationTitle("")
                    .navigationBarHidden(true)
                    .navigationBarBackButtonHidden(true)
+           } else if loginVM.role == "Publisher" {
+               PublisherLoginSidemenuView()
+                   .navigationTitle("")
+                   .navigationBarHidden(true)
+                   .navigationBarBackButtonHidden(true)
+               
+           } else if loginVM.role == "Teacher" {
+               TeacherDashBoardView()
+                   .navigationTitle("")
+                   .navigationBarHidden(true)
+                   .navigationBarBackButtonHidden(true)
+           } else if loginVM.role == "Industry" {
+               
+               IndustryDashboardView()
+                   .navigationTitle("")
+                   .navigationBarHidden(true)
+                   .navigationBarBackButtonHidden(true)
+           }
+           
+           else{
+               EmptyView()
+                   .navigationTitle("New User Role please comfirm!")
            }
        }
 }

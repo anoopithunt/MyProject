@@ -12,39 +12,45 @@ struct TeachersListView: View {
     var body: some View {
         NavHeaderClosure(title: "Teacher List"){
             ZStack{
-                Image("u").resizable().scaledToFill()
+                Image("u").resizable().ignoresSafeArea()
                 
             ScrollView(showsIndicators: false){
-                VStack(alignment: .leading){
+                VStack(alignment: .leading, spacing: 12){
                     ForEach(Array(list.datas.enumerated()), id: \.1.id){(index, item) in
-                        HStack{
-                            AsyncImage(url: URL(string: item.profile_url)){
-                                img in img.resizable()
-                                    .frame(width: 60, height: 60)
-                                    .cornerRadius(65)
-                                    .padding(6)
-                                    .overlay(RoundedRectangle(cornerRadius: 75)
-                                        .stroke(Color.white, lineWidth: 4))
-                            } placeholder: {
-                                Image("soft")
-                                    .resizable()
-                                    .frame(width: 60, height: 60)
-                                    .cornerRadius(65)
-                                    .padding(6)
-                                    .overlay(RoundedRectangle(cornerRadius: 75)
-                                        .stroke(Color.white, lineWidth: 4))
-                            }
-                            VStack(alignment: .leading){
-                                Text(item.full_name).foregroundColor(.white).font(.system(size: 22, weight: .bold))
-                                Text(item.role_id.description).foregroundColor(.white).font(.system(size: 18, weight: .medium))
-                            }
+                        NavigationLink(destination: {
+                            TeacherDetailView(id: item.id).navigationBarHidden(true)
+                        }, label: {
+                            HStack{
+                                
+                                AsyncImage(url: URL(string: item.profile_url)){
+                                    img in img.resizable()
+                                        .frame(width: 60, height: 60)
+                                        .cornerRadius(65)
+                                        .padding(6)
+                                        .overlay(RoundedRectangle(cornerRadius: 75)
+                                            .stroke(Color.white, lineWidth: 4))
+                                } placeholder: {
+                                    Image("logo_gray")
+                                        .resizable()
+                                        .frame(width: 60, height: 60)
+                                        .cornerRadius(65)
+                                        .padding(6)
+                                        .overlay(RoundedRectangle(cornerRadius: 75)
+                                            .stroke(Color.white, lineWidth: 4))
+                                }
+                                VStack(alignment: .leading){
+                                    Text(item.full_name).foregroundColor(.white).font(.system(size: 22, weight: .bold))
+                                    Text(item.subjectDetails.first?.subject_name ?? "").foregroundColor(.white).font(.system(size: 18, weight: .medium))
+                                }
                                 Spacer()
                             }.padding(.vertical, 8)
                                 .padding(.leading,12)
-                            .frame(width: UIScreen.main.width * 0.98)
-                            .background(Color(hex: colorlist[index % colorlist.count]))
-                            .cornerRadius(49)
-                        }
+                                .frame(width: UIScreen.main.bounds.width * 0.98)
+                                .background(Color(hex: colorlist[index % colorlist.count]))
+                                .cornerRadius(49)
+                            
+                        })
+                    }
                     }
                 }
             }
@@ -103,6 +109,7 @@ public struct TeachersListSubjectDetail: Decodable {
 
 class  StudentTeachersListViewModel: ObservableObject {
     @Published var datas  = [TeachersListPartner]()
+//    @Published var subject  = [TeachersListPartner]()
     @Published var colorlists: [String: String] = [:]
     
     func getTeachersListData() {

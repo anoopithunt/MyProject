@@ -53,7 +53,7 @@ import SwiftUI
                         }.padding()
                     }
     //
-                }.frame(width: UIScreen.main.bounds.width*0.9).background(Color.white).cornerRadius(22).padding()
+                }.frame(width: UIScreen.main.bounds.width*0.95, height: UIScreen.main.bounds.height*0.9).background(Color.white).cornerRadius(22).padding()
     //            Spacer()
             }.padding().background(Color.black.opacity(0.4))
         }
